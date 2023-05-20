@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Department Manager</title>
+</head>
+<body>
+<h1>Department Manager</h1>
+<h2>Get all departments</h2>
+<form action="/api/departments" method="get">
+  <button type="submit">Get all departments</button>
+</form>
+<hr>
+<h2>Get department by ID</h2>
+<form action="/api/departments/{id}" method="get">
+  <label for="id">Department ID:</label>
+  <input type="text" id="id" name="id" required>
+  <button type="submit">Get department</button>
+</form>
+<hr>
+<h2>Create department</h2>
+<form action="/api/departments" method="post">
+  <label for="name">Department name:</label>
+  <input type="text" id="name" name="name" required>
+  <button type="submit">Create department</button>
+</form>
+<hr>
+<<h2>Update department</h2>
+<form action="/api/departments/{id}" method="put">
+  <label for="id">Department ID:</label>
+  <input type="text" id="id" name="id" required>
+  <br>
+  <label for="name">Department name:</label>
+  <input type="text" id="name" name="name" required>
+  <br>
+  <button type="submit">Update department</button>
+</form>
+<hr>
+<h2>Delete department</h2>
+<form action="/api/departments/{id}" method="delete">
+  <label for="id">Department ID:</label>
+  <input type="text" id="id" name="id" required>
+  <button type="submit">Delete department</button>
+</form>
+</body>
+</html>
