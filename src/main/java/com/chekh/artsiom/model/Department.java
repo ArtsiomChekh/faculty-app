@@ -1,5 +1,7 @@
 package com.chekh.artsiom.model;
 
+import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -13,11 +15,22 @@ public class Department {
   @Column(name = "name")
   private String name;
 
+  @Column(name = "student_count")
+  private int studentCount;
+
+  @Column(name = "teacher_count")
+  private int teacherCount;
+
+  @OneToMany(mappedBy = "department")
+  private Set<Course> courses;
+
   public Department() {
   }
 
-  public Department(String name) {
+  public Department(String name, int studentCount, int teacherCount) {
     this.name = name;
+    this.studentCount = studentCount;
+    this.teacherCount = teacherCount;
   }
 
   public Long getId() {
@@ -34,5 +47,13 @@ public class Department {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  // добавляем курс в множество courses кафедры
+  public void addCourse(Course course) {
+    courses.add(course);
+  }
+  public Set<Course> getCourses(){
+    return courses;
   }
 }

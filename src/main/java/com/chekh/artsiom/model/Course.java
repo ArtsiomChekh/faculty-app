@@ -1,5 +1,8 @@
 package com.chekh.artsiom.model;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -17,9 +20,12 @@ public class Course {
   @JoinColumn(name = "department_id")
   private Department department;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "teacher_id")
   private Teacher teacher;
+
+  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "courses")
+  private Set<Student> students = new HashSet<>();
 
   public Course() {
   }
@@ -28,6 +34,11 @@ public class Course {
     this.name = name;
     this.department = department;
     this.teacher = teacher;
+  }
+
+  public Course(String name, Department department) {
+    this.name = name;
+    this.department = department;
   }
 
   public Long getId() {
@@ -50,9 +61,7 @@ public class Course {
     return department;
   }
 
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
+
 
   public Teacher getTeacher() {
     return teacher;
@@ -61,4 +70,11 @@ public class Course {
   public void setTeacher(Teacher teacher) {
     this.teacher = teacher;
   }
+
+  public void setDepartment(Department department) {
+    this.department = department;
+    department.getCourses().add(this);
+  }
+
+
 }

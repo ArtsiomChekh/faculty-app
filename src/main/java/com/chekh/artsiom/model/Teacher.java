@@ -1,5 +1,6 @@
 package com.chekh.artsiom.model;
 
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +16,9 @@ public class Teacher {
 
   @Column(name = "last_name")
   private String lastName;
+
+  @OneToMany(mappedBy = "teacher")
+  private List<Course> courses;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "department_id")
@@ -59,5 +63,15 @@ public class Teacher {
 
   public void setDepartment(Department department) {
     this.department = department;
+  }
+
+  // добавляем курс в множество courses преподавателя
+  public void addCourse(Course course) {
+    course.setTeacher(this);
+    courses.add(course);
+  }
+
+  public List<Course> getCourses() {
+    return courses;
   }
 }

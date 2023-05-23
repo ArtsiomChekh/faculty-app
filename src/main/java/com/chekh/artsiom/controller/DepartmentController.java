@@ -1,7 +1,7 @@
 package com.chekh.artsiom.controller;
 
 import com.chekh.artsiom.model.Department;
-import com.chekh.artsiom.service.DepartmentService;
+import com.chekh.artsiom.service.DepartmentServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,30 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 class DepartmentController {
 
   @Autowired
-  private DepartmentService departmentService;
+  private DepartmentServiceImpl departmentService;
 
   @GetMapping
   public List<Department> getAllDepartments() {
     return departmentService.getAllDepartments();
   }
 
-  @GetMapping("/{id}")
-  public Department getDepartmentById(@PathVariable Long id) {
-    return departmentService.getDepartmentById(id);
-  }
 
-  @PostMapping
-  public Department createDepartment(@RequestBody Department department) {
-    return departmentService.createDepartment(department);
-  }
-
-  @PutMapping("/{id}")
-  public Department updateDepartment(@PathVariable Long id, @RequestBody Department department) {
-    return departmentService.updateDepartment(id, department);
-  }
-
-  @DeleteMapping("/{id}")
-  public void deleteDepartment(@PathVariable Long id) {
-    departmentService.deleteDepartment(id);
-  }
 }
