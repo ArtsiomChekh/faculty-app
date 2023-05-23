@@ -28,8 +28,8 @@ public class StudentServiceImpl implements StudentService{
 
   //  список студентов по каждому предмету
   @Override
-  public List<Student> getStudentsByCourse(Long courseId) {
-    return studentRepository.findAllByCourses_Id(courseId);
+  public List<Student> getStudentsBySubject(Long subjectId) {
+    return studentRepository.findAllBySubjects_Id(subjectId);
 
   }
 

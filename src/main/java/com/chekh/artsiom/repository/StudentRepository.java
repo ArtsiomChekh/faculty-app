@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentRepository extends JpaRepository<Student,Long> {
  List<Student> findAllByDepartmentId(Long departmentId);
- List<Student> findAllByCourses_Id(Long courseId);
+ List<Student> findAllBySubjects_Id(Long courseId);
 
 }

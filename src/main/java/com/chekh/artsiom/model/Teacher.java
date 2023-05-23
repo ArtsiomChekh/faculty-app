@@ -18,7 +18,7 @@ public class Teacher {
   private String lastName;
 
   @OneToMany(mappedBy = "teacher")
-  private List<Course> courses;
+  private List<Subject> subjects;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "department_id")
@@ -65,13 +65,13 @@ public class Teacher {
     this.department = department;
   }
 
-  // добавляем курс в множество courses преподавателя
-  public void addCourse(Course course) {
-    course.setTeacher(this);
-    courses.add(course);
+  // добавляем предмет в множество subjects преподавателя
+  public void addSubject(Subject subject) {
+    subject.setTeacher(this);
+    subjects.add(subject);
   }
 
-  public List<Course> getCourses() {
-    return courses;
+  public List<Subject> getSubjects() {
+    return subjects;
   }
 }

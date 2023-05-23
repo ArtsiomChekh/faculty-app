@@ -8,7 +8,7 @@ public interface StudentService {
 
   List<Student> getAllStudents();
   List<Student> getStudentsByDepartment(Long departmentId);
-  List<Student> getStudentsByCourse(Long courseId);
+  List<Student> getStudentsBySubject(Long subjectId);
 
   Student addStudent(Student student);
   List<Student> findAllByDepartment(Teacher teacher);

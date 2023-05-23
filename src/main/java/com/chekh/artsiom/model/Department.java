@@ -1,6 +1,6 @@
 package com.chekh.artsiom.model;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -22,7 +22,7 @@ public class Department {
   private int teacherCount;
 
   @OneToMany(mappedBy = "department")
-  private Set<Course> courses;
+  private Set<Subject> subjects;
 
   public Department() {
   }
@@ -49,11 +49,13 @@ public class Department {
     this.name = name;
   }
 
-  // добавляем курс в множество courses кафедры
-  public void addCourse(Course course) {
-    courses.add(course);
+  // добавляем курс в множество subjects кафедры
+  public void addSubject(Subject subject) {
+    subjects.add(subject);
   }
-  public Set<Course> getCourses(){
-    return courses;
+  public Set<Subject> getSubjects(){
+    return subjects;
   }
+
+
 }

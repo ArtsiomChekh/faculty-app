@@ -29,10 +29,10 @@ public class Student {
   private String lastName;
 
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "course_student",
+  @JoinTable(name = "subject_student",
       joinColumns = @JoinColumn(name = "student_id"),
-      inverseJoinColumns = @JoinColumn(name = "course_id"))
-  private Set<Course> courses = new HashSet<>();
+      inverseJoinColumns = @JoinColumn(name = "subject_id"))
+  private Set<Subject> subjects = new HashSet<>();
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "department_id")

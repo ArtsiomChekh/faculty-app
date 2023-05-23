@@ -1,13 +1,12 @@
 package com.chekh.artsiom.model;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "course")
-public class Course {
+@Table(name = "subject")
+public class Subject {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,19 +23,19 @@ public class Course {
   @JoinColumn(name = "teacher_id")
   private Teacher teacher;
 
-  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "courses")
+  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "subjects")
   private Set<Student> students = new HashSet<>();
 
-  public Course() {
+  public Subject() {
   }
 
-  public Course(String name, Department department, Teacher teacher) {
+  public Subject(String name, Department department, Teacher teacher) {
     this.name = name;
     this.department = department;
     this.teacher = teacher;
   }
 
-  public Course(String name, Department department) {
+  public Subject(String name, Department department) {
     this.name = name;
     this.department = department;
   }
@@ -73,7 +72,7 @@ public class Course {
 
   public void setDepartment(Department department) {
     this.department = department;
-    department.getCourses().add(this);
+    department.getSubjects().add(this);
   }
 
 

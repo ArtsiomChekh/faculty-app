@@ -1,16 +1,15 @@
 package com.chekh.artsiom.service;
 
-import com.chekh.artsiom.model.Course;
+import com.chekh.artsiom.model.Subject;
 import com.chekh.artsiom.model.Department;
 import com.chekh.artsiom.model.Teacher;
-import com.chekh.artsiom.repository.CourseRepository;
+import com.chekh.artsiom.repository.SubjectRepository;
 import com.chekh.artsiom.repository.TeacherRepository;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +19,7 @@ public class TeacherServiceImpl implements TeacherService {
   private TeacherRepository teacherRepository;
 
   @Autowired
-  private CourseRepository courseRepository;
+  private SubjectRepository subjectRepository;
 
 
   // список всех преподавателей
@@ -37,8 +36,8 @@ public class TeacherServiceImpl implements TeacherService {
 
   // список преподавателей по каждому предмету
   @Override
-  public List<Teacher> getTeachersByCourse(Long courseId) {
-    return teacherRepository.findAllByCourses_Id(courseId);
+  public List<Teacher> getTeachersBySubject(Long subjectId) {
+    return teacherRepository.findAllBySubjects_Id(subjectId);
   }
   // добавить преподавателя на кафедру
   @Override
@@ -48,20 +47,20 @@ public class TeacherServiceImpl implements TeacherService {
 
   // преподователь: список предметов своей кафедры
   @Override
-  public Set<Course> getDepartmentCourses(Teacher teacher) {
-    Set<Course> departmentCourses = new HashSet<>();
+  public Set<Subject> getDepartmentSubjects(Teacher teacher) {
+    Set<Subject> departmentSubjects = new HashSet<>();
     Department department = teacher.getDepartment();
 
     if (department != null) {
-      Set<Course> courses = department.getCourses();
-      for (Course course : courses) {
-        if (course.getTeacher().equals(teacher)) {
-          departmentCourses.add(course);
+      Set<Subject> subjects = department.getSubjects();
+      for (Subject subject : subjects) {
+        if (subject.getTeacher().equals(teacher)) {
+          departmentSubjects.add(subject);
         }
       }
     }
 
-    return departmentCourses;
+    return departmentSubjects;
   }
 
   // преподователь: список преподавателей своей кафедры
