@@ -19,20 +19,10 @@ public class Subject {
   @JoinColumn(name = "department_id")
   private Department department;
 
-  @ManyToOne
-  @JoinColumn(name = "teacher_id")
-  private Teacher teacher;
-
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "subjects")
-  private Set<Student> students = new HashSet<>();
+  private Set<Teacher> teachers = new HashSet<>();
 
   public Subject() {
-  }
-
-  public Subject(String name, Department department, Teacher teacher) {
-    this.name = name;
-    this.department = department;
-    this.teacher = teacher;
   }
 
   public Subject(String name, Department department) {
@@ -60,20 +50,27 @@ public class Subject {
     return department;
   }
 
-
-
-  public Teacher getTeacher() {
-    return teacher;
-  }
-
-  public void setTeacher(Teacher teacher) {
-    this.teacher = teacher;
-  }
-
   public void setDepartment(Department department) {
     this.department = department;
     department.getSubjects().add(this);
   }
 
+  public Set<Teacher> getTeachers() {
+    return teachers;
+  }
+
+  public void setTeachers(Set<Teacher> teachers) {
+    this.teachers = teachers;
+  }
+
+  public void addTeacher(Teacher teacher) {
+    teachers.add(teacher);
+    teacher.getSubjects().add(this);
+  }
+
+  public void removeTeacher(Teacher teacher) {
+    teachers. remove(teacher);
+    teacher.getSubjects().remove(this);
+  }
 
 }

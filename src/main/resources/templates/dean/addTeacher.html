@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавление преподавателя</title>
+</head>
+<body>
+<h1>Добавление преподавателя</h1>
+<form th:action="@{/dean/teachers/add}" method="post" th:object="${teacher}">
+  <p>
+    <label for="firstName">Имя:</label>
+    <input type="text" id="firstName" name="firstName" th:field="*{firstName}" required>
+  </p>
+  <p>
+    <label for="lastName">Фамилия:</label>
+    <input type="text" id="lastName" name="lastName" th:field="*{lastName}" required>
+  </p>
+  <p>
+    <label for="department">Кафедра:</label>
+    <select id="department" name="department" th:field="*{department}" required>
+      <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"></option>
+    </select>
+  </p>
+  <button type="submit">Добавить</button>
+</form>
+</body>
+</html>

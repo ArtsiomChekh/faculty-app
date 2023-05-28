@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface SubjectRepository extends JpaRepository<Subject, Long> {
 
   List<Subject> findAllByDepartmentId(Long departmentId);
-  List<Subject> findAllByTeacherId(Long teacherId);
+  List<Subject> findAllByTeachersId(Long teacherId);
 
   List<Subject> findAll();
 }

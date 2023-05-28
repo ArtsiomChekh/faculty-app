@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Список преподавателей</title>
+</head>
+<body>
+<h1>Список преподавателерей</h1>
+<a href="/dean/teachers/add">Добавить преподавателя</a>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Отчество</th>
+    <th>Кафедра</th>
+    <th>Действия</th>
+  </tr>
+  <tr th:each="teacher : ${teachers}">
+    <td th:text="${teacher.id}"></td>
+    <td th:text="${teacher.firstName}"></td>
+    <td th:text="${teacher.lastName}"></td>
+    <td th:text="${teacher.department.name}"></td>
+    <td>
+      <a th:href="@{/dean/teachers/edit/{id}(id=${teacher.id})}">Редактировать</a>
+      <a href="@{/dean/teachers/delete/{id}(id=${teacher.id})}"
+         onclick="return confirm('Вы уверены, что хотите удалить преподавателя?')">Удалить</a>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

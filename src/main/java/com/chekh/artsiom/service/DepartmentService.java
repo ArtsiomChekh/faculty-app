@@ -7,9 +7,15 @@ import java.util.List;
 public interface DepartmentService {
 
   List<Department> getAllDepartments();
-  List<Department> getDepartmentsByTeacherCount();
-  List<Department> getDepartmentsByStudentCount();
+  List<Department> getAllDepartmentsSortedByStudentCount(boolean isAscending);
+  List<Department> getAllDepartmentsSortedByTeacherCount(boolean isAscending);
 
   Department addDepartment(Department department);
+
+  Department getDepartmentById(Long id);
+
+  void updateDepartment(Department department);
+  void deleteDepartment(Long id);
+
 
 }

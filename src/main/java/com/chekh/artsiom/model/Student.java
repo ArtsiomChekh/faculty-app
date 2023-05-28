@@ -76,4 +76,7 @@ public class Student {
     this.lastName = lastName;
   }
 
+  public Set<Subject> getSubjects() {
+    return subjects;
+  }
 }

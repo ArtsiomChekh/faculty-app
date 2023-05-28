@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Departments</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="header :: content"></div>
+<div>
+  <div class="btn-group" role="group" aria-label="Sort by">
+    <form method="get" action="/departments">
+      <button type="submit" name="sortBy" value="students" class="btn btn-primary">
+        Сортировать по количеству студентов
+      </button>
+      <input type="hidden" name="isAscending" th:value="${isAscending}">
+    </form>
+
+    <form method="get" action="/departments">
+      <button type="submit" name="sortBy" value="teachers" class="btn btn-primary">
+        Сортировать по количеству преподавателей
+      </button>
+      <input type="hidden" name="isAscending" th:value="${isAscending}">
+    </form>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Students</th>
+      <th>Teachers</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="department : ${departments}">
+      <td th:text="${department.id}"></td>
+      <td th:text="${department.name}"></td>
+      <td th:text="${department.studentCount}"></td>
+      <td th:text="${department.teacherCount}"></td>
+      <td th:text="${department.description}"></td>
+    </tr>
+
+    </tbody>
+
+  </table>
+</div>
+</body>
+</html>

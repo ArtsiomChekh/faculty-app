@@ -6,6 +6,7 @@ import java.util.List;
 public interface SubjectService {
 
   List<Subject> getAllSubjects();
+
   List<Subject> getSubjectsByDepartment(Long departmentId);
 
   Subject addSubject(Subject subject);

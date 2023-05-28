@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Список преподавателей</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="header :: content"></div>
+<h1>Список преподавателей</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Кафедра</th>
+    <th>Предметы</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="teacher : ${teachers}">
+    <td th:text="${teacher.firstName}"></td>
+    <td th:text="${teacher.lastName}"></td>
+    <td th:text="${teacher.department.name}"></td>
+    <td>
+      <ul>
+        <li th:each="subject : ${teacher.subjects}" th:text="${subject.name}"></li>
+        <th:block th:if="${teacher.subjects.empty()}">
+          <span>Нет предметов</span>
+        </th:block>
+      </ul>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

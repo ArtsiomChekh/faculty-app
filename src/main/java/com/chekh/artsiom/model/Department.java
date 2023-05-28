@@ -1,5 +1,6 @@
 package com.chekh.artsiom.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collection;
 import java.util.Set;
 import javax.persistence.*;
@@ -15,11 +16,15 @@ public class Department {
   @Column(name = "name")
   private String name;
 
+
   @Column(name = "student_count")
   private int studentCount;
 
   @Column(name = "teacher_count")
   private int teacherCount;
+
+  @Column(name = "description")
+  private String description;
 
   @OneToMany(mappedBy = "department")
   private Set<Subject> subjects;
@@ -27,10 +32,11 @@ public class Department {
   public Department() {
   }
 
-  public Department(String name, int studentCount, int teacherCount) {
+  public Department(String name, int studentCount, int teacherCount, String description) {
     this.name = name;
     this.studentCount = studentCount;
     this.teacherCount = teacherCount;
+    this.description = description;
   }
 
   public Long getId() {
@@ -49,6 +55,24 @@ public class Department {
     this.name = name;
   }
 
+  // Сеттер для поля studentCount
+  public void setStudentCount(int studentCount) {
+    this.studentCount = studentCount;
+  }
+
+  // Метод для увеличения количества студентов на 1
+  public void addStudent() {
+    this.studentCount++;
+  }
+
+  public void setTeacherCount(int teacherCount) {
+    this.teacherCount = teacherCount;
+  }
+
+  public void addTeacher() {
+    this.teacherCount++;
+  }
+
   // добавляем курс в множество subjects кафедры
   public void addSubject(Subject subject) {
     subjects.add(subject);
@@ -58,4 +82,19 @@ public class Department {
   }
 
 
+  public int getStudentCount() {
+    return studentCount;
+  }
+
+  public int getTeacherCount() {
+    return teacherCount;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
 }

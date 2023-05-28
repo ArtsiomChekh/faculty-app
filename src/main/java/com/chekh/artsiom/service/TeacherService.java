@@ -7,12 +7,13 @@ import java.util.Set;
 
 public interface TeacherService {
 
-    List<Teacher> getAllTeachers();
-    List<Teacher> getTeachersByDepartment(Long departmentId);
-    List<Teacher> getTeachersBySubject(Long subjectId);
+    List<Teacher> findAll();
+    List<Teacher> findByDepartmentId(Long departmentId);
+    List<Teacher> findBySubjectId(Long subjectId);
+
     Teacher addTeacher(Teacher teacher);
 
-    Set<Subject> getDepartmentSubjects(Teacher teacher);
+//    Set<Subject> getDepartmentSubjects(Teacher teacher);
 
     List<Teacher> findAllByDepartment(Teacher teacher);
 

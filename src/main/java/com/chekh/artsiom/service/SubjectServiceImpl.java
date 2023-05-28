@@ -18,6 +18,8 @@ public class SubjectServiceImpl implements SubjectService {
     return subjectRepository.findAll();
   }
 
+
+
   // список предметов по каждой кафедре
   @Override
   public List<Subject> getSubjectsByDepartment(Long departmentId) {
@@ -33,7 +35,7 @@ public class SubjectServiceImpl implements SubjectService {
   // преподователь: список своих предметов
   @Override
   public List<Subject> getSubjectsByTeacher(Long teacherId) {
-    return subjectRepository.findAllByTeacherId(teacherId);
+    return subjectRepository.findAllByTeachersId(teacherId);
   }
 
   // список предметов

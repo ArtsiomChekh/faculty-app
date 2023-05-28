@@ -24,21 +24,25 @@ public class TeacherServiceImpl implements TeacherService {
 
   // список всех преподавателей
   @Override
-  public List<Teacher> getAllTeachers() {
+  public List<Teacher> findAll() {
     return teacherRepository.findAll();
   }
 
   //  список преподавателей по каждой кафедре
   @Override
-  public List<Teacher> getTeachersByDepartment(Long departmentId) {
+  public List<Teacher> findByDepartmentId(Long departmentId) {
     return teacherRepository.findAllByDepartmentId(departmentId);
   }
 
   // список преподавателей по каждому предмету
   @Override
-  public List<Teacher> getTeachersBySubject(Long subjectId) {
+  public List<Teacher> findBySubjectId(Long subjectId) {
     return teacherRepository.findAllBySubjects_Id(subjectId);
   }
+
+
+
+
   // добавить преподавателя на кафедру
   @Override
   public Teacher addTeacher(Teacher teacher) {
@@ -46,22 +50,22 @@ public class TeacherServiceImpl implements TeacherService {
   }
 
   // преподователь: список предметов своей кафедры
-  @Override
-  public Set<Subject> getDepartmentSubjects(Teacher teacher) {
-    Set<Subject> departmentSubjects = new HashSet<>();
-    Department department = teacher.getDepartment();
-
-    if (department != null) {
-      Set<Subject> subjects = department.getSubjects();
-      for (Subject subject : subjects) {
-        if (subject.getTeacher().equals(teacher)) {
-          departmentSubjects.add(subject);
-        }
-      }
-    }
-
-    return departmentSubjects;
-  }
+//  @Override
+//  public Set<Subject> getDepartmentSubjects(Teacher teacher) {
+//    Set<Subject> departmentSubjects = new HashSet<>();
+//    Department department = teacher.getDepartment();
+//
+//    if (department != null) {
+//      Set<Subject> subjects = department.getSubjects();
+//      for (Subject subject : subjects) {
+//        if (subject.getTeacher().equals(teacher)) {
+//          departmentSubjects.add(subject);
+//        }
+//      }
+//    }
+//
+//    return departmentSubjects;
+//  }
 
   // преподователь: список преподавателей своей кафедры
   @Override
