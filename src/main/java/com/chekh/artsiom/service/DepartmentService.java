@@ -12,7 +12,7 @@ public interface DepartmentService {
 
   Department addDepartment(Department department);
 
-  Department getDepartmentById(Long id);
+  Department getDepartmentById(long id);
 
   void updateDepartment(Department department);
 

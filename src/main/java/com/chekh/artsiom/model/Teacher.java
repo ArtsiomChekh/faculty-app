@@ -1,5 +1,6 @@
 package com.chekh.artsiom.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -29,7 +30,10 @@ public class Teacher {
   @JoinTable(name = "teacher_subject",
       joinColumns = @JoinColumn(name = "teacher_id"),
       inverseJoinColumns = @JoinColumn(name = "subject_id"))
-  private Set<Subject> subjects = new HashSet<>();
+  private List<Subject> subjects = new ArrayList<>();
+
+  @Transient
+  private Long[] subjectIds;
 
   public Teacher() {
   }
@@ -72,17 +76,21 @@ public class Teacher {
     this.department = department;
   }
 
-  public Set<Subject> getSubjects() {
+  public List<Subject> getSubjects() {
     return subjects;
   }
 
-
-  // добавляем предмет в множество subjects преподавателя
-  public void addSubject(Subject subject) {
-    subjects.add(subject);
-    subject.getTeachers().add(this);
+  public void setSubjects(List<Subject> subjects) {
+    this.subjects = subjects;
   }
 
 
 
+  public Long[] getSubjectIds() {
+    return subjectIds;
+  }
+
+  public void setSubjectIds(Long[] subjectIds) {
+    this.subjectIds = subjectIds;
+  }
 }

@@ -13,4 +13,6 @@ public interface SubjectRepository extends JpaRepository<Subject, Long> {
   List<Subject> findAllByTeachersId(Long teacherId);
 
   List<Subject> findAll();
+
+  List<Subject> findByIdIn(List<Long> ids);
 }

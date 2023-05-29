@@ -82,9 +82,21 @@ public class TeacherServiceImpl implements TeacherService {
     return teachers;
   }
 
+  @Override
+  public void saveTeacher(Teacher teacher) {
+    teacherRepository.save(teacher);
+  }
 
+  @Override
+  public void deleteTeacherById(long id) {
+    teacherRepository.deleteById(id);
+  }
 
   // Преподаватель может * взяться вести предмет кафедры
 
+  @Override
+  public Teacher getTeacherById(long id) {
+    return teacherRepository.findById(id).orElse(null);
+  }
 
 }

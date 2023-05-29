@@ -15,4 +15,5 @@ public interface SubjectService {
 
   List<Subject> findAll();
 
+  List<Subject> getSubjectsByIds(List<Long> asList);
 }

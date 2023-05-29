@@ -8,6 +8,7 @@ import com.chekh.artsiom.service.DepartmentService;
 import com.chekh.artsiom.service.StudentService;
 import com.chekh.artsiom.service.SubjectService;
 import com.chekh.artsiom.service.TeacherService;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -206,35 +207,78 @@ public class DeanController {
   }
 
 
-  @GetMapping("/departments/add")
-  public String addDepartmentForm(Model model) {
-    model.addAttribute("department", new Department());
-    return "dean/addDepartment";
+  @GetMapping("/showNewTeacherForm")
+  public String showNewTeacherForm(Model model) {
+
+    Teacher teacher = new Teacher();
+
+    List<Department> departments = departmentService.getAllDepartments();
+    List<Subject> subjects = subjectService.getAllSubjects();
+
+    model.addAttribute("teacher", teacher);
+    model.addAttribute("departments", departments);
+    model.addAttribute("subjects", subjects);
+
+    return "new_teacher";
   }
 
-  // добавление новой кафедры
-  @PostMapping("/departments/add")
-  public String addDepartment(@ModelAttribute("department") Department department) {
-    departmentService.addDepartment(department);
-    return "redirect:/dean/departments";
+  @PostMapping("/saveTeacher/{id}")
+  public String saveTeacher(@PathVariable(value = "id") long id,
+      @Valid @ModelAttribute("teacher") Teacher teacher,
+      BindingResult bindingResult,
+      @RequestParam(value = "subjectIds", required = false) Long[] subjectIds,
+      Model model) {
+
+    // Set the id of the teacher to the id from the path variable
+    teacher.setId(id);
+
+    // Set the selected subject IDs to the teacher object
+    if (subjectIds != null) {
+      List<Subject> selectedSubjects = subjectService.getSubjectsByIds(Arrays.asList(subjectIds));
+      teacher.setSubjects(selectedSubjects);
+
+      if (bindingResult.hasErrors()) {
+        // Add error messages to the model and return to the form
+        model.addAttribute("errors", bindingResult.getAllErrors());
+        if (id == 0) {
+          // Return to the new_teacher form with errors
+          return "new_teacher";
+        } else {
+          // Return to the update_teacher form with errors
+          return "update_teacher";
+        }
+      } else {
+        // Save the teacher and redirect to the teacher list page
+        teacherService.saveTeacher(teacher);
+
+      }
+    }
+    return "redirect:/teachers";
   }
 
-  // отображение формы для редактирования кафедры
-  @GetMapping("/departments/edit/{id}")
-  public String editDepartmentForm(@PathVariable("id") Long id, Model model) {
-    Department department = departmentService.getDepartmentById(id);
-    model.addAttribute("department", department);
-    return "dean/editDepartment";
+
+  @GetMapping("/deleteTeacher/{id}")
+  public String deleteTeacher(@PathVariable(value = "id") long id) {
+
+    // call delete book method
+    teacherService.deleteTeacherById(id);
+
+    return "redirect:/teachers";
   }
 
-  // обновление кафедры
-  @PostMapping("/departments/edit/{id}")
-  public String editDepartment(@PathVariable("id") Long id, @ModelAttribute("department") Department department) {
-    department.setId(id);
-    departmentService.updateDepartment(department);
-    return "redirect:/dean/departments";
-  }
+  @GetMapping("/showUpdateTeacherForm/{id}")
+  public String showUpdateTeacherForm(@PathVariable(value = "id") long id, Model model) {
 
-  // удаление кафедры
+    Teacher teacher = teacherService.getTeacherById(id);
+
+    List<Subject> subjects = subjectService.getAllSubjects();
+    List<Department> departments = departmentService.getAllDepartments();
+
+    model.addAttribute("teacher", teacher);
+    model.addAttribute("subjects", subjects);
+    model.addAttribute("departments", departments);
+
+    return "update_teacher";
+  }
 
 }

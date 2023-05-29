@@ -45,5 +45,10 @@ public class SubjectServiceImpl implements SubjectService {
     return subjectRepository.findAll();
   }
 
+  @Override
+  public List<Subject> getSubjectsByIds(List<Long> ids) {
+    return subjectRepository.findByIdIn(ids);
+  }
+
 
 }

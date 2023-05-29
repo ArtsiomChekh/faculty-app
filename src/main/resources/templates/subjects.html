@@ -29,12 +29,14 @@
   <table class="table">
     <thead>
     <tr>
+      <th>№</th>
       <th>Предмет</th>
       <th>Кафедра</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="subject : ${subjects}">
+    <tr th:each="subject, i : ${subjects}">
+      <td th:text="${i.index + 1}">1</td>
       <td th:text="${subject.name}"></td>
       <td th:text="${subject.department.name}"></td>
     </tr>

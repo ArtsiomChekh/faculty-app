@@ -21,6 +21,10 @@ public interface TeacherService {
     List<Teacher> findAllByDepartment(Teacher teacher);
 
 
+  void saveTeacher(Teacher teacher);
 
+    void deleteTeacherById(long id);
+
+  Teacher getTeacherById(long id);
 }
 

@@ -36,6 +36,7 @@
   <table class="table">
     <thead>
     <tr>
+      <th>№</th>
       <th>Имя</th>
       <th>Фамилия</th>
       <th>Кафедры</th>
@@ -43,7 +44,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="student : ${students}">
+    <tr th:each="student, i: ${students}">
+      <td th:text="${i.index + 1}">1</td>
       <td th:text="${student.firstName}"></td>
       <td th:text="${student.lastName}"></td>
       <td>
