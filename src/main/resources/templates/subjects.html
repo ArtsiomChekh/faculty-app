@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: head">
+  <meta charset="UTF-8">
+  <title>Список предметов</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="header :: content"></div>
+<h1>Список предметов</h1>
+<div class="container">
+  <form class="form-inline" method="get" action="/subjects">
+    <div class="form-group">
+      <label for="department-select">Кафедра:</label>
+      <select class="form-control" id="department-select" name="departmentId">
+        <option value="">Все кафедры</option>
+        <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"></option>
+      </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Поиск</button>
+    <a class="btn btn-default" href="/subjects">Сбросить фильтры</a>
+  </form>
+
+  <br>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Предмет</th>
+      <th>Кафедра</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="subject : ${subjects}">
+      <td th:text="${subject.name}"></td>
+      <td th:text="${subject.department.name}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="header :: head">
   <meta charset="UTF-8">
-  <title>Список преподавателей</title>
+  <title>Список студентов</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
@@ -11,16 +11,16 @@
 </head>
 <body>
 <div th:replace="header :: content"></div>
-<h1>Список преподавателей</h1>
+<h1>Список студентов</h1>
 <div class="container">
-  <form class="form-inline" method="get" action="/teachers">
+  <form class="form-inline" method="get" action="/students">
     <div class="form-group">
-      <label for="department-select">Кафедра:</label>
-      <select class="form-control" id="department-select" name="department">
-        <option value="">Все кафедры</option>
-        <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"></option>
-      </select>
-    </div>
+    <label for="department-select">Кафедра:</label>
+    <select class="form-control" id="department-select" name="department">
+      <option value="">Все кафедры</option>
+      <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"></option>
+    </select>
+  </div>
     <div class="form-group">
       <label for="subject-select">Предмет:</label>
       <select class="form-control" id="subject-select" name="subject">
@@ -29,7 +29,7 @@
       </select>
     </div>
     <button class="btn btn-primary" type="submit">Поиск</button>
-    <a class="btn btn-default" href="/teachers">Сбросить фильтры</a>
+    <a class="btn btn-default" href="/students">Сбросить фильтры</a>
   </form>
 
   <br>
@@ -38,19 +38,26 @@
     <tr>
       <th>Имя</th>
       <th>Фамилия</th>
-      <th>Кафедра</th>
+      <th>Кафедры</th>
       <th>Предметы</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="teacher : ${teachers}">
-      <td th:text="${teacher.firstName}"></td>
-      <td th:text="${teacher.lastName}"></td>
-      <td th:text="${teacher.department.name}"></td>
+    <tr th:each="student : ${students}">
+      <td th:text="${student.firstName}"></td>
+      <td th:text="${student.lastName}"></td>
       <td>
         <ul>
-          <li th:each="subject : ${teacher.subjects}" th:text="${subject.name}"></li>
-          <th:block th:if="${teacher.subjects.empty()}">
+          <li th:each="department : ${student.departments}" th:text="${department.name}"></li>
+          <th:block th:if="${student.departments.empty()}">
+            <span>Нет кафедр</span>
+          </th:block>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li th:each="subject : ${student.subjects}" th:text="${subject.name}"></li>
+          <th:block th:if="${student.subjects.empty()}">
             <span>Нет предметов</span>
           </th:block>
         </ul>

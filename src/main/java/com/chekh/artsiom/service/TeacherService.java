@@ -7,9 +7,12 @@ import java.util.Set;
 
 public interface TeacherService {
 
-    List<Teacher> findAll();
+    List<Teacher> getAllTeachers();
+
     List<Teacher> findByDepartmentId(Long departmentId);
     List<Teacher> findBySubjectId(Long subjectId);
+
+    List<Teacher> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId);
 
     Teacher addTeacher(Teacher teacher);
 
@@ -18,5 +21,6 @@ public interface TeacherService {
     List<Teacher> findAllByDepartment(Teacher teacher);
 
 
-  }
+
+}
 

@@ -1,7 +1,10 @@
 package com.chekh.artsiom.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -28,6 +31,12 @@ public class Department {
 
   @OneToMany(mappedBy = "department")
   private Set<Subject> subjects;
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "student_department",
+      joinColumns = @JoinColumn(name = "department_id"),
+      inverseJoinColumns = @JoinColumn(name = "student_id"))
+  private List<Student> students = new ArrayList<>();
 
   public Department() {
   }

@@ -35,15 +35,20 @@ public class StudentServiceImpl implements StudentService{
 
   //  список студентов по каждой кафедре
   @Override
-  public List<Student> getStudentsByDepartment(Long departmentId) {
-    return studentRepository.findAllByDepartmentId(departmentId);
+  public List<Student> findByDepartmentId(Long departmentId) {
+    return studentRepository.findAllByDepartments_Id(departmentId);
   }
 
   //  список студентов по каждому предмету
   @Override
-  public List<Student> getStudentsBySubject(Long subjectId) {
+  public List<Student> findBySubjectId(Long subjectId) {
     return studentRepository.findAllBySubjects_Id(subjectId);
 
+  }
+
+  @Override
+  public List<Student> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId) {
+    return studentRepository.findByDepartments_IdAndSubjects_Id(departmentId,subjectId);
   }
 
   // добавить студента на факультет
@@ -53,13 +58,7 @@ public class StudentServiceImpl implements StudentService{
     return studentRepository.save(student);
     }
 
-  @Override
-  public List<Student> findAllByDepartment(Teacher teacher) {
-    List<Student> students = studentRepository.findAllByDepartmentId(teacher.getDepartment().getId());
-    // упорядочиваем список студентов по фамилии
-    students.sort(Comparator.comparing(Student::getLastName));
-    return students;
-  }
+
 
   // студент: список своих предметов и преподователей
   @Override

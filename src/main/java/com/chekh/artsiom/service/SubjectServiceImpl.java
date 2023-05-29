@@ -3,6 +3,7 @@ package com.chekh.artsiom.service;
 import com.chekh.artsiom.model.Subject;
 import com.chekh.artsiom.repository.SubjectRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,4 +44,6 @@ public class SubjectServiceImpl implements SubjectService {
   public List<Subject> findAll() {
     return subjectRepository.findAll();
   }
+
+
 }

@@ -11,7 +11,6 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
   List<Teacher> findAllByDepartmentId(Long departmentId);
   List<Teacher> findAllBySubjects_Id(Long courseId);
 
-
-
+  List<Teacher> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId);
 
 }

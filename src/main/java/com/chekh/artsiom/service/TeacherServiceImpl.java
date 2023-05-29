@@ -24,9 +24,10 @@ public class TeacherServiceImpl implements TeacherService {
 
   // список всех преподавателей
   @Override
-  public List<Teacher> findAll() {
+  public List<Teacher> getAllTeachers() {
     return teacherRepository.findAll();
   }
+
 
   //  список преподавателей по каждой кафедре
   @Override
@@ -40,6 +41,11 @@ public class TeacherServiceImpl implements TeacherService {
     return teacherRepository.findAllBySubjects_Id(subjectId);
   }
 
+
+  @Override
+  public List<Teacher> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId) {
+    return teacherRepository.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
+  }
 
 
 
@@ -75,6 +81,8 @@ public class TeacherServiceImpl implements TeacherService {
     teachers.sort(Comparator.comparing(Teacher::getLastName));
     return teachers;
   }
+
+
 
   // Преподаватель может * взяться вести предмет кафедры
 

@@ -1,7 +1,9 @@
 package com.chekh.artsiom.model;
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,14 +31,18 @@ public class Student {
   private String lastName;
 
   @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "student_department",
+      joinColumns = @JoinColumn(name = "student_id"),
+      inverseJoinColumns = @JoinColumn(name = "department_id"))
+  private List<Department> departments = new ArrayList<>();
+
+  @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "subject_student",
       joinColumns = @JoinColumn(name = "student_id"),
       inverseJoinColumns = @JoinColumn(name = "subject_id"))
   private Set<Subject> subjects = new HashSet<>();
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "department_id")
-  private Department department;
+
 
   public Student() {
   }
@@ -46,11 +52,6 @@ public class Student {
     this.lastName = lastName;
   }
 
-  public Student(String firstName, String lastName, Department department) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.department = department;
-  }
 
   public Long getId() {
     return id;
@@ -78,5 +79,9 @@ public class Student {
 
   public Set<Subject> getSubjects() {
     return subjects;
+  }
+
+  public List<Department> getDepartments() {
+    return this.departments;
   }
 }

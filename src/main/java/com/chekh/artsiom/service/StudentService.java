@@ -10,15 +10,14 @@ import java.util.Set;
 public interface StudentService {
 
   List<Student> getAllStudents();
-  List<Student> getStudentsByDepartment(Long departmentId);
-  List<Student> getStudentsBySubject(Long subjectId);
+  List<Student> findByDepartmentId(Long departmentId);
+
+  List<Student> findBySubjectId(Long subjectId);
+
+  List<Student> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId);
 
   Student addStudent(Student student);
-  List<Student> findAllByDepartment(Teacher teacher);
   Map<Subject, Set<Teacher>> getSubjectsAndTeachersByStudentId(Long studentId);
-
-//  Set<Subject> getSubjectsByStudentId(Long studentId);
-//  Set<Teacher> getTeachersByStudentId(Long studentId);
 
 
 
