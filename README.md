@@ -48,25 +48,28 @@
 * Spring MVC
 * Spring Boot
 * Maven
-* Thymeleaf
 * Spring Data JPA (Hibernate)
 * Spring Security
 * MySQL database
 * Idea
 * Bootstrap
+* Thymeleaf
 * HTML
 * CSS
 * Apache Tomcat
 * JUnit
+* Mockito
 
 # Функционал
 
 * Регистрация и авторизация пользователей -
 * Создание и удаление записей +
 * Поиск и фильтрация данных +
-* Отображение данных в таблице или графиках +
+* Отображение данных в таблицах и списках +
 * Структура базы данных +
 * Роли -
+* Юнит-тесты +
+* Архитектура MVC + 
 
 # Структура БД
 ![Image alt](https://github.com/ArtsiomChekh/faculty-app/blob/497e597ea02dd0c77052039d78700e3ef4c86af0/src/main/resources/static/img/MyDB.png)
