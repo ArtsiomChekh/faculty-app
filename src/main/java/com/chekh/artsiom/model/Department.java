@@ -34,6 +34,7 @@ public class Department {
       inverseJoinColumns = @JoinColumn(name = "student_id"))
   private List<Student> students = new ArrayList<>();
 
+
   public Department() {
   }
 
@@ -103,5 +104,7 @@ public class Department {
   public void setDescription(String description) {
     this.description = description;
   }
+
+
 
 }
