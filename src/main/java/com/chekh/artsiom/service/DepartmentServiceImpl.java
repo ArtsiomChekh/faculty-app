@@ -14,50 +14,44 @@ public class DepartmentServiceImpl implements DepartmentService {
   @Autowired
   private DepartmentRepository departmentRepository;
 
-
-  // возвращает список всех кафедр
+  // Returns a list of all departments
   @Override
   public List<Department> getAllDepartments() {
+    // Use the department repository to find all departments
     return departmentRepository.findAll();
   }
 
-  // сортировка списка кафедр по количеству студентов
+  // Sorts the list of departments by the number of students, in ascending or descending order based on the isAscending parameter
   @Override
   public List<Department> getAllDepartmentsSortedByStudentCount(boolean isAscending) {
+    // Use the department repository to find all departments sorted by student count
     List<Department> departments = departmentRepository.findAllByOrderByStudentCountDesc();
+
+    // Reverse the list if isAscending is false
     if (!isAscending) {
       Collections.reverse(departments);
     }
+
     return departments;
   }
 
-
-  // сортировка списка кафедр по количеству преподавателей
-
+  // Sorts the list of departments by the number of teachers, in ascending or descending order based on the isAscending parameter
   public List<Department> getAllDepartmentsSortedByTeacherCount(boolean isAscending) {
+    // Use the department repository to find all departments sorted by teacher count
     List<Department> departments = departmentRepository.findAllByOrderByTeacherCountDesc();
+
+    // Reverse the list if isAscending is false
     if (!isAscending) {
       Collections.reverse(departments);
     }
-    return departments;
-  }
 
-  // добавить кафедру
-  @Override
-  public Department addDepartment(Department department) {
-    return departmentRepository.save(department);
+    return departments;
   }
 
   @Override
   public Department getDepartmentById(long id) {
     return departmentRepository.findById(id).orElse(null);
   }
-
-  @Override
-  public void updateDepartment(Department department) {
-    departmentRepository.save(department);
-  }
-
 
   @Override
   public void saveDepartment(Department department) {

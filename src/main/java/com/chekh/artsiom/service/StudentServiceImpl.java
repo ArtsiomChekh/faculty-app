@@ -6,7 +6,6 @@ import com.chekh.artsiom.model.Teacher;
 import com.chekh.artsiom.repository.StudentRepository;
 import com.chekh.artsiom.repository.SubjectRepository;
 import com.chekh.artsiom.repository.TeacherRepository;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
 
   @Autowired
   private StudentRepository studentRepository;
@@ -27,43 +26,40 @@ public class StudentServiceImpl implements StudentService{
   @Autowired
   private TeacherRepository teacherRepository;
 
-  // список всех студентов
+  // Returns a list of all students
   @Override
   public List<Student> getAllStudents() {
+    // Use the student repository to find all students
     return studentRepository.findAll();
   }
 
-  //  список студентов по каждой кафедре
+  // Returns a list of students for a specified department
   @Override
   public List<Student> findByDepartmentId(Long departmentId) {
+    // Use the student repository to find all students belonging to the department with the specified departmentId
     return studentRepository.findAllByDepartments_Id(departmentId);
   }
 
-  //  список студентов по каждому предмету
+  // Returns a list of students for a specified subject
   @Override
   public List<Student> findBySubjectId(Long subjectId) {
+    // Use the student repository to find all students enrolled in the course with the specified subjectId
     return studentRepository.findAllBySubjects_Id(subjectId);
-
   }
 
+  // Returns a list of students for a specified department and subject
   @Override
   public List<Student> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId) {
-    return studentRepository.findByDepartments_IdAndSubjects_Id(departmentId,subjectId);
+    return studentRepository.findByDepartments_IdAndSubjects_Id(departmentId, subjectId);
   }
 
-  // добавить студента на факультет
-  @Override
-  public Student addStudent(Student student) {
-
-    return studentRepository.save(student);
-    }
-
-
-
-  // студент: список своих предметов и преподователей
+  // Returns a map of subjects and teachers for a specified student
   @Override
   public Map<Subject, Set<Teacher>> getSubjectsAndTeachersByStudentId(Long studentId) {
+    // Find the student with the specified studentId
     Optional<Student> optionalStudent = studentRepository.findById(studentId);
+
+    // If the student exists, create a map of subjects and teachers for the student
     if (optionalStudent.isPresent()) {
       Student student = optionalStudent.get();
       Map<Subject, Set<Teacher>> result = new HashMap<>();
@@ -73,15 +69,11 @@ public class StudentServiceImpl implements StudentService{
       }
       return result;
     } else {
+      // If the student does not exist, throw an exception
       throw new IllegalArgumentException("Student with id " + studentId + " not found");
     }
   }
-
-
-
-
-  // преподователь: список своих студентов
-  }
+}
 
 
 

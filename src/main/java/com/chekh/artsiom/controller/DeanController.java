@@ -10,7 +10,6 @@ import com.chekh.artsiom.service.SubjectService;
 import com.chekh.artsiom.service.TeacherService;
 import java.util.Arrays;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,120 +38,152 @@ public class DeanController {
   @Autowired
   private StudentService studentService;
 
-  // получение списка всех кафедр
 
   @RequestMapping("/departments")
-  public String getDepartmentsPage(@RequestParam(name = "sortBy", defaultValue = "none") String sortBy,
-      @RequestParam(name = "isAscending", defaultValue = "true") boolean isAscending,
+  public String getDepartmentsPage(
+      @RequestParam(name = "sortBy", defaultValue = "none") String sortBy,
+      @RequestParam(name = "isAscending", defaultValue = "true") boolean isAscending, // the sorting order (true - ascending, false - descending)
       Model model,
-      HttpSession session) {
+      HttpSession session // the session object used to store the last sorting criteria
+  ) {
     List<Department> departments;
 
+    // check if the user has changed the sorting criteria
     String lastSortBy = (String) session.getAttribute("sortBy");
     if (lastSortBy != null && lastSortBy.equals(sortBy)) {
       isAscending = !isAscending;
     } else {
       isAscending = true;
-      session.setAttribute("sortBy", sortBy);
+      session.setAttribute("sortBy", sortBy); // store the current criteria in the session
     }
 
+    // get the list of departments sorted based on the selected criteria and sorting order
     if (sortBy.equals("students")) {
       departments = departmentService.getAllDepartmentsSortedByStudentCount(isAscending);
     } else if (sortBy.equals("teachers")) {
       departments = departmentService.getAllDepartmentsSortedByTeacherCount(isAscending);
     } else {
-      departments = departmentService.getAllDepartments();
+      departments = departmentService.getAllDepartments(); // no sorting criteria specified
     }
 
     model.addAttribute("departments", departments);
     model.addAttribute("isAscending", isAscending);
+
     return "departments";
   }
 
-
-
-  // получение списка всех преподавателей
   @GetMapping("/teachers")
-  public String getTeachersPage(@RequestParam(value = "department", required = false) Long departmentId,
+  public String getTeachersPage(
+      @RequestParam(value = "department", required = false) Long departmentId, // the ID of the department to filter by (optional)
       @RequestParam(value = "subject", required = false) Long subjectId,
-      Model model) {
+      Model model
+  ) {
     List<Teacher> teachers;
+
+    // filter teachers by department and subject
     if (departmentId != null && subjectId != null) {
-      // фильтрация по кафедре и предмету
       teachers = teacherService.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
-    } else if (departmentId != null) {
-      // фильтрация по кадедре
+    }
+    // filter teachers by department
+    else if (departmentId != null) {
       teachers = teacherService.findByDepartmentId(departmentId);
-    } else if (subjectId != null) {
-      // фильтрация по предмету
+    }
+    // filter teachers by subject
+    else if (subjectId != null) {
       teachers = teacherService.findBySubjectId(subjectId);
-    } else {
-      // получение всех преподавателей
+    }
+    // get all teachers
+    else {
       teachers = teacherService.getAllTeachers();
     }
+
+    // get all departments and subjects for filtering
     List<Department> departments = departmentService.getAllDepartments();
     List<Subject> subjects = subjectService.getAllSubjects();
+
+    // add the filtered list of teachers and the departments and subjects to the model object
     model.addAttribute("teachers", teachers);
     model.addAttribute("departments", departments);
     model.addAttribute("subjects", subjects);
+
     return "teachers";
   }
 
-  // получение списка всех предметов
   @GetMapping("/subjects")
-  public String getSubjectsPage(@RequestParam(name = "departmentId", required = false) Long departmentId, Model model) {
+  public String getSubjectsPage(
+      @RequestParam(name = "department", required = false) Long departmentId,
+      Model model
+  ) {
     List<Department> departments = departmentService.getAllDepartments();
     List<Subject> subjects;
+
+    // filter subjects by department
     if (departmentId != null) {
       Department department = departmentService.getDepartmentById(departmentId);
       if (department == null) {
-        // обработка ошибки: кафедра не найдена
+        // handle error: department not found
         return "error";
       }
       subjects = subjectService.getSubjectsByDepartment(departmentId);
-    } else {
+    }
+    // get all subjects
+    else {
       subjects = subjectService.getAllSubjects();
     }
+
+    // add the list of departments, subjects, and selected department ID to the model object
     model.addAttribute("departments", departments);
     model.addAttribute("subjects", subjects);
     model.addAttribute("selectedDepartmentId", departmentId);
+
+    // return the view name to be rendered by the view resolver
     return "subjects";
   }
 
-  // получение списка всех студентов
+
   @GetMapping("/students")
-  public String getStudents(@RequestParam(value = "department", required = false) Long departmentId,
-      @RequestParam(value = "subject", required = false) Long subjectId,
-      Model model) {
+  public String getStudents(
+      @RequestParam(value = "department", required = false) Long departmentId, // the ID of the department to filter by (optional)
+      @RequestParam(value = "subject", required = false) Long subjectId, // the ID of the subject to filter by (optional)
+      Model model // the model object used to pass data to the view
+  ) {
     List<Student> students;
+
+    // filter students by department and subject
     if (departmentId != null && subjectId != null) {
-      // фильтрация по кафедре и предмету
       students = studentService.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
-    } else if (departmentId != null) {
-      // фильтрация по кадедре
+    }
+    // filter students by department
+    else if (departmentId != null) {
       students = studentService.findByDepartmentId(departmentId);
-    } else if (subjectId != null) {
-      // фильтрация по предмету
+    }
+    // filter students by subject
+    else if (subjectId != null) {
       students = studentService.findBySubjectId(subjectId);
-    } else {
-      // получение всех студентов
+    }
+    // get all students
+    else {
       students = studentService.getAllStudents();
     }
+
+    // get all departments and subjects for filtering
     List<Department> departments = departmentService.getAllDepartments();
     List<Subject> subjects = subjectService.getAllSubjects();
+
+    // add the filtered list of students and the departments and subjects to the model object
+    model.addAttribute("students", students);
     model.addAttribute("departments", departments);
     model.addAttribute("subjects", subjects);
-    model.addAttribute("students", students);
+
     return "students";
   }
-
-  // отображение формы для добавления новой кафедры
 
   @GetMapping("/showNewDepartmentForm")
   public String showNewDepartmentForm(Model model) {
 
     Department department = new Department();
 
+    // add the Department object to the model object
     model.addAttribute("department", department);
 
     return "new_department";
@@ -184,7 +215,6 @@ public class DeanController {
     }
   }
 
-
   @GetMapping("/deleteDepartment/{id}")
   public String deleteDepartment(@PathVariable(value = "id") long id) {
 
@@ -197,7 +227,6 @@ public class DeanController {
   @GetMapping("/showUpdateDepartmentForm/{id}")
   public String showUpdateDepartmentForm(@PathVariable(value = "id") long id, Model model) {
 
-
     Department department = departmentService.getDepartmentById(id);
 
     // set department as a model attribute to pre-populate the form
@@ -206,15 +235,16 @@ public class DeanController {
     return "update_department";
   }
 
-
   @GetMapping("/showNewTeacherForm")
   public String showNewTeacherForm(Model model) {
 
     Teacher teacher = new Teacher();
 
+    // get all departments and subjects for selecting in the form
     List<Department> departments = departmentService.getAllDepartments();
     List<Subject> subjects = subjectService.getAllSubjects();
 
+    // add the Teacher object and the departments and subjects to the model object
     model.addAttribute("teacher", teacher);
     model.addAttribute("departments", departments);
     model.addAttribute("subjects", subjects);
@@ -256,7 +286,6 @@ public class DeanController {
     return "redirect:/teachers";
   }
 
-
   @GetMapping("/deleteTeacher/{id}")
   public String deleteTeacher(@PathVariable(value = "id") long id) {
 
@@ -265,6 +294,7 @@ public class DeanController {
 
     return "redirect:/teachers";
   }
+
 
   @GetMapping("/showUpdateTeacherForm/{id}")
   public String showUpdateTeacherForm(@PathVariable(value = "id") long id, Model model) {

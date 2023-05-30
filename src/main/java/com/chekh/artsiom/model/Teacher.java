@@ -84,8 +84,6 @@ public class Teacher {
     this.subjects = subjects;
   }
 
-
-
   public Long[] getSubjectIds() {
     return subjectIds;
   }

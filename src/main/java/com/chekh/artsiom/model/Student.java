@@ -14,12 +14,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "student")
 public class Student {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -42,8 +42,6 @@ public class Student {
       inverseJoinColumns = @JoinColumn(name = "subject_id"))
   private Set<Subject> subjects = new HashSet<>();
 
-
-
   public Student() {
   }
 
@@ -51,7 +49,6 @@ public class Student {
     this.firstName = firstName;
     this.lastName = lastName;
   }
-
 
   public Long getId() {
     return id;

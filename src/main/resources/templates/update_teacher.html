@@ -36,7 +36,7 @@
         <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.name}" th:selected="${teacher.subjects.contains(subject)}"></option>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary">Изменить</button>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
   </form>
 </div>
 </body>

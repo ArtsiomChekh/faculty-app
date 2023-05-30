@@ -1,9 +1,6 @@
 package com.chekh.artsiom.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
@@ -18,7 +15,6 @@ public class Department {
 
   @Column(name = "name")
   private String name;
-
 
   @Column(name = "student_count")
   private int studentCount;
@@ -64,12 +60,10 @@ public class Department {
     this.name = name;
   }
 
-  // Сеттер для поля studentCount
   public void setStudentCount(int studentCount) {
     this.studentCount = studentCount;
   }
 
-  // Метод для увеличения количества студентов на 1
   public void addStudent() {
     this.studentCount++;
   }
@@ -82,14 +76,17 @@ public class Department {
     this.teacherCount++;
   }
 
-  // добавляем курс в множество subjects кафедры
   public void addSubject(Subject subject) {
     subjects.add(subject);
   }
-  public Set<Subject> getSubjects(){
+
+  public Set<Subject> getSubjects() {
     return subjects;
   }
 
+  public void setSubjects(Set<Subject> subjects) {
+    this.subjects = subjects;
+  }
 
   public int getStudentCount() {
     return studentCount;
@@ -106,4 +103,5 @@ public class Department {
   public void setDescription(String description) {
     this.description = description;
   }
+
 }

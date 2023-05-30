@@ -14,13 +14,13 @@
 <h1>Список предметов</h1>
 <div class="container">
   <form class="form-inline" method="get" action="/subjects">
-    <div class="form-group">
-      <label for="department-select">Кафедра:</label>
-      <select class="form-control" id="department-select" name="departmentId">
-        <option value="">Все кафедры</option>
-        <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"></option>
-      </select>
-    </div>
+      <div class="form-group">
+        <label for="department-select">Кафедра:</label>
+        <select class="form-control" id="department-select" name="department" style="width: 200px;">
+          <option value="">Все кафедры</option>
+          <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"></option>
+        </select>
+      </div>
     <button class="btn btn-primary" type="submit">Поиск</button>
     <a class="btn btn-default" href="/subjects">Сбросить фильтры</a>
   </form>
@@ -32,6 +32,7 @@
       <th>№</th>
       <th>Предмет</th>
       <th>Кафедра</th>
+      <th class="text-center">Действия</th>
     </tr>
     </thead>
     <tbody>
@@ -39,9 +40,19 @@
       <td th:text="${i.index + 1}">1</td>
       <td th:text="${subject.name}"></td>
       <td th:text="${subject.department.name}"></td>
+      <td>
+        <div class="text-center btn-block">
+          <a th:href="@{/deleteSubject/{id}(id=${subject.id})}" class="btn btn-danger btn-sm btn-block">Удалить</a>
+          <a th:href="@{/showUpdateSubjectForm/{id}(id=${subject.id})}"
+             class="btn btn-primary btn-sm btn-block">Изменить</a>
+        </div>
+      </td>
     </tr>
     </tbody>
   </table>
+  <div class="text-left">
+    <a th:href="@{/showNewSubjectForm}" class="btn btn-primary btn-mm mb-3"> Добавить Предмет </a>
+  </div>
 </div>
 
 </body>

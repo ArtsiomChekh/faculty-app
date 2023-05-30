@@ -16,7 +16,6 @@ public interface StudentService {
 
   List<Student> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId);
 
-  Student addStudent(Student student);
   Map<Subject, Set<Teacher>> getSubjectsAndTeachersByStudentId(Long studentId);
 
 

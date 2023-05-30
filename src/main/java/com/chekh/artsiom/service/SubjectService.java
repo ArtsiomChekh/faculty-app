@@ -9,11 +9,16 @@ public interface SubjectService {
 
   List<Subject> getSubjectsByDepartment(Long departmentId);
 
-  Subject addSubject(Subject subject);
-
   List<Subject> getSubjectsByTeacher(Long teacherId);
 
   List<Subject> findAll();
 
   List<Subject> getSubjectsByIds(List<Long> asList);
+
+  void saveSubject(Subject subject);
+
+  void deleteSubjectById(long id);
+
+  Subject getSubjectById(long id);
+
 }

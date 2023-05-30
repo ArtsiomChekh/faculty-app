@@ -59,18 +59,5 @@ public class Subject {
     return teachers;
   }
 
-  public void setTeachers(Set<Teacher> teachers) {
-    this.teachers = teachers;
-  }
-
-  public void addTeacher(Teacher teacher) {
-    teachers.add(teacher);
-    teacher.getSubjects().add(this);
-  }
-
-  public void removeTeacher(Teacher teacher) {
-    teachers. remove(teacher);
-    teacher.getSubjects().remove(this);
-  }
 
 }

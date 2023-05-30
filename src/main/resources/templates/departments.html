@@ -33,11 +33,11 @@
     <thead>
     <tr>
       <th>№</th>
-      <th>Name</th>
-      <th>Students</th>
-      <th>Teachers</th>
-      <th>Description</th>
-      <th class="text-center">Actions</th>
+      <th>Кафедра</th>
+      <th>Студенты</th>
+      <th>Учителя</th>
+      <th>Описание</th>
+      <th class="text-center">Действия</th>
     </tr>
     </thead>
     <tbody>
@@ -48,10 +48,9 @@
       <td th:text="${department.teacherCount}"></td>
       <td th:text="${department.description}"></td>
       <td>
-        <div class="text-center btn-block">
-          <a th:href="@{/deleteDepartment/{id}(id=${department.id})}" class="btn btn-danger btn-sm ">Delete</a>
-          <a th:href="@{/showUpdateDepartmentForm/{id}(id=${department.id})}"
-             class="btn btn-primary btn-sm ">Update</a>
+        <div class="text-center">
+          <a th:href="@{/deleteDepartment/{id}(id=${department.id})}" class="btn btn-danger btn-sm btn-block">Удалить</a>
+          <a th:href="@{/showUpdateDepartmentForm/{id}(id=${department.id})}" class="btn btn-primary btn-sm btn-block">Изменить</a>
         </div>
       </td>
     </tr>
@@ -59,7 +58,7 @@
     </tbody>
   </table>
   <div class="text-left">
-    <a th:href="@{/showNewDepartmentForm}" class="btn btn-primary btn-mm mb-3"> Add Department </a>
+    <a th:href="@{/showNewDepartmentForm}" class="btn btn-primary btn-mm mb-3"> Добавить Кафедру </a>
   </div>
 </div>
 </body>

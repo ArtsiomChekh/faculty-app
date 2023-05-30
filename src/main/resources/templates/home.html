@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="header :: head">
     <meta charset="UTF-8">
-    <title>Faculty</title>
+    <title>Факультет</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div th:replace="header :: content"></div>
-<div>
-    Основная часть страницы
-</div>
+<main class="container">
+    <section class="jumbotron mt-3">
+        <h1 class="display-4">Добро пожаловать на факультете Информационных технологий</h1>
+        <p class="lead">Сегодня ФИТ - это крупный учебный и научный центр, где обучается более 2000 студентов высшего образования, представляющих 20 стран мира, а обучение ведется в том числе и на английском языке.</p>
+    </section>
+    <section>
+        <h2>Описание факультета</h2>
+        <p>Основные факты о ФИТ:</p>
+        <ul>
+            <li>Уровни обучения: общее высшее образование при реализации образовательной программы бакалавриата; углубленное высшее образование при реализации образовательной программы магистратуры.</li>
+            <li>Современное оснащение для учёбы и преподавания.</li>
+            <li>Выпускники могут работать в международных компаниях специалистами и руководителями в области IT-технологий.</li>
+        </ul>
+    </section>
+</main>
+<footer class="bg-dark text-white text-center py-3">
+    <p>2023 Факультет Информационных технологий</p>
+</footer>
 </body>
 </html>

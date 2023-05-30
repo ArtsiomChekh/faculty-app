@@ -1,4 +1,32 @@
- .btn-smaller {
-   font-size: 12px;
-   padding: 0.25rem 0.5rem;
- }
+/* Style for the header */
+nav {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: #fff;
+}
+
+/* Style for the jumbotron */
+.jumbotron {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Style for the main section */
+section {
+  margin-bottom: 2rem;
+}
+
+/* Style for the footer */
+footer {
+  background-color: #343a40;
+  color: #fff;
+}

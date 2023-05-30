@@ -7,23 +7,19 @@ import java.util.Set;
 
 public interface TeacherService {
 
-    List<Teacher> getAllTeachers();
+  List<Teacher> getAllTeachers();
 
-    List<Teacher> findByDepartmentId(Long departmentId);
-    List<Teacher> findBySubjectId(Long subjectId);
+  List<Teacher> findByDepartmentId(Long departmentId);
 
-    List<Teacher> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId);
+  List<Teacher> findBySubjectId(Long subjectId);
 
-    Teacher addTeacher(Teacher teacher);
+  List<Teacher> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId);
 
-//    Set<Subject> getDepartmentSubjects(Teacher teacher);
-
-    List<Teacher> findAllByDepartment(Teacher teacher);
-
+  List<Teacher> findAllByDepartment(Teacher teacher);
 
   void saveTeacher(Teacher teacher);
 
-    void deleteTeacherById(long id);
+  void deleteTeacherById(long id);
 
   Teacher getTeacherById(long id);
 }

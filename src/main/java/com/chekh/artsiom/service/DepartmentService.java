@@ -10,12 +10,7 @@ public interface DepartmentService {
   List<Department> getAllDepartmentsSortedByStudentCount(boolean isAscending);
   List<Department> getAllDepartmentsSortedByTeacherCount(boolean isAscending);
 
-  Department addDepartment(Department department);
-
   Department getDepartmentById(long id);
-
-  void updateDepartment(Department department);
-
 
   void saveDepartment(Department department);
 

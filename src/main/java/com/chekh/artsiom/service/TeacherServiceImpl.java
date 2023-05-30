@@ -21,63 +21,36 @@ public class TeacherServiceImpl implements TeacherService {
   @Autowired
   private SubjectRepository subjectRepository;
 
-
-  // список всех преподавателей
+  // Returns a list of all teachers
   @Override
   public List<Teacher> getAllTeachers() {
     return teacherRepository.findAll();
   }
 
-
-  //  список преподавателей по каждой кафедре
+  // Returns a list of teachers for a specified department
   @Override
   public List<Teacher> findByDepartmentId(Long departmentId) {
     return teacherRepository.findAllByDepartmentId(departmentId);
   }
 
-  // список преподавателей по каждому предмету
+  // Returns a list of teachers for a specified subject
   @Override
   public List<Teacher> findBySubjectId(Long subjectId) {
     return teacherRepository.findAllBySubjects_Id(subjectId);
   }
 
-
+  // Returns a list of teachers for a specified department and subject
   @Override
   public List<Teacher> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId) {
     return teacherRepository.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
   }
 
-
-
-  // добавить преподавателя на кафедру
-  @Override
-  public Teacher addTeacher(Teacher teacher) {
-    return teacherRepository.save(teacher);
-  }
-
-  // преподователь: список предметов своей кафедры
-//  @Override
-//  public Set<Subject> getDepartmentSubjects(Teacher teacher) {
-//    Set<Subject> departmentSubjects = new HashSet<>();
-//    Department department = teacher.getDepartment();
-//
-//    if (department != null) {
-//      Set<Subject> subjects = department.getSubjects();
-//      for (Subject subject : subjects) {
-//        if (subject.getTeacher().equals(teacher)) {
-//          departmentSubjects.add(subject);
-//        }
-//      }
-//    }
-//
-//    return departmentSubjects;
-//  }
-
-  // преподователь: список преподавателей своей кафедры
+  // Returns a list of teachers belonging to the same department as the specified teacher, sorted by last name
   @Override
   public List<Teacher> findAllByDepartment(Teacher teacher) {
-    List<Teacher> teachers = teacherRepository.findAllByDepartmentId(teacher.getDepartment().getId());
-    // упорядочиваем список преподавателей по фамилии
+    List<Teacher> teachers = teacherRepository.findAllByDepartmentId(
+        teacher.getDepartment().getId());
+    // Sort the list of teachers by last name
     teachers.sort(Comparator.comparing(Teacher::getLastName));
     return teachers;
   }
@@ -91,8 +64,6 @@ public class TeacherServiceImpl implements TeacherService {
   public void deleteTeacherById(long id) {
     teacherRepository.deleteById(id);
   }
-
-  // Преподаватель может * взяться вести предмет кафедры
 
   @Override
   public Teacher getTeacherById(long id) {
