@@ -68,7 +68,8 @@
 * Структура базы данных +
 * Роли -
 
-Здесь можно добавить картинку или описание структуры базы данных, которая была использована в проекте.
+# Структура БД
+![Image alt](https://github.com/ArtsiomChekh/faculty-app/blob/497e597ea02dd0c77052039d78700e3ef4c86af0/src/main/resources/static/img/MyDB.png)
 
 # Установка и запуск
 * mvn spring-boot:run
