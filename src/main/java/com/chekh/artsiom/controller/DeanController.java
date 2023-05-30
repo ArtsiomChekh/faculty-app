@@ -42,7 +42,8 @@ public class DeanController {
   @RequestMapping("/departments")
   public String getDepartmentsPage(
       @RequestParam(name = "sortBy", defaultValue = "none") String sortBy,
-      @RequestParam(name = "isAscending", defaultValue = "true") boolean isAscending, // the sorting order (true - ascending, false - descending)
+      @RequestParam(name = "isAscending", defaultValue = "true") boolean isAscending,
+      // the sorting order (true - ascending, false - descending)
       Model model,
       HttpSession session // the session object used to store the last sorting criteria
   ) {
@@ -74,7 +75,8 @@ public class DeanController {
 
   @GetMapping("/teachers")
   public String getTeachersPage(
-      @RequestParam(value = "department", required = false) Long departmentId, // the ID of the department to filter by (optional)
+      @RequestParam(value = "department", required = false) Long departmentId,
+      // the ID of the department to filter by (optional)
       @RequestParam(value = "subject", required = false) Long subjectId,
       Model model
   ) {
@@ -140,11 +142,12 @@ public class DeanController {
     return "subjects";
   }
 
-
   @GetMapping("/students")
   public String getStudents(
-      @RequestParam(value = "department", required = false) Long departmentId, // the ID of the department to filter by (optional)
-      @RequestParam(value = "subject", required = false) Long subjectId, // the ID of the subject to filter by (optional)
+      @RequestParam(value = "department", required = false) Long departmentId,
+      // the ID of the department to filter by (optional)
+      @RequestParam(value = "subject", required = false) Long subjectId,
+      // the ID of the subject to filter by (optional)
       Model model // the model object used to pass data to the view
   ) {
     List<Student> students;

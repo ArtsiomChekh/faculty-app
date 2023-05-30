@@ -9,6 +9,7 @@ import com.chekh.artsiom.model.Department;
 import com.chekh.artsiom.repository.DepartmentRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -32,8 +33,8 @@ public class DepartmentServiceImplTest {
   public void testGetAllDepartments() {
     // Setup
     List<Department> mockDepartments = new ArrayList<>();
-    mockDepartments.add(new Department("Department 1", 10, 5, "описание"));
-    mockDepartments.add(new Department("Department 2", 20, 15, "описание"));
+    mockDepartments.add(new Department("Кафедра 1", 10, 5, "описание"));
+    mockDepartments.add(new Department("Кафедра 2", 20, 15, "описание"));
 
     when(departmentRepository.findAll()).thenReturn(mockDepartments);
 
@@ -43,6 +44,45 @@ public class DepartmentServiceImplTest {
     // Verification
     verify(departmentRepository, times(1)).findAll();
     assertEquals(mockDepartments, departments);
+  }
+
+  @Test
+  public void testGetDepartmentById() {
+    // Setup
+    long testId = 1L;
+    Department mockDepartment = new Department("Кафедра  1", 10, 5, "описание");
+    when(departmentRepository.findById(testId)).thenReturn(Optional.of(mockDepartment));
+
+    // Execution
+    Department department = departmentService.getDepartmentById(testId);
+
+    // Verification
+    verify(departmentRepository, times(1)).findById(testId);
+    assertEquals(mockDepartment, department);
+  }
+
+  @Test
+  public void testSaveDepartment() {
+    // Setup
+    Department departmentToSave = new Department("Кафедра 1", 10, 5, "описание");
+
+    // Execution
+    departmentService.saveDepartment(departmentToSave);
+
+    // Verification
+    verify(departmentRepository, times(1)).save(departmentToSave);
+  }
+
+  @Test
+  public void testDeleteDepartmentById() {
+    // Setup
+    long testId = 1L;
+
+    // Execution
+    departmentService.deleteDepartmentById(testId);
+
+    // Verification
+    verify(departmentRepository, times(1)).deleteById(testId);
   }
 
 

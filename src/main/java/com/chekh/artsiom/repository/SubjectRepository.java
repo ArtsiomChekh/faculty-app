@@ -18,6 +18,5 @@ public interface SubjectRepository extends JpaRepository<Subject, Long> {
   // This method signature defines a query that returns all subjects.
   List<Subject> findAll();
 
-  // List<Subject> findByIdIn(List<Long> ids);
   List<Subject> findByIdIn(List<Long> ids);
 }
