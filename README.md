@@ -48,16 +48,17 @@
 * Spring MVC
 * Spring Boot
 * Maven
-* Thymeleaf
 * Spring Data JPA (Hibernate)
 * Spring Security
 * MySQL database
 * Idea
 * Bootstrap
+* Thymeleaf
 * HTML
 * CSS
 * Apache Tomcat
 * JUnit
+* Mockito
 
 # Функционал
 
