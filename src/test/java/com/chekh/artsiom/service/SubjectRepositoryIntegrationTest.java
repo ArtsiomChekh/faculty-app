@@ -5,8 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.chekh.artsiom.model.Department;
 import com.chekh.artsiom.model.Subject;
+import com.chekh.artsiom.model.Teacher;
 import com.chekh.artsiom.repository.DepartmentRepository;
+import com.chekh.artsiom.repository.StudentRepository;
 import com.chekh.artsiom.repository.SubjectRepository;
+import com.chekh.artsiom.repository.TeacherRepository;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.junit.Test;
@@ -26,6 +29,12 @@ public class SubjectRepositoryIntegrationTest {
 
   @Autowired
   private  SubjectService subjectService;
+
+  @Autowired
+  private TeacherRepository teacherRepository;
+
+  @Autowired
+  private StudentRepository studentRepository;
   @Autowired
   private DepartmentRepository departmentRepository;
 
@@ -65,4 +74,6 @@ public class SubjectRepositoryIntegrationTest {
     assertTrue(subjects.contains(subject3));
     assertTrue(subjects.contains(subject4));
   }
+
+
 }
