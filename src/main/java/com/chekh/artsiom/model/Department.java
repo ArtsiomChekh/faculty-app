@@ -1,6 +1,7 @@
 package com.chekh.artsiom.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
@@ -36,6 +37,10 @@ public class Department {
 
 
   public Department() {
+  }
+  public Department(String name, String description) {
+    this.name = name;
+    this.description = description;
   }
 
   public Department(String name, int studentCount, int teacherCount, String description) {
@@ -82,6 +87,9 @@ public class Department {
   }
 
   public Set<Subject> getSubjects() {
+    if (subjects == null) {
+      subjects = new HashSet<>();
+    }
     return subjects;
   }
 

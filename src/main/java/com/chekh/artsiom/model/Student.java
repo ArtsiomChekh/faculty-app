@@ -78,7 +78,18 @@ public class Student {
     return subjects;
   }
 
+
   public List<Department> getDepartments() {
     return this.departments;
   }
+
+  public void setSubjects(Set<Subject> subjects) {
+    this.subjects = subjects;
+  }
+
+  public void setDepartments(List<Department> departments) {
+    this.departments = departments;
+  }
+
+
 }

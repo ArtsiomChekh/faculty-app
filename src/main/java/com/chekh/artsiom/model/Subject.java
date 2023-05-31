@@ -29,6 +29,10 @@ public class Subject {
   public Subject() {
   }
 
+  public Subject(String name) {
+    this.name = name;
+  }
+
   public Subject(String name, Department department) {
     this.name = name;
     this.department = department;
@@ -56,7 +60,9 @@ public class Subject {
 
   public void setDepartment(Department department) {
     this.department = department;
-    department.getSubjects().add(this);
+    if (department != null) {
+      department.getSubjects().add(this);
+    }
   }
 
   public Set<Teacher> getTeachers() {
