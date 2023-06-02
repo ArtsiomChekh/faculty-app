@@ -69,8 +69,10 @@ public class Subject {
     return teachers;
   }
 
-
   public void addTeacher(Teacher teacher) {
-    teachers.add(teacher);
+    if (teacher != null) {
+      teachers.add(teacher);
+      teacher.addSubject(this);
+    }
   }
 }

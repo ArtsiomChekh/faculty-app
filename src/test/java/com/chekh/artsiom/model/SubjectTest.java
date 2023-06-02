@@ -34,16 +34,5 @@ public class SubjectTest {
     assertEquals(1, department.getSubjects().size());
   }
 
-//  @Test
-//  public void testAddTeacher() {
-//    Teacher teacher = new Teacher("Johny", "Doe");
-//    subject.addTeacher(teacher);
-//    assertNotNull(subject.getTeachers());
-//    assertTrue(subject.getTeachers().contains(teacher));
-//    assertTrue(teacher.getSubjects().contains(subject));
-//    System.out.println("subject.getTeachers(): " + subject.getTeachers());
-//    System.out.println("teacher.getSubjects(): " + teacher.getSubjects());
-//    assertEquals(1, subject.getTeachers().size());
-//    assertEquals(1, teacher.getSubjects().size());
-//  }
+
 }

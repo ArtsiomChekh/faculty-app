@@ -314,4 +314,17 @@ public class DeanController {
     return "update_teacher";
   }
 
+  @GetMapping("/showSubjectToDepartmentForm")
+  public String showSubjectToDepartmentForm(Model model) {
+    List<Department> departments = departmentService.getAllDepartments();
+    model.addAttribute("departments", departments);
+    return "add-subject-to-department-form";
+  }
+  @PostMapping("/addSubjectToDepartment")
+  public String addSubjectToDepartment(@RequestParam("subjectName") String subjectName,
+      @RequestParam("departmentId") Long departmentId) {
+    subjectService.addSubjectToDepartment(subjectName, departmentId);
+    return "redirect:/subjects";
+  }
+
 }

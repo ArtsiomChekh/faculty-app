@@ -96,4 +96,12 @@ public class Teacher {
   public void setSubjectIds(Long[] subjectIds) {
     this.subjectIds = subjectIds;
   }
+
+
+  public void addSubject(Subject subject) {
+    if (subject != null) {
+      subjects.add(subject);
+      subject.addTeacher(this);
+    }
+  }
 }

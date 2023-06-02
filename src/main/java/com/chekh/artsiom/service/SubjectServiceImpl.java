@@ -1,6 +1,8 @@
 package com.chekh.artsiom.service;
 
+import com.chekh.artsiom.model.Department;
 import com.chekh.artsiom.model.Subject;
+import com.chekh.artsiom.repository.DepartmentRepository;
 import com.chekh.artsiom.repository.SubjectRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,9 @@ public class SubjectServiceImpl implements SubjectService {
 
   @Autowired
   SubjectRepository subjectRepository;
+
+  @Autowired
+  DepartmentRepository departmentRepository;
 
   // Returns a list of all subjects
   @Override
@@ -59,4 +64,13 @@ public class SubjectServiceImpl implements SubjectService {
     return subjectRepository.findById(id).orElse(null);
   }
 
+  @Override
+  public void addSubjectToDepartment(String subjectName, Long departmentId) {
+    Department department = departmentRepository.findById(departmentId)
+        .orElseThrow(() -> new IllegalArgumentException("Invalid department Id:" + departmentId));
+    Subject newSubject = new Subject(subjectName, department);
+    subjectRepository.save(newSubject);
+  }
 }
+
+
