@@ -29,10 +29,6 @@ public class Subject {
   public Subject() {
   }
 
-  public Subject(String name) {
-    this.name = name;
-  }
-
   public Subject(String name, Department department) {
     this.name = name;
     this.department = department;

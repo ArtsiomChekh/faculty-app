@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header :: head">
+  <meta charset="UTF-8">
+  <title>Форма предмета</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="header :: content"></div>
+<h1>Форма предмета</h1>
+<div class="container">
+  <form th:if="${subject}" th:object="${subject}" method="post" th:action="@{/saveSubject}">
+    <div class="form-group">
+      <label for="name">Название:</label>
+      <input type="text" class="form-control" id="name" name="name" th:value="${subject.name}" required>
+    </div>
+    <div class="form-group">
+      <label for="department">Кафедра:</label>
+      <select class="form-control" id="department" name="department.id" required>
+        <option value="">Выберите кафедру...</option>
+        <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"
+                th:selected="${subject.department != null and subject.department.id == department.id}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <input type="hidden" th:field="*{id}">
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+  </form>
+</div>
+</body>
+</html>

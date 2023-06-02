@@ -316,15 +316,46 @@ public class DeanController {
 
   @GetMapping("/showSubjectToDepartmentForm")
   public String showSubjectToDepartmentForm(Model model) {
+    model.addAttribute("subject", new Subject());
+    model.addAttribute("departments", departmentService.getAllDepartments());
+    return "subject_form";
+  }
+//  @PostMapping("/addSubjectToDepartment")
+//  public String addSubjectToDepartment(@RequestParam("subjectName") String subjectName,
+//      @RequestParam("departmentId") Long departmentId) {
+//    subjectService.addSubjectToDepartment(subjectName, departmentId);
+//    return "redirect:/subjects";
+//  }
+
+  @GetMapping("/editSubject/{subjectId}")
+  public String showEditSubjectForm(@PathVariable("subjectId") Long subjectId, Model model) {
+    Subject subject = subjectService.getSubjectById(subjectId);
     List<Department> departments = departmentService.getAllDepartments();
     model.addAttribute("departments", departments);
-    return "add-subject-to-department-form";
+    model.addAttribute("subject", subject);
+    model.addAttribute("title", "Edit Subject");
+    return "subject_form";
   }
-  @PostMapping("/addSubjectToDepartment")
-  public String addSubjectToDepartment(@RequestParam("subjectName") String subjectName,
-      @RequestParam("departmentId") Long departmentId) {
-    subjectService.addSubjectToDepartment(subjectName, departmentId);
+
+
+  @PostMapping("/saveSubject")
+  public String saveSubject(@ModelAttribute("subject") Subject subject) {
+    if (subject.getId() == null) { // Если id не установлен, то добавляем новый предмет
+      subjectService.saveSubject(subject);
+    } else { // Иначе обновляем существующий предмет
+      Subject existingSubject = subjectService.getSubjectById(subject.getId());
+      existingSubject.setName(subject.getName());
+      existingSubject.setDepartment(subject.getDepartment());
+      subjectService.saveSubject(existingSubject);
+    }
     return "redirect:/subjects";
   }
 
+  @GetMapping("/deleteSubject/{id}")
+  public String deleteSubject(@PathVariable(value = "id") long id) {
+
+    subjectService.deleteSubjectById(id);
+
+    return "redirect:/subjects";
+  }
 }
