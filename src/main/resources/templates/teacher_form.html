@@ -2,38 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="header :: head">
   <meta charset="UTF-8">
-  <title>Форма студента</title>
+  <title>Форма преподавателя</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div th:replace="header :: content"></div>
-<h1 th:text="${title}">Форма студента</h1>
+<h1 th:text="${title}">Форма преподавателя</h1>
 <div class="container">
-  <form th:if="${student}" th:object="${student}" method="post" th:action="@{/saveStudent}">
+  <form th:if="${teacher}" th:object="${teacher}" method="post" th:action="@{/saveTeacher}">
     <div class="form-group">
       <label for="firstName">Имя:</label>
-      <input type="text" class="form-control" id="firstName" name="firstName" th:value="${student.firstName}" required>
+      <input type="text" class="form-control" id="firstName" name="firstName" th:value="${teacher.firstName}" required>
     </div>
     <div class="form-group">
       <label for="lastName">Фамилия:</label>
-      <input type="text" class="form-control" id="lastName" name="lastName" th:value="${student.lastName}" required>
+      <input type="text" class="form-control" id="lastName" name="lastName" th:value="${teacher.lastName}" required>
     </div>
     <div class="form-group">
-      <label for="subject">Кафедры:</label>
-      <select class="form-control" id="department" name="departments" multiple required>
+      <label for="department">Кафедра:</label>
+      <select class="form-control" id="department" name="department" required>
         <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"
-                th:selected="${student.departments != null and student.departments.contains(department)}"></option>
+                th:selected="${teacher.department != null and teacher.department.id == department.id}"></option>
       </select>
     </div>
     <div class="form-group">
       <label for="subject">Предметы:</label>
       <select class="form-control" id="subject" name="subjects" multiple required>
         <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.name}"
-                th:selected="${student.subjects != null and student.subjects.contains(subject)}"></option>
+                th:selected="${teacher.subjects != null and teacher.subjects.contains(subject)}"></option>
       </select>
     </div>
     <div class="form-group">

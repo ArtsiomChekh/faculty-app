@@ -7,8 +7,6 @@ import java.util.List;
 public interface DepartmentService {
 
   List<Department> getAllDepartments();
-  List<Department> getAllDepartmentsSortedByStudentCount(boolean isAscending);
-  List<Department> getAllDepartmentsSortedByTeacherCount(boolean isAscending);
 
   Department getDepartmentById(long id);
 

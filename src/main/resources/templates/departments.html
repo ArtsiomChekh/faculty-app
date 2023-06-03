@@ -13,29 +13,12 @@
 <div th:replace="header :: content"></div>
 <h1>Список кафедр</h1>
 <div class="container">
-  <div class="btn-group" role="group" aria-label="Sort by">
-    <form class="form-inline" method="get" action="/departments">
-      <button type="submit" name="sortBy" value="students" class="btn btn-primary btn-sm">
-        Sort by students
-      </button>
-      <input type="hidden" name="isAscending" th:value="${isAscending}">
-    </form>
-
-    <form method="get" action="/departments">
-      <button type="submit" name="sortBy" value="teachers" class="btn btn-primary btn-sm">
-        Sort by teachers
-      </button>
-      <input type="hidden" name="isAscending" th:value="${isAscending}">
-    </form>
-  </div>
 
   <table class="table">
     <thead>
     <tr>
       <th>№</th>
       <th>Кафедра</th>
-      <th>Студенты</th>
-      <th>Учителя</th>
       <th>Описание</th>
       <th class="text-center">Действия</th>
     </tr>
@@ -44,13 +27,11 @@
     <tr th:each="department, i : ${departments}">
       <td th:text="${i.index + 1}">1</td>
       <td th:text="${department.name}"></td>
-      <td th:text="${department.studentCount}"></td>
-      <td th:text="${department.teacherCount}"></td>
       <td th:text="${department.description}"></td>
       <td>
         <div class="text-center">
           <a th:href="@{/deleteDepartment/{id}(id=${department.id})}" class="btn btn-danger btn-sm btn-block">Удалить</a>
-          <a th:href="@{/showUpdateDepartmentForm/{id}(id=${department.id})}" class="btn btn-primary btn-sm btn-block">Изменить</a>
+          <a th:href="@{/editDepartmentForm/{id}(id=${department.id})}" class="btn btn-primary btn-sm btn-block">Изменить</a>
         </div>
       </td>
     </tr>

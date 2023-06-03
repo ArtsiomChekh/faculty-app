@@ -39,6 +39,7 @@
       <th>№</th>
       <th>Имя</th>
       <th>Фамилия</th>
+      <th>Кафедры</th>
       <th>Предметы</th>
       <th class="text-center">Действия</th>
     </tr>
@@ -48,6 +49,14 @@
       <td th:text="${i.index + 1}">1</td>
       <td th:text="${student.firstName}"></td>
       <td th:text="${student.lastName}"></td>
+      <td>
+        <ul>
+          <li th:each="department : ${student.departments}" th:text="${department.name}"></li>
+          <th:block th:if="${student.departments.empty()}">
+            <span>Нет Кафедр</span>
+          </th:block>
+        </ul>
+      </td>
       <td>
         <ul>
           <li th:each="subject : ${student.subjects}" th:text="${subject.name}"></li>
