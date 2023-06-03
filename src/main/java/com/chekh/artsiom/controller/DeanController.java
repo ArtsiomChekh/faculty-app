@@ -314,35 +314,27 @@ public class DeanController {
     return "update_teacher";
   }
 
-  @GetMapping("/showSubjectToDepartmentForm")
-  public String showSubjectToDepartmentForm(Model model) {
+  @GetMapping("/newSubjectForm")
+  public String showNewSubjectForm(Model model) {
     model.addAttribute("subject", new Subject());
     model.addAttribute("departments", departmentService.getAllDepartments());
+    model.addAttribute("title", "Add Subject");
     return "subject_form";
   }
-//  @PostMapping("/addSubjectToDepartment")
-//  public String addSubjectToDepartment(@RequestParam("subjectName") String subjectName,
-//      @RequestParam("departmentId") Long departmentId) {
-//    subjectService.addSubjectToDepartment(subjectName, departmentId);
-//    return "redirect:/subjects";
-//  }
 
-  @GetMapping("/editSubject/{subjectId}")
+  @GetMapping("/editSubjectForm/{subjectId}")
   public String showEditSubjectForm(@PathVariable("subjectId") Long subjectId, Model model) {
-    Subject subject = subjectService.getSubjectById(subjectId);
-    List<Department> departments = departmentService.getAllDepartments();
-    model.addAttribute("departments", departments);
-    model.addAttribute("subject", subject);
+    model.addAttribute("departments", departmentService.getAllDepartments());
+    model.addAttribute("subject", subjectService.getSubjectById(subjectId));
     model.addAttribute("title", "Edit Subject");
     return "subject_form";
   }
 
-
   @PostMapping("/saveSubject")
   public String saveSubject(@ModelAttribute("subject") Subject subject) {
-    if (subject.getId() == null) { // Если id не установлен, то добавляем новый предмет
+    if (subject.getId() == null) {
       subjectService.saveSubject(subject);
-    } else { // Иначе обновляем существующий предмет
+    } else {
       Subject existingSubject = subjectService.getSubjectById(subject.getId());
       existingSubject.setName(subject.getName());
       existingSubject.setDepartment(subject.getDepartment());
@@ -353,9 +345,43 @@ public class DeanController {
 
   @GetMapping("/deleteSubject/{id}")
   public String deleteSubject(@PathVariable(value = "id") long id) {
-
     subjectService.deleteSubjectById(id);
-
     return "redirect:/subjects";
   }
+
+  @GetMapping("/newStudentForm")
+  public String showNewStudentForm(Model model) {
+    model.addAttribute("student", new Student());
+    model.addAttribute("subjects", subjectService.getAllSubjects());
+    model.addAttribute("title", "Add Student");
+    return "student_form";
+  }
+
+  @GetMapping("/editStudentForm/{studentId}")
+  public String showEditStudentForm(@PathVariable("studentId") Long studentId, Model model) {
+    model.addAttribute("student", studentService.getStudentById(studentId));
+    model.addAttribute("subjects", subjectService.getAllSubjects());
+    model.addAttribute("title", "Edit Student");
+    return "student_form";
+  }
+
+  @PostMapping("/saveStudent")
+  public String saveStudent(@ModelAttribute("student") Student student) {
+    if (student.getId() == null) {
+      studentService.saveStudent(student);
+    } else {
+      Student existingStudent = studentService.getStudentById(student.getId());
+      existingStudent.setFirstName(student.getFirstName());
+      existingStudent.setLastName(student.getLastName());
+      studentService.saveStudent(existingStudent);
+    }
+    return "redirect:/students";
+  }
+
+  @GetMapping("/deleteStudent/{id}")
+  public String deleteStudent(@PathVariable("id") long id) {
+    studentService.deleteStudentById(id);
+    return "redirect:/students";
+  }
+
 }

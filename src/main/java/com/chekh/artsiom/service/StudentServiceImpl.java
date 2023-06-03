@@ -73,6 +73,21 @@ public class StudentServiceImpl implements StudentService {
       throw new IllegalArgumentException("Student with id " + studentId + " not found");
     }
   }
+
+  @Override
+  public Student getStudentById(Long studentId) {
+    return studentRepository.findById(studentId).orElse(null);
+  }
+
+  @Override
+  public void saveStudent(Student student) {
+    studentRepository.save(student);
+  }
+
+  @Override
+  public void deleteStudentById(long id) {
+    studentRepository.deleteById(id);
+  }
 }
 
 

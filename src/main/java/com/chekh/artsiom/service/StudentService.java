@@ -19,5 +19,9 @@ public interface StudentService {
   Map<Subject, Set<Teacher>> getSubjectsAndTeachersByStudentId(Long studentId);
 
 
+  Student getStudentById(Long studentId);
 
+  void saveStudent(Student student);
+
+  void deleteStudentById(long id);
 }
