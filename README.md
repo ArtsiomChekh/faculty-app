@@ -92,7 +92,7 @@
 * Архитектура MVC + 
 
 # Структура БД
-![Image alt](https://github.com/ArtsiomChekh/faculty-app/blob/497e597ea02dd0c77052039d78700e3ef4c86af0/src/main/resources/static/img/MyDB.png)
+![Image alt](https://github.com/ArtsiomChekh/faculty-app/blob/b9102fc02c85e27e123ceb751eef375075b9b655/src/main/resources/static/img/MyDB.png)
 
 # Установка и запуск
 * mvn spring-boot:run
