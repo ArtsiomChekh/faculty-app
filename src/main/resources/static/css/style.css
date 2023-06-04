@@ -1,4 +1,4 @@
-/* Style for the header */
+
 nav {
   background-color: #343a40;
   color: #fff;
@@ -13,20 +13,30 @@ nav {
   color: #fff;
 }
 
-/* Style for the jumbotron */
 .jumbotron {
   background-color: #f8f9fa;
   padding: 2rem;
   margin-bottom: 2rem;
 }
 
-/* Style for the main section */
 section {
   margin-bottom: 2rem;
 }
 
-/* Style for the footer */
 footer {
   background-color: #343a40;
   color: #fff;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-center {
+  display: block;
+  margin: 0 auto;
+}
+
+td {
+  text-align: center;
 }

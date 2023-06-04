@@ -34,7 +34,7 @@ public class DeanController {
   private StudentService studentService;
 
   @GetMapping("/departments")
-  public String getAllDepartments(Model model) {
+  public String getDepartmentsPage(Model model) {
     model.addAttribute("departments", departmentService.getAllDepartments());
     return "departments";
   }
@@ -87,7 +87,7 @@ public class DeanController {
   }
 
   @GetMapping("/students")
-  public String getStudents(
+  public String getStudentsPage(
       @RequestParam(value = "department", required = false) Long departmentId,
       @RequestParam(value = "subject", required = false) Long subjectId,
       Model model) {
@@ -95,19 +95,16 @@ public class DeanController {
 
     if (departmentId != null && subjectId != null) {
       students = studentService.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
-    }
-    else if (departmentId != null) {
+    } else if (departmentId != null) {
       students = studentService.findByDepartmentId(departmentId);
-    }
-    else if (subjectId != null) {
+    } else if (subjectId != null) {
       students = studentService.findBySubjectId(subjectId);
-    }
-    else {
+    } else {
       students = studentService.getAllStudents();
     }
 
     model.addAttribute("students", students);
-    model.addAttribute("departments",departmentService.getAllDepartments());
+    model.addAttribute("departments", departmentService.getAllDepartments());
     model.addAttribute("subjects", subjectService.getAllSubjects());
 
     return "students";
@@ -116,14 +113,14 @@ public class DeanController {
   @GetMapping("/newDepartmentForm")
   public String showNewDepartmentForm(Model model) {
     model.addAttribute("department", new Department());
-    model.addAttribute("title", "Add Department");
+    model.addAttribute("title", "Добавить Кафедру");
     return "department_form";
   }
 
   @GetMapping("/editDepartmentForm/{departmentId}")
   public String editDepartmentForm(@PathVariable("departmentId") Long departmentId, Model model) {
     model.addAttribute("department", departmentService.getDepartmentById(departmentId));
-    model.addAttribute("title", "Edit Department");
+    model.addAttribute("title", "Редактировать Кафедру");
     return "department_form";
   }
 
@@ -153,7 +150,7 @@ public class DeanController {
     model.addAttribute("teacher", new Teacher());
     model.addAttribute("departments", departmentService.getAllDepartments());
     model.addAttribute("subjects", subjectService.getAllSubjects());
-    model.addAttribute("title", "Add Teacher");
+    model.addAttribute("title", "Добавить Учителя");
     return "teacher_form";
   }
 
@@ -163,7 +160,7 @@ public class DeanController {
     model.addAttribute("teacher", teacherService.getTeacherById(teacherId));
     model.addAttribute("departments", departmentService.getAllDepartments());
     model.addAttribute("subjects", subjectService.getAllSubjects());
-    model.addAttribute("title", "Edit Teacher");
+    model.addAttribute("title", "Редактировать Учителя");
     return "teacher_form";
   }
 
@@ -188,12 +185,11 @@ public class DeanController {
     return "redirect:/teachers";
   }
 
-
   @GetMapping("/newSubjectForm")
   public String showNewSubjectForm(Model model) {
     model.addAttribute("subject", new Subject());
     model.addAttribute("departments", departmentService.getAllDepartments());
-    model.addAttribute("title", "Add Subject");
+    model.addAttribute("title", "Добавить Предмет");
     return "subject_form";
   }
 
@@ -201,7 +197,7 @@ public class DeanController {
   public String showEditSubjectForm(@PathVariable("subjectId") Long subjectId, Model model) {
     model.addAttribute("departments", departmentService.getAllDepartments());
     model.addAttribute("subject", subjectService.getSubjectById(subjectId));
-    model.addAttribute("title", "Edit Subject");
+    model.addAttribute("title", "Редактировать Предмет");
     return "subject_form";
   }
 
@@ -229,7 +225,7 @@ public class DeanController {
     model.addAttribute("student", new Student());
     model.addAttribute("subjects", subjectService.getAllSubjects());
     model.addAttribute("departments", departmentService.getAllDepartments());
-    model.addAttribute("title", "Add Student");
+    model.addAttribute("title", "Добавить Студента");
     return "student_form";
   }
 
@@ -238,7 +234,7 @@ public class DeanController {
     model.addAttribute("student", studentService.getStudentById(studentId));
     model.addAttribute("subjects", subjectService.getAllSubjects());
     model.addAttribute("departments", departmentService.getAllDepartments());
-    model.addAttribute("title", "Edit Student");
+    model.addAttribute("title", "Редактировать Студента");
     return "student_form";
   }
 

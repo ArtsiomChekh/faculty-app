@@ -3,6 +3,7 @@ package com.chekh.artsiom.service;
 import com.chekh.artsiom.model.Department;
 import java.util.List;
 
+
 public interface DepartmentService {
 
   List<Department> getAllDepartments();
@@ -12,6 +13,8 @@ public interface DepartmentService {
   void saveDepartment(Department department);
 
   void deleteDepartmentById(long id);
+
+
 
 
 }

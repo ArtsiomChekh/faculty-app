@@ -35,9 +35,10 @@
       <td th:text="${subject.department.name}"></td>
       <td>
         <div class="text-center btn-block">
-          <a th:href="@{/deleteSubject/{id}(id=${subject.id})}" class="btn btn-danger btn-sm btn-block">Удалить</a>
+          <a th:href="@{/deleteSubject/{id}(id=${subject.id})}"
+             class="btn btn-danger btn-sm d-block mx-auto" style="width: 100px;">Удалить</a>
           <a th:href="@{/editSubjectForm/{id}(id=${subject.id})}"
-             class="btn btn-primary btn-sm btn-block">Изменить</a>
+             class="btn btn-primary btn-sm d-block mx-auto mt-2" style="width: 100px;">Изменить</a>
         </div>
       </td>
     </tr>
