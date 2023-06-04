@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
+<head th:replace="header :: head">
   <title>Departments</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div th:replace="header :: content"></div>
 <h1>Список кафедр</h1>
 <div class="container">
-
   <table class="table">
     <thead>
     <tr>
@@ -30,12 +23,13 @@
       <td th:text="${department.description}"></td>
       <td>
         <div class="text-center">
-          <a th:href="@{/deleteDepartment/{id}(id=${department.id})}" class="btn btn-danger btn-sm btn-block">Удалить</a>
-          <a th:href="@{/editDepartmentForm/{id}(id=${department.id})}" class="btn btn-primary btn-sm btn-block">Изменить</a>
+          <a th:href="@{/deleteDepartment/{id}(id=${department.id})}"
+             class="btn btn-danger btn-sm btn-block">Удалить</a>
+          <a th:href="@{/editDepartmentForm/{id}(id=${department.id})}"
+             class="btn btn-primary btn-sm btn-block">Изменить</a>
         </div>
       </td>
     </tr>
-
     </tbody>
   </table>
   <div class="text-left">

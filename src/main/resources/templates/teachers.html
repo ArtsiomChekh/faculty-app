@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="header :: head">
-  <meta charset="UTF-8">
   <title>Список преподавателей</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div th:replace="header :: content"></div>
@@ -18,20 +12,21 @@
       <label for="department-select">Кафедра:</label>
       <select class="form-control" id="department-select" name="department" style="width: 200px;">
         <option value="">Все кафедры</option>
-        <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"></option>
+        <option th:each="department : ${departments}" th:value="${department.id}"
+                th:text="${department.name}"></option>
       </select>
     </div>
     <div class="form-group">
       <label for="subject-select">Предмет:</label>
       <select class="form-control" id="subject-select" name="subject" style="width: 200px;">
         <option value="">Все предметы</option>
-        <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
+        <option th:each="subject : ${subjects}" th:value="${subject.id}"
+                th:text="${subject.name}"></option>
       </select>
     </div>
     <button class="btn btn-primary" type="submit">Поиск</button>
     <a class="btn btn-default" href="/teachers">Сбросить фильтры</a>
   </form>
-
   <br>
   <table class="table">
     <thead>
@@ -60,7 +55,8 @@
       </td>
       <td>
         <div class="text-center btn-block">
-          <a th:href="@{/deleteTeacher/{id}(id=${teacher.id})}" class="btn btn-danger btn-sm btn-block">Удалить</a>
+          <a th:href="@{/deleteTeacher/{id}(id=${teacher.id})}"
+             class="btn btn-danger btn-sm btn-block">Удалить</a>
           <a th:href="@{/editTeacherForm/{id}(id=${teacher.id})}"
              class="btn btn-primary btn-sm btn-block">Изменить</a>
         </div>
@@ -72,6 +68,5 @@
     <a th:href="@{/newTeacherForm}" class="btn btn-primary btn-mm mb-3 "> Добавить Учителя </a>
   </div>
 </div>
-
 </body>
 </html>

@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class SubjectTest {
 
@@ -13,8 +12,8 @@ public class SubjectTest {
 
   @Before
   public void setUp() {
-    subject = new Subject("Math");
     department = new Department("Computer Science", "description");
+    subject = new Subject("Math",department);
   }
 
   @Test

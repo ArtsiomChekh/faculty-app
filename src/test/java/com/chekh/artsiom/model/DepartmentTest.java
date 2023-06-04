@@ -17,7 +17,7 @@ public class DepartmentTest {
     department = new Department();
     subjects = new HashSet<>();
     subjects.add(new Subject("Math", new Department()));
-    subjects.add(new Subject("Physics",new Department()));
+    subjects.add(new Subject("Physics", new Department()));
   }
 
   @Test
