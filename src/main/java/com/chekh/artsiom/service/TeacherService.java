@@ -1,9 +1,7 @@
 package com.chekh.artsiom.service;
 
-import com.chekh.artsiom.model.Subject;
 import com.chekh.artsiom.model.Teacher;
 import java.util.List;
-import java.util.Set;
 
 public interface TeacherService {
 
@@ -14,8 +12,6 @@ public interface TeacherService {
   List<Teacher> findBySubjectId(Long subjectId);
 
   List<Teacher> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId);
-
-  List<Teacher> findAllByDepartment(Teacher teacher);
 
   void saveTeacher(Teacher teacher);
 

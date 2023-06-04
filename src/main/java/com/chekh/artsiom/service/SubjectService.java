@@ -21,6 +21,4 @@ public interface SubjectService {
 
   Subject getSubjectById(long id);
 
-  void addSubjectToDepartment(String subjectName, Long departmentId);
-
 }

@@ -1,10 +1,7 @@
 package com.chekh.artsiom.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -31,9 +28,6 @@ public class Teacher {
       joinColumns = @JoinColumn(name = "teacher_id"),
       inverseJoinColumns = @JoinColumn(name = "subject_id"))
   private List<Subject> subjects = new ArrayList<>();
-
-  @Transient
-  private Long[] subjectIds;
 
   public Teacher() {
   }
@@ -87,14 +81,6 @@ public class Teacher {
 
   public void setSubjects(List<Subject> subjects) {
     this.subjects = subjects;
-  }
-
-  public Long[] getSubjectIds() {
-    return subjectIds;
-  }
-
-  public void setSubjectIds(Long[] subjectIds) {
-    this.subjectIds = subjectIds;
   }
 
 

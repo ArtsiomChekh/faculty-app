@@ -9,17 +9,13 @@ import com.chekh.artsiom.service.StudentService;
 import com.chekh.artsiom.service.SubjectService;
 import com.chekh.artsiom.service.TeacherService;
 import java.util.List;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -39,45 +35,30 @@ public class DeanController {
 
   @GetMapping("/departments")
   public String getAllDepartments(Model model) {
-    List<Department> departments = departmentService.getAllDepartments();
-    model.addAttribute("departments", departments);
+    model.addAttribute("departments", departmentService.getAllDepartments());
     return "departments";
   }
 
   @GetMapping("/teachers")
   public String getTeachersPage(
       @RequestParam(value = "department", required = false) Long departmentId,
-      // the ID of the department to filter by (optional)
       @RequestParam(value = "subject", required = false) Long subjectId,
-      Model model
-  ) {
+      Model model) {
     List<Teacher> teachers;
 
-    // filter teachers by department and subject
     if (departmentId != null && subjectId != null) {
       teachers = teacherService.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
-    }
-    // filter teachers by department
-    else if (departmentId != null) {
+    } else if (departmentId != null) {
       teachers = teacherService.findByDepartmentId(departmentId);
-    }
-    // filter teachers by subject
-    else if (subjectId != null) {
+    } else if (subjectId != null) {
       teachers = teacherService.findBySubjectId(subjectId);
-    }
-    // get all teachers
-    else {
+    } else {
       teachers = teacherService.getAllTeachers();
     }
 
-    // get all departments and subjects for filtering
-    List<Department> departments = departmentService.getAllDepartments();
-    List<Subject> subjects = subjectService.getAllSubjects();
-
-    // add the filtered list of teachers and the departments and subjects to the model object
     model.addAttribute("teachers", teachers);
-    model.addAttribute("departments", departments);
-    model.addAttribute("subjects", subjects);
+    model.addAttribute("departments", departmentService.getAllDepartments());
+    model.addAttribute("subjects", subjectService.getAllSubjects());
 
     return "teachers";
   }
@@ -85,131 +66,89 @@ public class DeanController {
   @GetMapping("/subjects")
   public String getSubjectsPage(
       @RequestParam(name = "department", required = false) Long departmentId,
-      Model model
-  ) {
-    List<Department> departments = departmentService.getAllDepartments();
+      Model model) {
     List<Subject> subjects;
 
-    // filter subjects by department
     if (departmentId != null) {
       Department department = departmentService.getDepartmentById(departmentId);
       if (department == null) {
-        // handle error: department not found
         return "error";
       }
       subjects = subjectService.getSubjectsByDepartment(departmentId);
-    }
-    // get all subjects
-    else {
+    } else {
       subjects = subjectService.getAllSubjects();
     }
 
-    // add the list of departments, subjects, and selected department ID to the model object
-    model.addAttribute("departments", departments);
+    model.addAttribute("departments", departmentService.getAllDepartments());
     model.addAttribute("subjects", subjects);
     model.addAttribute("selectedDepartmentId", departmentId);
 
-    // return the view name to be rendered by the view resolver
     return "subjects";
   }
 
   @GetMapping("/students")
   public String getStudents(
       @RequestParam(value = "department", required = false) Long departmentId,
-      // the ID of the department to filter by (optional)
       @RequestParam(value = "subject", required = false) Long subjectId,
-      // the ID of the subject to filter by (optional)
-      Model model // the model object used to pass data to the view
-  ) {
+      Model model) {
     List<Student> students;
 
-    // filter students by department and subject
     if (departmentId != null && subjectId != null) {
       students = studentService.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
     }
-    // filter students by department
     else if (departmentId != null) {
       students = studentService.findByDepartmentId(departmentId);
     }
-    // filter students by subject
     else if (subjectId != null) {
       students = studentService.findBySubjectId(subjectId);
     }
-    // get all students
     else {
       students = studentService.getAllStudents();
     }
 
-    // get all departments and subjects for filtering
-    List<Department> departments = departmentService.getAllDepartments();
-    List<Subject> subjects = subjectService.getAllSubjects();
-
-    // add the filtered list of students and the departments and subjects to the model object
     model.addAttribute("students", students);
-    model.addAttribute("departments", departments);
-    model.addAttribute("subjects", subjects);
+    model.addAttribute("departments",departmentService.getAllDepartments());
+    model.addAttribute("subjects", subjectService.getAllSubjects());
 
     return "students";
   }
 
-  @GetMapping("/showNewDepartmentForm")
+  @GetMapping("/newDepartmentForm")
   public String showNewDepartmentForm(Model model) {
-
-    Department department = new Department();
-
-    // add the Department object to the model object
-    model.addAttribute("department", department);
-
-    return "new_department";
+    model.addAttribute("department", new Department());
+    model.addAttribute("title", "Add Department");
+    return "department_form";
   }
 
-  @PostMapping("/saveDepartment/{id}")
-  public String saveDepartment(@PathVariable(value = "id") long id,
-      @Valid @ModelAttribute("department") Department department,
-      BindingResult bindingResult,
-      Model model) {
+  @GetMapping("/editDepartmentForm/{departmentId}")
+  public String editDepartmentForm(@PathVariable("departmentId") Long departmentId, Model model) {
+    model.addAttribute("department", departmentService.getDepartmentById(departmentId));
+    model.addAttribute("title", "Edit Department");
+    return "department_form";
+  }
 
-    // Set the id of the department to the id from the path variable
-    department.setId(id);
-
-    if (bindingResult.hasErrors()) {
-      // Add error messages to the model and return to the form
-      model.addAttribute("errors", bindingResult.getAllErrors());
-      if (id == 0) {
-        // Return to the new_department form with errors
-        return "new_department";
-      } else {
-        // Return to the update_department form with errors
-        return "update_department";
-      }
-    } else {
-      // Save the department and redirect to the department list page
+  @PostMapping("/saveDepartment")
+  public String saveDepartment(@ModelAttribute("department") Department department) {
+    if (department.getId() == null) {
       departmentService.saveDepartment(department);
-      return "redirect:/departments";
+    } else {
+      Department existingDepartment = departmentService.getDepartmentById(department.getId());
+      existingDepartment.setName(department.getName());
+      existingDepartment.setDescription(department.getDescription());
+      departmentService.saveDepartment(existingDepartment);
     }
-  }
-
-  @GetMapping("/deleteDepartment/{id}")
-  public String deleteDepartment(@PathVariable(value = "id") long id) {
-
-    // call delete book method
-    this.departmentService.deleteDepartmentById(id);
-
     return "redirect:/departments";
   }
 
-  @GetMapping("/showUpdateDepartmentForm/{id}")
-  public String showUpdateDepartmentForm(@PathVariable(value = "id") long id, Model model) {
 
-    Department department = departmentService.getDepartmentById(id);
-
-    // set department as a model attribute to pre-populate the form
-    model.addAttribute("department", department);
-
-    return "update_department";
+  @GetMapping("/deleteDepartment/{id}")
+  public String deleteDepartment(@PathVariable(value = "id") long id) {
+    this.departmentService.deleteDepartmentById(id);
+    return "redirect:/departments";
   }
 
-  @GetMapping("/showNewTeacherForm")
+
+  @GetMapping("/newTeacherForm")
   public String showNewTeacherForm(Model model) {
     model.addAttribute("teacher", new Teacher());
     model.addAttribute("departments", departmentService.getAllDepartments());
@@ -219,7 +158,8 @@ public class DeanController {
   }
 
   @GetMapping("/editTeacherForm/{teacherId}")
-  public String showEditTeacherForm(@PathVariable(value = "teacherId") Long teacherId, Model model){
+  public String showEditTeacherForm(@PathVariable(value = "teacherId") Long teacherId,
+      Model model) {
     model.addAttribute("teacher", teacherService.getTeacherById(teacherId));
     model.addAttribute("departments", departmentService.getAllDepartments());
     model.addAttribute("subjects", subjectService.getAllSubjects());
@@ -229,7 +169,7 @@ public class DeanController {
 
   @PostMapping("saveTeacher")
   public String saveTeacher(@ModelAttribute("teacher") Teacher teacher) {
-    if(teacher.getId() == null){
+    if (teacher.getId() == null) {
       teacherService.saveTeacher(teacher);
     } else {
       Teacher existingTeacher = teacherService.getTeacherById(teacher.getId());

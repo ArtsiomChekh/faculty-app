@@ -1,7 +1,6 @@
 package com.chekh.artsiom.service;
 
 import com.chekh.artsiom.model.Department;
-import com.chekh.artsiom.model.Teacher;
 import java.util.List;
 
 public interface DepartmentService {

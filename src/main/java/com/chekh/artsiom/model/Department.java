@@ -31,6 +31,7 @@ public class Department {
 
   public Department() {
   }
+
   public Department(String name, String description) {
     this.name = name;
     this.description = description;
@@ -52,10 +53,6 @@ public class Department {
     this.name = name;
   }
 
-  public void addSubject(Subject subject) {
-    subjects.add(subject);
-  }
-
   public Set<Subject> getSubjects() {
     if (subjects == null) {
       subjects = new HashSet<>();
@@ -74,7 +71,6 @@ public class Department {
   public void setDescription(String description) {
     this.description = description;
   }
-
 
 
 }
