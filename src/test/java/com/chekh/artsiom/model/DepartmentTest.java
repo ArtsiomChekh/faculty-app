@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class DepartmentTest {
-
   private Department department;
   private Set<Subject> subjects;
 

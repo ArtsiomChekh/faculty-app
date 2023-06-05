@@ -137,13 +137,11 @@ public class DeanController {
     return "redirect:/departments";
   }
 
-
   @GetMapping("/deleteDepartment/{id}")
   public String deleteDepartment(@PathVariable(value = "id") long id) {
     this.departmentService.deleteDepartmentById(id);
     return "redirect:/departments";
   }
-
 
   @GetMapping("/newTeacherForm")
   public String showNewTeacherForm(Model model) {

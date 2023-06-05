@@ -66,7 +66,7 @@ public class Subject {
   }
 
   public void addTeacher(Teacher teacher) {
-    if (teacher != null) {
+    if (teacher != null && !teachers.contains(teacher)) {
       teachers.add(teacher);
       teacher.addSubject(this);
     }

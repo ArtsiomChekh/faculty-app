@@ -83,7 +83,6 @@ public class Teacher {
     this.subjects = subjects;
   }
 
-
   public void addSubject(Subject subject) {
     if (subject != null) {
       subjects.add(subject);

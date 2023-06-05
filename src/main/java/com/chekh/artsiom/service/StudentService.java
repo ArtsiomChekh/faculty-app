@@ -14,7 +14,6 @@ public interface StudentService {
 
   List<Student> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId);
 
-
   Student getStudentById(Long studentId);
 
   void saveStudent(Student student);

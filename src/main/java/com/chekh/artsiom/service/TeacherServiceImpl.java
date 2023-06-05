@@ -22,7 +22,6 @@ public class TeacherServiceImpl implements TeacherService {
   public List<Teacher> findByDepartmentId(Long departmentId) {
     return teacherRepository.findAllByDepartmentId(departmentId);
   }
-
   @Override
   public List<Teacher> findBySubjectId(Long subjectId) {
     return teacherRepository.findAllBySubjects_Id(subjectId);
