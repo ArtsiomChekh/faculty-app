@@ -15,18 +15,18 @@ public class Subject {
   @Column(name = "name")
   private String name;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, optional = true)
   @JoinColumn(name = "department_id")
   private Department department;
-
-  public void setTeachers(Set<Teacher> teachers) {
-    this.teachers = teachers;
-  }
 
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "subjects")
   private Set<Teacher> teachers = new HashSet<>();
 
   public Subject() {
+  }
+
+  public Subject(String name) {
+    this.name = name;
   }
 
   public Subject(String name, Department department) {

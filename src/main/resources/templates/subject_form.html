@@ -14,7 +14,7 @@
     </div>
     <div class="form-group">
       <label for="department">Кафедра:</label>
-      <select class="form-control" id="department" name="department.id" required>
+      <select class="form-control" id="department" name="department.id">
         <option value="">Выберите кафедру...</option>
         <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"
                 th:selected="${subject.department != null and subject.department.id == department.id}"></option>

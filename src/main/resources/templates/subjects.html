@@ -32,7 +32,7 @@
     <tr th:each="subject, i : ${subjects}">
       <td th:text="${i.index + 1}">1</td>
       <td th:text="${subject.name}"></td>
-      <td th:text="${subject.department.name}"></td>
+      <td th:text="${subject.department != null ? subject.department.name : 'Нет кафедры'}"></td>
       <td>
         <div class="text-center btn-block">
           <a th:href="@{/deleteSubject/{id}(id=${subject.id})}"

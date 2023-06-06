@@ -199,18 +199,30 @@ public class DeanController {
     return "subject_form";
   }
 
+//  @PostMapping("/saveSubject")
+//  public String saveSubject(@ModelAttribute("subject") Subject subject) {
+//    if (subject.getId() == null) {
+//      subjectService.saveSubject(subject);
+//    } else {
+//      Subject existingSubject = subjectService.getSubjectById(subject.getId());
+//      existingSubject.setName(subject.getName());
+//      existingSubject.setDepartment(subject.getDepartment());
+//      subjectService.saveSubject(existingSubject);
+//    }
+//    return "redirect:/subjects";
+//  }
+
   @PostMapping("/saveSubject")
   public String saveSubject(@ModelAttribute("subject") Subject subject) {
-    if (subject.getId() == null) {
-      subjectService.saveSubject(subject);
-    } else {
-      Subject existingSubject = subjectService.getSubjectById(subject.getId());
-      existingSubject.setName(subject.getName());
-      existingSubject.setDepartment(subject.getDepartment());
-      subjectService.saveSubject(existingSubject);
+    Department department = subject.getDepartment();
+    if (department != null && department.getId() == null) {
+      department = null;
     }
+    subject.setDepartment(department);
+    subjectService.saveSubject(subject);
     return "redirect:/subjects";
   }
+
 
   @GetMapping("/deleteSubject/{id}")
   public String deleteSubject(@PathVariable(value = "id") long id) {
