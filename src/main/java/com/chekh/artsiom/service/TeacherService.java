@@ -11,7 +11,7 @@ public interface TeacherService {
 
   List<Teacher> findBySubjectId(Long subjectId);
 
-  List<Teacher> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId);
+  List<Teacher> findByDepartmentIdAndSubjectId(Long departmentId, Long subjectId);
 
   void saveTeacher(Teacher teacher);
 

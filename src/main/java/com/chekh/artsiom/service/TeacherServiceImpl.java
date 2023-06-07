@@ -24,12 +24,12 @@ public class TeacherServiceImpl implements TeacherService {
   }
   @Override
   public List<Teacher> findBySubjectId(Long subjectId) {
-    return teacherRepository.findAllBySubjects_Id(subjectId);
+    return teacherRepository.findAllBySubjectId(subjectId);
   }
 
   @Override
-  public List<Teacher> findByDepartmentIdAndSubjectsId(Long departmentId, Long subjectId) {
-    return teacherRepository.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
+  public List<Teacher> findByDepartmentIdAndSubjectId(Long departmentId, Long subjectId) {
+    return teacherRepository.findByDepartmentIdAndSubjectId(departmentId, subjectId);
   }
 
   @Override

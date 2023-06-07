@@ -44,15 +44,13 @@
       <td th:text="${i.index + 1}">1</td>
       <td th:text="${teacher.firstName}"></td>
       <td th:text="${teacher.lastName}"></td>
-      <td th:text="${teacher.department.name}"></td>
+      <td th:text="${teacher.department?.name}"></td>
       <td>
         <ul>
-          <li th:each="subject : ${teacher.subjects}" th:text="${subject.name}"></li>
-          <th:block th:if="${teacher.subjects.empty()}">
-            <span>Нет предметов</span>
-          </th:block>
+          <li th:each= "subject : ${subjects}" th:text="${subject.name}"></li>
         </ul>
       </td>
+
       <td>
         <div class="text-center btn-block">
           <a th:href="@{/deleteTeacher/{id}(id=${teacher.id})}"

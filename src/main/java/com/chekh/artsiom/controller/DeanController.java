@@ -47,7 +47,7 @@ public class DeanController {
     List<Teacher> teachers;
 
     if (departmentId != null && subjectId != null) {
-      teachers = teacherService.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
+      teachers = teacherService.findByDepartmentIdAndSubjectId(departmentId, subjectId);
     } else if (departmentId != null) {
       teachers = teacherService.findByDepartmentId(departmentId);
     } else if (subjectId != null) {
@@ -171,7 +171,7 @@ public class DeanController {
       existingTeacher.setFirstName(teacher.getFirstName());
       existingTeacher.setLastName(teacher.getLastName());
       existingTeacher.setDepartment(teacher.getDepartment());
-      existingTeacher.setSubjects(teacher.getSubjects());
+//      existingTeacher.setSubjects(teacher.getSubjects());
       teacherService.saveTeacher(existingTeacher);
     }
     return "redirect:/teachers";

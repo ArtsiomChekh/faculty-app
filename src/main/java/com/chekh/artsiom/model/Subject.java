@@ -19,9 +19,6 @@ public class Subject {
   @JoinColumn(name = "department_id")
   private Department department;
 
-  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "subjects")
-  private Set<Teacher> teachers = new HashSet<>();
-
   public Subject() {
   }
 
@@ -61,14 +58,6 @@ public class Subject {
     }
   }
 
-  public Set<Teacher> getTeachers() {
-    return teachers;
-  }
 
-  public void addTeacher(Teacher teacher) {
-    if (teacher != null && !teachers.contains(teacher)) {
-      teachers.add(teacher);
-      teacher.addSubject(this);
-    }
-  }
+
 }
