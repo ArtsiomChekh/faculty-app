@@ -40,22 +40,22 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="teacher, i : ${teachers}">
+    <tr th:each="entry, i : ${teacherSubjects}">
       <td th:text="${i.index + 1}">1</td>
-      <td th:text="${teacher.firstName}"></td>
-      <td th:text="${teacher.lastName}"></td>
-      <td th:text="${teacher.department?.name}"></td>
+      <td th:text="${entry.key.firstName}"></td>
+      <td th:text="${entry.key.lastName}"></td>
+      <td th:text="${entry.key.department?.name}"></td>
       <td>
         <ul>
-          <li th:each= "subject : ${subjects}" th:text="${subject.name}"></li>
+          <li th:each="subject : ${entry.value}" th:text="${subject.name}"></li>
         </ul>
       </td>
 
       <td>
         <div class="text-center btn-block">
-          <a th:href="@{/deleteTeacher/{id}(id=${teacher.id})}"
+          <a th:href="@{/deleteTeacher/{id}(id=${entry.key.id})}"
              class="btn btn-danger btn-sm d-block mx-auto" style="width: 100px;">Удалить</a>
-          <a th:href="@{/editTeacherForm/{id}(id=${teacher.id})}"
+          <a th:href="@{/editTeacherForm/{id}(id=${entry.key.id})}"
              class="btn btn-primary btn-sm d-block mx-auto mt-2" style="width: 100px;">Изменить</a>
         </div>
       </td>

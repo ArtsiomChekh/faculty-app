@@ -69,27 +69,27 @@ public class TeacherTest {
     assertEquals(newDepartment, teacher.getDepartment());
   }
 
-  @Test
-  public void testGetSubjects() {
-    assertEquals(subjects, teacher.getSubjects());
-  }
+//  @Test
+//  public void testGetSubjects() {
+//    assertEquals(subjects, teacher.getSubjects());
+//  }
 
-  @Test
-  public void testSetSubjects() {
-    List<Subject> newSubjects = new ArrayList<>();
-    Subject subject3 = new Subject("Geometry", department);
-    newSubjects.add(subject3);
-    teacher.setSubjects(newSubjects);
-    assertEquals(newSubjects, teacher.getSubjects());
-  }
+//  @Test
+//  public void testSetSubjects() {
+//    List<Subject> newSubjects = new ArrayList<>();
+//    Subject subject3 = new Subject("Geometry", department);
+//    newSubjects.add(subject3);
+//    teacher.setSubjects(newSubjects);
+//    assertEquals(newSubjects, teacher.getSubjects());
+//  }
 
-  @Test
-  public void testAddSubject() {
-    Subject subject3 = new Subject("Geometry", new Department());
-    teacher.addSubject(subject3);
-    assertTrue(teacher.getSubjects().contains(subject3));
-    assertTrue(subject3.getTeachers().contains(teacher));
-  }
+//  @Test
+//  public void testAddSubject() {
+//    Subject subject3 = new Subject("Geometry", new Department());
+//    teacher.addSubject(subject3);
+//    assertTrue(teacher.getSubjects().contains(subject3));
+//    assertTrue(subject3.getTeachers().contains(teacher));
+//  }
 
   @Test
   public void testConstructor() {

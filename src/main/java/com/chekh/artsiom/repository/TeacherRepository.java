@@ -1,6 +1,8 @@
 package com.chekh.artsiom.repository;
 
+import com.chekh.artsiom.model.Subject;
 import com.chekh.artsiom.model.Teacher;
+import com.chekh.artsiom.model.TeacherSubject;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +22,10 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 
   @Query("SELECT ts.teacher FROM TeacherSubject ts WHERE ts.subject.id = :subjectId")
   List<Teacher> findAllBySubjectId(@Param("subjectId") Long subjectId);
+
+  @Query("SELECT ts.subject FROM TeacherSubject ts WHERE ts.teacher = :teacher")
+  List<Subject> getTeacherSubjects(@Param("teacher") Teacher teacher);
+
 
 
 }

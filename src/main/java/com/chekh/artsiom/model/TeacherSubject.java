@@ -1,5 +1,6 @@
 package com.chekh.artsiom.model;
 
+import java.util.List;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -53,5 +54,8 @@ public class TeacherSubject {
   public void setId(TeacherSubjectId id) {
     this.id = id;
   }
+
+
+
 
 }
