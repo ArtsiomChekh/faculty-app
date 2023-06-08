@@ -44,7 +44,7 @@
       <td th:text="${i.index + 1}">1</td>
       <td th:text="${teacher.firstName}"></td>
       <td th:text="${teacher.lastName}"></td>
-      <td th:text="${teacher.department.name}"></td>
+      <td th:text="${teacher.department?.name}"></td>
       <td>
         <ul>
           <li th:each="subject : ${teacher.subjects}" th:text="${subject.name}"></li>
