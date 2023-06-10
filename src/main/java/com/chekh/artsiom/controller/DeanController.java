@@ -8,6 +8,7 @@ import com.chekh.artsiom.service.DepartmentService;
 import com.chekh.artsiom.service.StudentService;
 import com.chekh.artsiom.service.SubjectService;
 import com.chekh.artsiom.service.TeacherService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -39,15 +41,38 @@ public class DeanController {
     return "departments";
   }
 
+//  @GetMapping("/teachers")
+//  public String getTeachersPage(
+//      @RequestParam(value = "department", required = false) Long departmentId,
+//      @RequestParam(value = "subject", required = false) Long subjectId,
+//      Model model) {
+//    List<Teacher> teachers;
+//
+//    if (departmentId != null && subjectId != null) {
+//      teachers = teacherService.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
+//    } else if (departmentId != null) {
+//      teachers = teacherService.findByDepartmentId(departmentId);
+//    } else if (subjectId != null) {
+//      teachers = teacherService.findBySubjectId(subjectId);
+//    } else {
+//      teachers = teacherService.getAllTeachers();
+//    }
+//
+//    model.addAttribute("teachers", teachers);
+//    model.addAttribute("departments", departmentService.getAllDepartments());
+//    model.addAttribute("subjects", subjectService.getAllSubjects());
+//
+//    return "teachers";
+//  }
+
   @GetMapping("/teachers")
-  public String getTeachersPage(
-      @RequestParam(value = "department", required = false) Long departmentId,
-      @RequestParam(value = "subject", required = false) Long subjectId,
-      Model model) {
+  public String getTeachers(@RequestParam(value = "department", required = false) Long departmentId,
+      @RequestParam(value = "subject", required = false) Long subjectId, Model model) {
+
     List<Teacher> teachers;
 
     if (departmentId != null && subjectId != null) {
-      teachers = teacherService.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
+      teachers = teacherService.findByDepartmentIdAndSubjectId(departmentId, subjectId);
     } else if (departmentId != null) {
       teachers = teacherService.findByDepartmentId(departmentId);
     } else if (subjectId != null) {
@@ -56,11 +81,76 @@ public class DeanController {
       teachers = teacherService.getAllTeachers();
     }
 
+    List<List<Subject>> subjects = new ArrayList<>();
+
+    List<Subject> allSubjects = subjectService.getAllSubjects();
+
+    for (Teacher teacher : teachers) {
+      List<Subject> teacherSubjects = teacherService.getSubjectsByTeacherId(teacher.getId());
+      subjects.add(teacherSubjects);
+    }
+
     model.addAttribute("teachers", teachers);
     model.addAttribute("departments", departmentService.getAllDepartments());
-    model.addAttribute("subjects", subjectService.getAllSubjects());
+    model.addAttribute("subjects", subjects);
+    model.addAttribute("allSubjects", allSubjects);
 
     return "teachers";
+  }
+
+  @GetMapping("/newTeacherForm")
+  public String showNewTeacherForm(Model model) {
+    model.addAttribute("teacher", new Teacher());
+    model.addAttribute("departments", departmentService.getAllDepartments());
+    model.addAttribute("subjects", subjectService.getAllSubjects());
+    model.addAttribute("title", "Добавить Учителя");
+    return "teacher_form";
+  }
+
+  @GetMapping("/editTeacherForm/{teacherId}")
+  public String showEditTeacherForm(@PathVariable(value = "teacherId") Long teacherId,
+      Model model) {
+    model.addAttribute("teacher", teacherService.getTeacherById(teacherId));
+    model.addAttribute("departments", departmentService.getAllDepartments());
+    model.addAttribute("subjects", subjectService.getAllSubjects());
+    model.addAttribute("title", "Редактировать Учителя");
+    return "teacher_form";
+  }
+
+//  @PostMapping("saveTeacher")
+//  public String saveTeacher(@ModelAttribute("teacher") Teacher teacher) {
+//    if (teacher.getId() == null) {
+//      teacherService.saveTeacher(teacher);
+//    } else {
+//      Teacher existingTeacher = teacherService.getTeacherById(teacher.getId());
+//      existingTeacher.setFirstName(teacher.getFirstName());
+//      existingTeacher.setLastName(teacher.getLastName());
+//      existingTeacher.setDepartment(teacher.getDepartment());
+//      existingTeacher.setSubjects(teacher.getSubjects());
+//      teacherService.saveTeacher(existingTeacher);
+//    }
+//    return "redirect:/teachers";
+//  }
+
+  @PostMapping("saveTeacher")
+  public String saveTeacherWithSubjects(@ModelAttribute("teacher") Teacher teacher,
+      @RequestParam(name = "subjectIds", required = false) List<Long> subjectIds) {
+
+    if (subjectIds == null) {
+      teacherService.saveTeacher(teacher);
+    } else {
+      // сохраняем преподавателя с выбранными предметами в базу данных
+      teacherService.saveTeacherWithSubjects(teacher, subjectIds);
+    }
+
+    // возвращаем id сохраненного преподавателя
+    return "redirect:/teachers";
+  }
+
+  @GetMapping("/deleteTeacher/{id}")
+  public String deleteTeacher(@PathVariable(value = "id") long id) {
+    teacherService.deleteTeacherById(id);
+    return "redirect:/teachers";
   }
 
   @GetMapping("/subjects")
@@ -141,46 +231,6 @@ public class DeanController {
   public String deleteDepartment(@PathVariable(value = "id") long id) {
     this.departmentService.deleteDepartmentById(id);
     return "redirect:/departments";
-  }
-
-  @GetMapping("/newTeacherForm")
-  public String showNewTeacherForm(Model model) {
-    model.addAttribute("teacher", new Teacher());
-    model.addAttribute("departments", departmentService.getAllDepartments());
-    model.addAttribute("subjects", subjectService.getAllSubjects());
-    model.addAttribute("title", "Добавить Учителя");
-    return "teacher_form";
-  }
-
-  @GetMapping("/editTeacherForm/{teacherId}")
-  public String showEditTeacherForm(@PathVariable(value = "teacherId") Long teacherId,
-      Model model) {
-    model.addAttribute("teacher", teacherService.getTeacherById(teacherId));
-    model.addAttribute("departments", departmentService.getAllDepartments());
-    model.addAttribute("subjects", subjectService.getAllSubjects());
-    model.addAttribute("title", "Редактировать Учителя");
-    return "teacher_form";
-  }
-
-  @PostMapping("saveTeacher")
-  public String saveTeacher(@ModelAttribute("teacher") Teacher teacher) {
-    if (teacher.getId() == null) {
-      teacherService.saveTeacher(teacher);
-    } else {
-      Teacher existingTeacher = teacherService.getTeacherById(teacher.getId());
-      existingTeacher.setFirstName(teacher.getFirstName());
-      existingTeacher.setLastName(teacher.getLastName());
-      existingTeacher.setDepartment(teacher.getDepartment());
-      existingTeacher.setSubjects(teacher.getSubjects());
-      teacherService.saveTeacher(existingTeacher);
-    }
-    return "redirect:/teachers";
-  }
-
-  @GetMapping("/deleteTeacher/{id}")
-  public String deleteTeacher(@PathVariable(value = "id") long id) {
-    teacherService.deleteTeacherById(id);
-    return "redirect:/teachers";
   }
 
   @GetMapping("/newSubjectForm")

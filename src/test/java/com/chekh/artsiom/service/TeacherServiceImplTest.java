@@ -86,7 +86,7 @@ public class TeacherServiceImplTest {
     teachers.add(teacher1);
     teachers.add(teacher2);
 
-    when(teacherRepository.findAllBySubjects_Id(subjectId)).thenReturn(teachers);
+    when(teacherRepository.findBySubjectsId(subjectId)).thenReturn(teachers);
 
     List<Teacher> result = teacherService.findBySubjectId(subjectId);
 
@@ -94,7 +94,7 @@ public class TeacherServiceImplTest {
     assertEquals(teacher1, result.get(0));
     assertEquals(teacher2, result.get(1));
 
-    verify(teacherRepository, times(1)).findAllBySubjects_Id(subjectId);
+    verify(teacherRepository, times(1)).findBySubjectsId(subjectId);
   }
 
   @Test

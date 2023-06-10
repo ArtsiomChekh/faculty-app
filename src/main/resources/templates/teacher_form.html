@@ -18,16 +18,16 @@
     </div>
     <div class="form-group">
       <label for="department">Кафедра:</label>
-      <select class="form-control" id="department" name="department" required>
+      <select class="form-control" id="department" name="department">
+        <option value="">Не выбрано</option>
         <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.name}"
                 th:selected="${teacher.department != null and teacher.department.id == department.id}"></option>
       </select>
     </div>
     <div class="form-group">
       <label for="subject">Предметы:</label>
-      <select class="form-control" id="subject" name="subjects" multiple required>
-        <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.name}"
-                th:selected="${teacher.subjects != null and teacher.subjects.contains(subject)}"></option>
+      <select class="form-control" id="subject" name="subjectIds" multiple>
+        <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
       </select>
     </div>
     <div class="form-group">

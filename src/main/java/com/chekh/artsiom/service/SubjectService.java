@@ -9,7 +9,7 @@ public interface SubjectService {
 
   List<Subject> getSubjectsByDepartment(Long departmentId);
 
-  List<Subject> getSubjectsByTeacher(Long teacherId);
+//  List<Subject> getSubjectsByTeacher(Long teacherId);
 
   List<Subject> findAll();
 
