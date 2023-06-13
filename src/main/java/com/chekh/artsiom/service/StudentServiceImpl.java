@@ -112,29 +112,19 @@ public class StudentServiceImpl implements StudentService {
     }
   }
 
-  @Transactional
+  @Override
   public void saveStudentWithDepartments(Student student, List<Long> departmentIds) {
-    Long studentId = studentRepository.save(student).getId();
 
-    departmentStudentRepository.deleteByStudentId(studentId);
-
-    if (departmentIds != null && !departmentIds.isEmpty()) {
-      for (Long departmentId : departmentIds) {
-
-        Department department = departmentRepository.findById(departmentId).orElse(null);
-        DepartmentStudent departmentStudent = new DepartmentStudent(department, student);
-        departmentStudentRepository.save(departmentStudent);
-      }
-    }
   }
 
   @Transactional
   public void saveStudent(Student student, List<Long> subjectIds, List<Long> departmentIds) {
 
-    student = studentRepository.save(student); // сохраняем студента и получаем обновленный объект из базы данных
-    Long studentId = student.getId(); // получаем идентификатор сохраненного студента
+    student = studentRepository.save(student);
+    Long studentId = student.getId();
 
-    if (departmentIds != null && !departmentIds.isEmpty()) {
+    // Сохраняем связи между студентом и кафедрами
+    if (departmentIds != null) {
       for (Long departmentId : departmentIds) {
         Department department = departmentRepository.findById(departmentId).orElse(null);
         if (department != null) {
@@ -144,7 +134,7 @@ public class StudentServiceImpl implements StudentService {
       }
     }
 
-    if (subjectIds != null && !subjectIds.isEmpty()) {
+    if (subjectIds != null) {
       for (Long subjectId : subjectIds) {
         Subject subject = subjectRepository.findById(subjectId).orElse(null);
         if (subject != null) {
