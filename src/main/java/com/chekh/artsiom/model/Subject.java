@@ -56,9 +56,6 @@ public class Subject {
 
   public void setDepartment(Department department) {
     this.department = department;
-    if (department != null) {
-      department.getSubjects().add(this);
-    }
   }
 
 //  public Set<Teacher> getTeachers() {

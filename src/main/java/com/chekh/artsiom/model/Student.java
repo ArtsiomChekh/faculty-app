@@ -1,19 +1,12 @@
 package com.chekh.artsiom.model;
 
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,17 +23,6 @@ public class Student {
   @Column(name = "last_name")
   private String lastName;
 
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "student_department",
-      joinColumns = @JoinColumn(name = "student_id"),
-      inverseJoinColumns = @JoinColumn(name = "department_id"))
-  private List<Department> departments = new ArrayList<>();
-
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "subject_student",
-      joinColumns = @JoinColumn(name = "student_id"),
-      inverseJoinColumns = @JoinColumn(name = "subject_id"))
-  private Set<Subject> subjects = new HashSet<>();
 
   public Student() {
   }
@@ -74,22 +56,6 @@ public class Student {
     this.lastName = lastName;
   }
 
-  public Set<Subject> getSubjects() {
-    return subjects;
-  }
-
-
-  public List<Department> getDepartments() {
-    return this.departments;
-  }
-
-  public void setSubjects(Set<Subject> subjects) {
-    this.subjects = subjects;
-  }
-
-  public void setDepartments(List<Department> departments) {
-    this.departments = departments;
-  }
 
 
 }

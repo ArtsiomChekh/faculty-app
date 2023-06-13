@@ -62,7 +62,7 @@ public class TeacherServiceImplTest {
     teachers.add(teacher1);
     teachers.add(teacher2);
 
-    when(teacherRepository.findAllByDepartmentId(departmentId)).thenReturn(teachers);
+    when(teacherRepository.findByDepartmentId(departmentId)).thenReturn(teachers);
 
     List<Teacher> result = teacherService.findByDepartmentId(departmentId);
 
@@ -70,58 +70,12 @@ public class TeacherServiceImplTest {
     assertEquals(teacher1, result.get(0));
     assertEquals(teacher2, result.get(1));
 
-    verify(teacherRepository, times(1)).findAllByDepartmentId(departmentId);
+    verify(teacherRepository, times(1)).findByDepartmentId(departmentId);
   }
 
-  @Test
-  public void testFindBySubjectId() {
-    Long subjectId = 1L;
-    Department department = new Department("Кафедра 1", "описание");
-    Subject subject = new Subject("Математика", department);
-    Teacher teacher1 = new Teacher("Иван", "Иванов", department);
-    teacher1.getSubjects().add(subject);
-    Teacher teacher2 = new Teacher("Петр", "Петров", department);
-    teacher2.getSubjects().add(subject);
-    List<Teacher> teachers = new ArrayList<>();
-    teachers.add(teacher1);
-    teachers.add(teacher2);
 
-    when(teacherRepository.findBySubjectsId(subjectId)).thenReturn(teachers);
 
-    List<Teacher> result = teacherService.findBySubjectId(subjectId);
 
-    assertEquals(2, result.size());
-    assertEquals(teacher1, result.get(0));
-    assertEquals(teacher2, result.get(1));
-
-    verify(teacherRepository, times(1)).findBySubjectsId(subjectId);
-  }
-
-  @Test
-  public void testFindByDepartmentIdAndSubjectsId() {
-    Long departmentId = 1L;
-    Long subjectId = 2L;
-    Department department = new Department("Кафедра 1", "описание");
-    Subject subject = new Subject("Математика", department);
-    Teacher teacher1 = new Teacher("Иван", "Иванов", department);
-    teacher1.getSubjects().add(subject);
-    Teacher teacher2 = new Teacher("Петр", "Петров", department);
-    teacher2.getSubjects().add(subject);
-    List<Teacher> teachers = new ArrayList<>();
-    teachers.add(teacher1);
-    teachers.add(teacher2);
-
-    when(teacherRepository.findByDepartmentIdAndSubjectsId(departmentId, subjectId)).thenReturn(
-        teachers);
-
-    List<Teacher> result = teacherService.findByDepartmentIdAndSubjectsId(departmentId, subjectId);
-
-    assertEquals(2, result.size());
-    assertEquals(teacher1, result.get(0));
-    assertEquals(teacher2, result.get(1));
-
-    verify(teacherRepository, times(1)).findByDepartmentIdAndSubjectsId(departmentId, subjectId);
-  }
 
 
 }

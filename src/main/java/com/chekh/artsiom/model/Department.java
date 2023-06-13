@@ -1,9 +1,5 @@
 package com.chekh.artsiom.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -19,15 +15,6 @@ public class Department {
 
   @Column(name = "description")
   private String description;
-
-  @OneToMany(mappedBy = "department")
-  private Set<Subject> subjects;
-
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(name = "student_department",
-      joinColumns = @JoinColumn(name = "department_id"),
-      inverseJoinColumns = @JoinColumn(name = "student_id"))
-  private List<Student> students = new ArrayList<>();
 
   public Department() {
   }
@@ -53,16 +40,6 @@ public class Department {
     this.name = name;
   }
 
-  public Set<Subject> getSubjects() {
-    if (subjects == null) {
-      subjects = new HashSet<>();
-    }
-    return subjects;
-  }
-
-  public void setSubjects(Set<Subject> subjects) {
-    this.subjects = subjects;
-  }
 
   public String getDescription() {
     return description;

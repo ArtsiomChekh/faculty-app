@@ -50,11 +50,11 @@ public class StudentServiceImplTest {
         new Student("Art", "Che"),
         new Student("Art", "Che")
     );
-    when(studentRepository.findAllByDepartments_Id(departmentId)).thenReturn(mockStudents);
+    when(studentRepository.findByDepartmentId(departmentId)).thenReturn(mockStudents);
 
     List<Student> students = studentService.findByDepartmentId(departmentId);
 
-    verify(studentRepository, times(1)).findAllByDepartments_Id(departmentId);
+    verify(studentRepository, times(1)).findByDepartmentId(departmentId);
 
     assertEquals(mockStudents, students);
   }
@@ -67,11 +67,11 @@ public class StudentServiceImplTest {
         new Student("Art", "Che"),
         new Student("Art", "Che")
     );
-    when(studentRepository.findAllBySubjects_Id(subjectId)).thenReturn(mockStudents);
+    when(studentRepository.findBySubjectId(subjectId)).thenReturn(mockStudents);
 
     List<Student> students = studentService.findBySubjectId(subjectId);
 
-    verify(studentRepository, times(1)).findAllBySubjects_Id(subjectId);
+    verify(studentRepository, times(1)).findBySubjectId(subjectId);
     assertEquals(mockStudents, students);
   }
 
@@ -84,13 +84,13 @@ public class StudentServiceImplTest {
         new Student("Art", "Che"),
         new Student("Art", "Che")
     );
-    when(studentRepository.findByDepartments_IdAndSubjects_Id(departmentId, subjectId)).thenReturn(
+    when(studentRepository.findByDepartmentIdAndSubjectId(departmentId, subjectId)).thenReturn(
         mockStudents);
 
-    List<Student> students = studentService.findByDepartmentIdAndSubjectsId(departmentId,
+    List<Student> students = studentService.findByDepartmentIdAndSubjectId(departmentId,
         subjectId);
 
-    verify(studentRepository, times(1)).findByDepartments_IdAndSubjects_Id(departmentId, subjectId);
+    verify(studentRepository, times(1)).findByDepartmentIdAndSubjectId(departmentId, subjectId);
     assertEquals(mockStudents, students);
   }
 }

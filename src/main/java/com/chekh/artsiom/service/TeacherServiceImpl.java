@@ -36,7 +36,7 @@ public class TeacherServiceImpl implements TeacherService {
 
   @Override
   public List<Teacher> findByDepartmentId(Long departmentId) {
-    return teacherRepository.findAllByDepartmentId(departmentId);
+    return teacherRepository.findByDepartmentId(departmentId);
   }
   @Override
   public List<Teacher> findBySubjectId(Long subjectId) {
@@ -54,8 +54,15 @@ public class TeacherServiceImpl implements TeacherService {
   }
 
   @Override
+  @Transactional
   public void deleteTeacherById(long id) {
+    deleteTeacherSubjectsByTeacherId(id);
     teacherRepository.deleteById(id);
+  }
+
+  @Override
+  public void deleteTeacherSubjectsByTeacherId(long teacherId) {
+    teacherSubjectRepository.deleteByTeacherId(teacherId);
   }
 
   @Override
@@ -69,10 +76,13 @@ public class TeacherServiceImpl implements TeacherService {
     // Сохраняем преподавателя и получаем его id
     Long teacherId = teacherRepository.save(teacher).getId();
 
+    teacherSubjectRepository.deleteByTeacherId(teacherId);
+
     // Создаем объекты TeacherSubject для каждого выбранного предмета и связываем их с преподавателем
     if (subjectIds != null && !subjectIds.isEmpty()) {
       for (Long subjectId : subjectIds) {
-        Subject subject = subjectService.getSubjectById(subjectId);
+
+        Subject subject = subjectRepository.findById(subjectId).orElse(null);
         TeacherSubject teacherSubject = new TeacherSubject(teacher, subject);
         teacherSubjectRepository.save(teacherSubject);
       }
@@ -88,6 +98,8 @@ public class TeacherServiceImpl implements TeacherService {
     }
     return subjects;
   }
+
+
 
 
 }
