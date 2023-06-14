@@ -27,6 +27,7 @@
     <div class="form-group">
       <label for="subject">Предметы:</label>
       <select class="form-control" id="subject" name="subjectIds" multiple>
+        <option value="">Не выбрано</option>
         <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.name}"
                 th:selected="${#lists.contains(teacherSubjects, subject)}"></option>
       </select>

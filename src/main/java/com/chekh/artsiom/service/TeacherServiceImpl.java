@@ -56,14 +56,10 @@ public class TeacherServiceImpl implements TeacherService {
   @Override
   @Transactional
   public void deleteTeacherById(long id) {
-    deleteTeacherSubjectsByTeacherId(id);
+    teacherSubjectRepository.deleteByTeacherId(id);
     teacherRepository.deleteById(id);
   }
 
-  @Override
-  public void deleteTeacherSubjectsByTeacherId(long teacherId) {
-    teacherSubjectRepository.deleteByTeacherId(teacherId);
-  }
 
   @Override
   public Teacher getTeacherById(long id) {

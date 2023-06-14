@@ -27,11 +27,6 @@ public interface StudentService {
 
   List<Department> getDepartmentsByStudentId(Long studentId);
 
-  void saveStudentWithSubjects(Student student, List<Long> subjectIds);
-
-  void saveStudentWithDepartments(Student student, List<Long> departmentIds);
-
   void saveStudent(Student student, List<Long> subjectIds, List<Long> departmentIds);
 
-//  void saveStudent(Student student, List<Long> subjectIds, List<Long> departmentIds);
 }

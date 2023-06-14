@@ -69,7 +69,12 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
+  @Transactional
   public void deleteStudentById(long id) {
+    departmentStudentRepository.deleteByStudentId(id);
+
+    studentSubjectRepository.deleteByStudentId(id);
+
     studentRepository.deleteById(id);
   }
 
@@ -94,29 +99,10 @@ public class StudentServiceImpl implements StudentService {
     return departments;
   }
 
-  @Transactional
-  public void saveStudentWithSubjects(Student student, List<Long> subjectIds) {
 
 
-    Long studentId = studentRepository.save(student).getId();
-
-    studentSubjectRepository.deleteByStudentId(studentId);
-
-    if (subjectIds != null && !subjectIds.isEmpty()) {
-      for (Long subjectId : subjectIds) {
-
-        Subject subject = subjectRepository.findById(subjectId).orElse(null);
-        StudentSubject studentSubject = new StudentSubject(student, subject);
-        studentSubjectRepository.save(studentSubject);
-      }
-    }
-  }
 
   @Override
-  public void saveStudentWithDepartments(Student student, List<Long> departmentIds) {
-
-  }
-
   @Transactional
   public void saveStudent(Student student, List<Long> subjectIds, List<Long> departmentIds) {
 
@@ -125,6 +111,7 @@ public class StudentServiceImpl implements StudentService {
 
     // Сохраняем связи между студентом и кафедрами
     if (departmentIds != null) {
+      departmentStudentRepository.deleteByStudentId(studentId);
       for (Long departmentId : departmentIds) {
         Department department = departmentRepository.findById(departmentId).orElse(null);
         if (department != null) {
@@ -135,6 +122,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     if (subjectIds != null) {
+      studentSubjectRepository.deleteByStudentId(studentId);
       for (Long subjectId : subjectIds) {
         Subject subject = subjectRepository.findById(subjectId).orElse(null);
         if (subject != null) {

@@ -20,7 +20,7 @@ public interface TeacherService {
   void saveTeacher(Teacher teacher);
 
   void deleteTeacherById(long id);
-  void deleteTeacherSubjectsByTeacherId(long teacherId);
+
   Teacher getTeacherById(long id);
 
   void saveTeacherWithSubjects(Teacher teacher, List<Long> subjectIds);

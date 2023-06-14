@@ -233,15 +233,11 @@ public class DeanController {
 
   @GetMapping("/editStudentForm/{studentId}")
   public String showEditStudentForm(@PathVariable("studentId") Long studentId, Model model) {
-
-    List<Subject> studentSubjects = studentService.getSubjectsByStudentId(studentId);
-    List<Department> studentDepartments = studentService.getDepartmentsByStudentId(studentId);
-
     model.addAttribute("student", studentService.getStudentById(studentId));
     model.addAttribute("subjects", subjectService.getAllSubjects());
     model.addAttribute("departments", departmentService.getAllDepartments());
-    model.addAttribute("studentSubjects", studentSubjects);
-    model.addAttribute("studentDepartments", studentDepartments);
+    model.addAttribute("studentSubjects", studentService.getSubjectsByStudentId(studentId));
+    model.addAttribute("studentDepartments", studentService.getDepartmentsByStudentId(studentId));
     model.addAttribute("title", "Редактировать Студента");
     return "student_form";
   }
@@ -255,20 +251,6 @@ public class DeanController {
 
     return "redirect:/students";
   }
-//  @PostMapping("/saveStudent")
-//  public String saveStudent(@ModelAttribute("student") Student student) {
-//    if (student.getId() == null) {
-//      studentService.saveStudent(student);
-//    } else {
-//      Student existingStudent = studentService.getStudentById(student.getId());
-//      existingStudent.setFirstName(student.getFirstName());
-//      existingStudent.setLastName(student.getLastName());
-//      existingStudent.setDepartments(student.getDepartments());
-//      existingStudent.setSubjects(student.getSubjects());
-//      studentService.saveStudent(existingStudent);
-//    }
-//    return "redirect:/students";
-//  }
 
   @GetMapping("/deleteStudent/{id}")
   public String deleteStudent(@PathVariable("id") long id) {
