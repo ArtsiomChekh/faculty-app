@@ -1,7 +1,6 @@
 package com.chekh.artsiom.service;
 
 import com.chekh.artsiom.model.Department;
-import com.chekh.artsiom.model.Subject;
 import java.util.List;
 
 
@@ -15,7 +14,7 @@ public interface DepartmentService {
 
   void deleteDepartmentById(long id);
 
-  List<Department> getDepartmentsByIds(List<Long> ids);
+
 
 
 

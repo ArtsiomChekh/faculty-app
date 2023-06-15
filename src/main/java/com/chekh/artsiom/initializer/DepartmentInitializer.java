@@ -1,9 +1,7 @@
 package com.chekh.artsiom.initializer;
 
 import com.chekh.artsiom.model.Department;
-import com.chekh.artsiom.model.Student;
 import com.chekh.artsiom.repository.DepartmentRepository;
-import com.chekh.artsiom.repository.StudentRepository;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

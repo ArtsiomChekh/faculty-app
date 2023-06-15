@@ -6,7 +6,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.chekh.artsiom.model.Department;
-import com.chekh.artsiom.model.Subject;
 import com.chekh.artsiom.model.Teacher;
 import com.chekh.artsiom.repository.TeacherRepository;
 import java.util.ArrayList;
@@ -72,10 +71,6 @@ public class TeacherServiceImplTest {
 
     verify(teacherRepository, times(1)).findByDepartmentId(departmentId);
   }
-
-
-
-
 
 
 }

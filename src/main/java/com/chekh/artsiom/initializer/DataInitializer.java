@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataInitializer {
+
   @Autowired
   private DepartmentInitializer departmentInitializer;
 

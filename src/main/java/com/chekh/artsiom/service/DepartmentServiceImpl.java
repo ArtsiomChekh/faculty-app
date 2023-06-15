@@ -1,7 +1,6 @@
 package com.chekh.artsiom.service;
 
 import com.chekh.artsiom.model.Department;
-import com.chekh.artsiom.model.Subject;
 import com.chekh.artsiom.repository.DepartmentRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +32,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     departmentRepository.deleteById(id);
   }
 
-  @Override
-  public List<Department> getDepartmentsByIds(List<Long> ids) {
-    return departmentRepository.findByIdIn(ids);
-  }
+
 
 
 }

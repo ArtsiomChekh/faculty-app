@@ -1,7 +1,5 @@
 package com.chekh.artsiom.model;
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -18,9 +16,6 @@ public class Subject {
   @ManyToOne(fetch = FetchType.LAZY, optional = true)
   @JoinColumn(name = "department_id")
   private Department department;
-
-//  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "subjects")
-//  private Set<Teacher> teachers = new HashSet<>();
 
   public Subject() {
   }
@@ -58,14 +53,4 @@ public class Subject {
     this.department = department;
   }
 
-//  public Set<Teacher> getTeachers() {
-//    return teachers;
-//  }
-//
-//  public void addTeacher(Teacher teacher) {
-//    if (teacher != null && !teachers.contains(teacher)) {
-//      teachers.add(teacher);
-//      teacher.addSubject(this);
-//    }
-//  }
 }

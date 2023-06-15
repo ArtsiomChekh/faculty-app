@@ -7,9 +7,7 @@ import com.chekh.artsiom.repository.SubjectRepository;
 import com.chekh.artsiom.repository.TeacherRepository;
 import com.chekh.artsiom.repository.TeacherSubjectRepository;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +36,7 @@ public class TeacherServiceImpl implements TeacherService {
   public List<Teacher> findByDepartmentId(Long departmentId) {
     return teacherRepository.findByDepartmentId(departmentId);
   }
+
   @Override
   public List<Teacher> findBySubjectId(Long subjectId) {
     return teacherRepository.findBySubjectId(subjectId);
@@ -45,7 +44,7 @@ public class TeacherServiceImpl implements TeacherService {
 
   @Override
   public List<Teacher> findByDepartmentIdAndSubjectId(Long departmentId, Long subjectId) {
-    return teacherRepository.findByDepartmentIdAndSubjectId(departmentId,subjectId);
+    return teacherRepository.findByDepartmentIdAndSubjectId(departmentId, subjectId);
   }
 
   @Override
@@ -69,12 +68,10 @@ public class TeacherServiceImpl implements TeacherService {
   @Transactional
   public void saveTeacherWithSubjects(Teacher teacher, List<Long> subjectIds) {
 
-    // Сохраняем преподавателя и получаем его id
     Long teacherId = teacherRepository.save(teacher).getId();
 
     teacherSubjectRepository.deleteByTeacherId(teacherId);
 
-    // Создаем объекты TeacherSubject для каждого выбранного предмета и связываем их с преподавателем
     if (subjectIds != null && !subjectIds.isEmpty()) {
       for (Long subjectId : subjectIds) {
 
@@ -87,15 +84,15 @@ public class TeacherServiceImpl implements TeacherService {
 
   @Override
   public List<Subject> getSubjectsByTeacherId(Long teacherId) {
+
     List<TeacherSubject> teacherSubjects = teacherSubjectRepository.findByTeacherId(teacherId);
+
     List<Subject> subjects = new ArrayList<>();
     for (TeacherSubject teacherSubject : teacherSubjects) {
       subjects.add(teacherSubject.getSubject());
     }
+
     return subjects;
   }
-
-
-
 
 }

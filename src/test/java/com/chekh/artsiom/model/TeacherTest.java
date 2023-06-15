@@ -1,10 +1,7 @@
 package com.chekh.artsiom.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,38 +9,33 @@ public class TeacherTest {
 
   private Teacher teacher;
   private Department department;
-  private List<Subject> subjects;
 
-
-  @Test
-  public void testGetId() {
-    Long id = 1L;
-    teacher.setId(id);
-    assertEquals(id, teacher.getId());
+  @Before
+  public void setUp() {
+    department = new Department("Department", "Description");
+    teacher = new Teacher("Art", "Che", department);
   }
 
   @Test
   public void testGetFirstName() {
-    assertEquals("Petr", teacher.getFirstName());
+    assertEquals("Art", teacher.getFirstName());
   }
 
   @Test
   public void testSetFirstName() {
-    String newName = "Igor";
-    teacher.setFirstName(newName);
-    assertEquals(newName, teacher.getFirstName());
+    teacher.setFirstName("Bill");
+    assertEquals("Bill", teacher.getFirstName());
   }
 
   @Test
   public void testGetLastName() {
-    assertEquals("Petrov", teacher.getLastName());
+    assertEquals("Che", teacher.getLastName());
   }
 
   @Test
   public void testSetLastName() {
-    String newName = "Bug";
-    teacher.setLastName(newName);
-    assertEquals(newName, teacher.getLastName());
+    teacher.setLastName("Mack");
+    assertEquals("Mack", teacher.getLastName());
   }
 
   @Test
@@ -53,15 +45,21 @@ public class TeacherTest {
 
   @Test
   public void testSetDepartment() {
-    Department newDepartment = new Department("Physics", "description");
+    Department newDepartment = new Department("New Department", "Description");
     teacher.setDepartment(newDepartment);
     assertEquals(newDepartment, teacher.getDepartment());
   }
 
+  @Test
+  public void testGetId() {
+    assertNull(teacher.getId());
+  }
 
   @Test
-  public void testConstructor() {
-    Teacher newTeacher = new Teacher();
-    assertNotNull(newTeacher);
+  public void testSetId() {
+    Long id = 1L;
+    teacher.setId(id);
+    assertEquals(id, teacher.getId());
   }
 }
+

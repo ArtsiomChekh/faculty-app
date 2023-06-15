@@ -1,7 +1,6 @@
 package com.chekh.artsiom.model;
 
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -55,7 +54,6 @@ public class Student {
   public void setLastName(String lastName) {
     this.lastName = lastName;
   }
-
 
 
 }

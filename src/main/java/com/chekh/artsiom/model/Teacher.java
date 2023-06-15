@@ -1,7 +1,6 @@
 package com.chekh.artsiom.model;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,12 +21,6 @@ public class Teacher {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "department_id")
   private Department department;
-
-//  @ManyToMany(fetch = FetchType.LAZY)
-//  @JoinTable(name = "teacher_subject",
-//      joinColumns = @JoinColumn(name = "teacher_id"),
-//      inverseJoinColumns = @JoinColumn(name = "subject_id"))
-//  private List<Subject> subjects = new ArrayList<>();
 
   public Teacher() {
   }
@@ -75,18 +68,4 @@ public class Teacher {
     this.department = department;
   }
 
-//  public List<Subject> getSubjects() {
-//    return subjects;
-//  }
-//
-//  public void setSubjects(List<Subject> subjects) {
-//    this.subjects = subjects;
-//  }
-//
-//  public void addSubject(Subject subject) {
-//    if (subject != null) {
-//      subjects.add(subject);
-//      subject.addTeacher(this);
-//    }
-//  }
 }

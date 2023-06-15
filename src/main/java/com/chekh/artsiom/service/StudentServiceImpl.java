@@ -5,8 +5,6 @@ import com.chekh.artsiom.model.DepartmentStudent;
 import com.chekh.artsiom.model.Student;
 import com.chekh.artsiom.model.StudentSubject;
 import com.chekh.artsiom.model.Subject;
-import com.chekh.artsiom.model.Teacher;
-import com.chekh.artsiom.model.TeacherSubject;
 import com.chekh.artsiom.repository.DepartmentRepository;
 import com.chekh.artsiom.repository.DepartmentStudentRepository;
 import com.chekh.artsiom.repository.StudentRepository;
@@ -14,7 +12,6 @@ import com.chekh.artsiom.repository.StudentSubjectRepository;
 import com.chekh.artsiom.repository.SubjectRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,19 +69,20 @@ public class StudentServiceImpl implements StudentService {
   @Transactional
   public void deleteStudentById(long id) {
     departmentStudentRepository.deleteByStudentId(id);
-
     studentSubjectRepository.deleteByStudentId(id);
-
     studentRepository.deleteById(id);
   }
 
   @Override
   public List<Subject> getSubjectsByStudentId(Long studentId) {
+
     List<StudentSubject> studentSubjects = studentSubjectRepository.findByStudentId(studentId);
+
     List<Subject> subjects = new ArrayList<>();
     for (StudentSubject studentSubject : studentSubjects) {
       subjects.add(studentSubject.getSubject());
     }
+
     return subjects;
   }
 
@@ -92,15 +90,14 @@ public class StudentServiceImpl implements StudentService {
   public List<Department> getDepartmentsByStudentId(Long studentId) {
     List<DepartmentStudent> studentDepartments = departmentStudentRepository.findByStudentId(
         studentId);
+
     List<Department> departments = new ArrayList<>();
     for (DepartmentStudent studentDepartment : studentDepartments) {
       departments.add(studentDepartment.getDepartment());
     }
+
     return departments;
   }
-
-
-
 
   @Override
   @Transactional
@@ -109,7 +106,6 @@ public class StudentServiceImpl implements StudentService {
     student = studentRepository.save(student);
     Long studentId = student.getId();
 
-    // Сохраняем связи между студентом и кафедрами
     if (departmentIds != null) {
       departmentStudentRepository.deleteByStudentId(studentId);
       for (Long departmentId : departmentIds) {
@@ -133,31 +129,6 @@ public class StudentServiceImpl implements StudentService {
     }
   }
 
-//  @Transactional
-//  @Override
-//  public void saveStudent(Student student, List<Long> subjectIds, List<Long> departmentIds) {
-//
-//    student = studentRepository.save(student); // сохраняем студента и получаем обновленный объект из базы данных
-//    Long studentId = student.getId(); // получаем идентификатор сохраненного студента
-//
-//    if (departmentIds != null && !departmentIds.isEmpty()) {
-//      for (Long departmentId : departmentIds) {
-//        Department department = departmentRepository.findById(departmentId).orElse(null);
-//        DepartmentStudent departmentStudent = new DepartmentStudent(department, student);
-//        departmentStudent.getId().setDepartmentId(departmentId); // устанавливаем идентификатор кафедры
-//        departmentStudentRepository.save(departmentStudent);
-//      }
-//    }
-//
-//    if (subjectIds != null && !subjectIds.isEmpty()) {
-//      for (Long subjectId : subjectIds) {
-//        Subject subject = subjectRepository.findById(subjectId).orElse(null);
-//        StudentSubject studentSubject = new StudentSubject(student, subject);
-//        studentSubject.getId().setStudentId(studentId); // устанавливаем идентификатор студента
-//        studentSubjectRepository.save(studentSubject);
-//      }
-//    }
-//  }
 }
 
 

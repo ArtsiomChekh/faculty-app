@@ -1,4 +1,5 @@
 package com.chekh.artsiom.model;
+
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -46,7 +47,8 @@ public class DepartmentStudentId implements Serializable {
       return false;
     }
     DepartmentStudentId that = (DepartmentStudentId) o;
-    return Objects.equals(departmentId, that.departmentId) && Objects.equals(studentId, that.studentId);
+    return Objects.equals(departmentId, that.departmentId) && Objects.equals(studentId,
+        that.studentId);
   }
 
   @Override

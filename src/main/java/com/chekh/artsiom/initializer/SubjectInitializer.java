@@ -1,8 +1,6 @@
 package com.chekh.artsiom.initializer;
 
-import com.chekh.artsiom.model.Department;
 import com.chekh.artsiom.model.Subject;
-import com.chekh.artsiom.repository.DepartmentRepository;
 import com.chekh.artsiom.repository.SubjectRepository;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;

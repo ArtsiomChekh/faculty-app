@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 
 import com.chekh.artsiom.model.Department;
 import com.chekh.artsiom.model.Subject;
-import com.chekh.artsiom.model.Teacher;
 import com.chekh.artsiom.repository.SubjectRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,32 +60,6 @@ public class SubjectServiceImplTest {
 
     verify(subjectRepository, times(1)).findAllByDepartmentId(departmentId);
     assertEquals(mockSubjects, subjects);
-  }
-
-  @Test
-  public void testGetSubjectsByTeacher() {
-
-    Long teacherId = 1L;
-
-    Teacher teacher = new Teacher("Иван", "Иванов", new Department("Кафедра  1", "описание"));
-    teacher.setId(teacherId);
-    Subject subject1 = new Subject("English", new Department("Кафедра  2", "описание"));
-    subject1.addTeacher(teacher);
-    Subject subject2 = new Subject("History", new Department("Кафедра  3", "описание"));
-    subject2.addTeacher(teacher);
-    List<Subject> subjects = new ArrayList<>();
-    subjects.add(subject1);
-    subjects.add(subject2);
-
-    when(subjectRepository.findAllByTeachersId(teacherId)).thenReturn(subjects);
-
-    List<Subject> result = subjectService.getSubjectsByTeacher(teacherId);
-
-    assertEquals(2, result.size());
-    assertEquals(subject1, result.get(0));
-    assertEquals(subject2, result.get(1));
-
-    verify(subjectRepository, times(1)).findAllByTeachersId(teacherId);
   }
 
   @Test

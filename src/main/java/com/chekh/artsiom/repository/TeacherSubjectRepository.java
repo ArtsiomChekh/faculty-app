@@ -13,9 +13,6 @@ public interface TeacherSubjectRepository extends JpaRepository<TeacherSubject, 
 
   void deleteByTeacherId(long teacherId);
 
-  TeacherSubject findByTeacherIdAndSubjectId(Long teacherId, Long subjectId);
-
-  List<TeacherSubject> findBySubjectId(Long subjectId);
 
 
 

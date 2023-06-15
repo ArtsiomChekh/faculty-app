@@ -1,6 +1,5 @@
 package com.chekh.artsiom.initializer;
 
-import com.chekh.artsiom.model.Student;
 import com.chekh.artsiom.model.Teacher;
 import com.chekh.artsiom.repository.TeacherRepository;
 import javax.annotation.PostConstruct;

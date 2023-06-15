@@ -2,7 +2,6 @@ package com.chekh.artsiom.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.chekh.artsiom.model.Department;
 import com.chekh.artsiom.model.Subject;
 import com.chekh.artsiom.repository.DepartmentRepository;

@@ -3,7 +3,6 @@ package com.chekh.artsiom.service;
 import com.chekh.artsiom.model.Department;
 import com.chekh.artsiom.model.Student;
 import com.chekh.artsiom.model.Subject;
-import com.chekh.artsiom.model.Teacher;
 import java.util.List;
 
 
