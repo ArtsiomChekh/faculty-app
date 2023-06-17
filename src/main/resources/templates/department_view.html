@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Department View</title>
+</head>
+<body>
+<h1 th:text="${department.name}"></h1>
+
+<h2>Students:</h2>
+<ul>
+  <li th:each="student : ${students}" th:text="${student.firstName} + ' ' + ${student.lastName}"></li>
+</ul>
+
+<h2>Teachers:</h2>
+<ul>
+  <li th:each="teacher : ${teachers}" th:text="${teacher.firstName} + ' ' + ${teacher.lastName}"></li>
+</ul>
+
+<h2>Subjects:</h2>
+<ul>
+  <li th:each="subject : ${subjects}" th:text="${subject.name}"></li>
+</ul>
+</body>
+</html>

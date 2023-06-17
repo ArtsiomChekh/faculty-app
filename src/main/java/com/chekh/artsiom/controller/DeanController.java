@@ -75,8 +75,24 @@ public class DeanController {
     return "redirect:/departments";
   }
 
+  @GetMapping("department/{id}")
+  public String viewDepartment(@PathVariable("id") Long id, Model model) {
+
+    Department department = departmentService.getDepartmentById(id);
+    List<Student> students = studentService.getAllStudents();
+    List<Teacher> teachers = teacherService.getAllTeachers();
+    List<Subject> subjects = subjectService.getAllSubjects();
+
+    model.addAttribute("students", students);
+    model.addAttribute("teachers", teachers);
+    model.addAttribute("subjects", subjects);
+    model.addAttribute("department", department);
+
+    return "department_view";
+  }
+
   @GetMapping("/teachers")
-  public String getTeachers(@RequestParam(value = "department", required = false) Long departmentId,
+  public String getTeachersPage(@RequestParam(value = "department", required = false) Long departmentId,
       @RequestParam(value = "subject", required = false) Long subjectId, Model model) {
 
     List<Teacher> teachers;
