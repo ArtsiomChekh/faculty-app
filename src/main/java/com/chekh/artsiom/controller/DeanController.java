@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class DeanController {
@@ -300,6 +301,13 @@ public class DeanController {
   public String deleteStudent(@PathVariable("id") long id) {
     studentService.deleteStudentById(id);
     return "redirect:/students";
+  }
+
+  @GetMapping("/departmentInfo/{departmentId}")
+  public String getDepartmentInfo(@PathVariable("departmentId") Long departmentId, Model model) {
+    Department department = departmentService.getDepartmentById(departmentId);
+    List<Subject> subjects = subjectService.getSubjectsByDepartment(departmentId);
+    return subjects;
   }
 
 }
