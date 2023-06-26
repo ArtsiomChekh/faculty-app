@@ -177,7 +177,7 @@ public class DeanController {
       if (department == null) {
         return "error";
       }
-      subjects = subjectService.getSubjectsByDepartment(departmentId);
+      subjects = subjectService.findByDepartmentId(departmentId);
     } else {
       subjects = subjectService.getAllSubjects();
     }
@@ -306,8 +306,12 @@ public class DeanController {
   @GetMapping("/departmentInfo/{departmentId}")
   public String getDepartmentInfo(@PathVariable("departmentId") Long departmentId, Model model) {
     Department department = departmentService.getDepartmentById(departmentId);
-    List<Subject> subjects = subjectService.getSubjectsByDepartment(departmentId);
-    return subjects;
+    List<Subject> subjects = subjectService.findByDepartmentId(departmentId);
+    model.addAttribute("department", departmentService.getDepartmentById(departmentId));
+    model.addAttribute("subjects", subjectService.findByDepartmentId(departmentId));
+    model.addAttribute("students", studentService.findByDepartmentId(departmentId));
+    model.addAttribute("teachers", teacherService.findByDepartmentId(departmentId));
+    return "department_info";
   }
 
 }

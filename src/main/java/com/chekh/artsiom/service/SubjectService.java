@@ -7,7 +7,7 @@ public interface SubjectService {
 
   List<Subject> getAllSubjects();
 
-  List<Subject> getSubjectsByDepartment(Long departmentId);
+  List<Subject> findByDepartmentId(Long departmentId);
 
   List<Subject> findAll();
 

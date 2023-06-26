@@ -18,7 +18,7 @@ public class SubjectServiceImpl implements SubjectService {
   }
 
   @Override
-  public List<Subject> getSubjectsByDepartment(Long departmentId) {
+  public List<Subject> findByDepartmentId(Long departmentId) {
     return subjectRepository.findAllByDepartmentId(departmentId);
   }
 
