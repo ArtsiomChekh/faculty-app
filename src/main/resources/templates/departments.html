@@ -5,27 +5,16 @@
 </head>
 <body>
 <div th:replace="header :: content"></div>
-<h1>Список кафедр</h1>
+<main class="container">
+<section class="jumbotron mt-3">
+<h1 class="display-4">Список кафедр</h1>
+</section>
 <div class="container">
   <table class="table">
-    <thead>
-    <tr>
-      <th>№</th>
-      <th>Кафедра</th>
-    </tr>
-    </thead>
     <tbody>
     <tr th:each="department, i : ${departments}">
       <td th:text="${i.index + 1}">1</td>
       <td><a th:href="@{/departmentInfo/{id}(id=${department.id})}" th:text="${department.name}"></a></td>
-      <td>
-        <div class="text-center">
-          <a th:href="@{/deleteDepartment/{id}(id=${department.id})}"
-             class="btn btn-danger btn-sm d-block mx-auto" style="width: 100px;">Удалить</a>
-          <a th:href="@{/editDepartmentForm/{id}(id=${department.id})}"
-             class="btn btn-primary btn-sm d-block mx-auto mt-2" style="width: 100px;">Изменить</a>
-        </div>
-      </td>
     </tr>
     </tbody>
   </table>
@@ -33,5 +22,7 @@
     <a th:href="@{/newDepartmentForm}" class="btn btn-primary btn-mm mb-3"> Добавить Кафедру </a>
   </div>
 </div>
+</main>
+<div th:replace="footer :: footer"></div>
 </body>
 </html>

@@ -1,49 +1,58 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="header :: head">
-  <title>Department Info</title>
+    <title>Department Info</title>
 </head>
 <body>
 <div th:replace="header :: content"></div>
-<h1 th:text="${department.name}"></h1>
+<main class="container">
+    <section class="jumbotron mt-3">
+<h1 class="display-4" th:text="${department.name}"></h1>
+    </section>
 <div class="container">
+    <h2>Описание</h2>
+    <table class="table">
+        <tbody>
+        <td th:text="${department.description}"></td>
+        </tbody>
+    </table>
 
-  <h2>Описание</h2>
-  <table class="table">
-    <tbody>
-      <td th:text="${department.description}"></td>
-    </tbody>
-  </table>
+    <h2>Преподаватели</h2>
+    <table class="table">
+        <tbody>
+        <ul>
+            <li th:each="teacher : ${teachers}" th:text="${teacher.firstName} + ' ' + ${teacher.lastName}"></li>
+        </ul>
+        </tbody>
+    </table>
 
-  <h2>Преподаватели</h2>
-  <table class="table">
-    <tbody>
-    <ul>
-      <li th:each="teacher : ${teachers}" th:text="${teacher.firstName} + ' ' + ${teacher.lastName}"></li>
-    </ul>
-    </tbody>
-  </table>
-
-  <h2>Предметы</h2>
-  <table class="table">
-    <tbody>
-    <ul>
-      <li th:each="subject : ${subjects}" th:text="${subject.name}"></li>
-    </ul>
-    </tbody>
-  </table>
+    <h2>Предметы</h2>
+    <table class="table">
+        <tbody>
+        <ul>
+            <li th:each="subject : ${subjects}" th:text="${subject.name}"></li>
+        </ul>
+        </tbody>
+    </table>
 
 
-  <h2>Студенты</h2>
-  <table class="table">
-    <tbody>
-    <ul>
-      <li th:each="student : ${students}" th:text="${student.firstName} + ' ' + ${student.lastName}"></li>
-    </ul>
-    </tbody>
-  </table>
-  <div class="text-left">
-    <a th:href="@{/departments}" class="btn btn-primary btn-mm mb-3"> Вернуться назад к списку кафедр  </a>
-  </div>
+    <h2>Студенты</h2>
+    <table class="table">
+        <tbody>
+        <ul>
+            <li th:each="student : ${students}" th:text="${student.firstName} + ' ' + ${student.lastName}"></li>
+        </ul>
+        </tbody>
+    </table>
+    <div class="text-left">
+        <a th:href="@{/departments}" class="btn btn-secondary btn-mm mb-3"> Вернуться назад к списку кафедр </a>
+        <a th:href="@{/editDepartmentForm/{id}(id=${department.id})}"
+           class="btn btn-primary btn-mm mb-3" style="width: 100px;">Изменить</a>
+        <a th:href="@{/deleteDepartment/{id}(id=${department.id})}"
+           class="btn btn-danger btn-mm mb-3" style="width: 100px;">Удалить</a>
+    </div>
 </div>
+</div>
+</main>
+<div th:replace="footer :: footer"></div>
 </body>
 </html>

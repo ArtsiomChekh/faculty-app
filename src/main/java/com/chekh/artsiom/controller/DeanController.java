@@ -76,20 +76,15 @@ public class DeanController {
     return "redirect:/departments";
   }
 
-  @GetMapping("department/{id}")
-  public String viewDepartment(@PathVariable("id") Long id, Model model) {
-
-    Department department = departmentService.getDepartmentById(id);
-    List<Student> students = studentService.getAllStudents();
-    List<Teacher> teachers = teacherService.getAllTeachers();
-    List<Subject> subjects = subjectService.getAllSubjects();
-
-    model.addAttribute("students", students);
-    model.addAttribute("teachers", teachers);
-    model.addAttribute("subjects", subjects);
-    model.addAttribute("department", department);
-
-    return "department_view";
+  @GetMapping("/departmentInfo/{departmentId}")
+  public String getDepartmentInfo(@PathVariable("departmentId") Long departmentId, Model model) {
+    Department department = departmentService.getDepartmentById(departmentId);
+    List<Subject> subjects = subjectService.findByDepartmentId(departmentId);
+    model.addAttribute("department", departmentService.getDepartmentById(departmentId));
+    model.addAttribute("subjects", subjectService.findByDepartmentId(departmentId));
+    model.addAttribute("students", studentService.findByDepartmentId(departmentId));
+    model.addAttribute("teachers", teacherService.findByDepartmentId(departmentId));
+    return "department_info";
   }
 
   @GetMapping("/teachers")
@@ -301,17 +296,6 @@ public class DeanController {
   public String deleteStudent(@PathVariable("id") long id) {
     studentService.deleteStudentById(id);
     return "redirect:/students";
-  }
-
-  @GetMapping("/departmentInfo/{departmentId}")
-  public String getDepartmentInfo(@PathVariable("departmentId") Long departmentId, Model model) {
-    Department department = departmentService.getDepartmentById(departmentId);
-    List<Subject> subjects = subjectService.findByDepartmentId(departmentId);
-    model.addAttribute("department", departmentService.getDepartmentById(departmentId));
-    model.addAttribute("subjects", subjectService.findByDepartmentId(departmentId));
-    model.addAttribute("students", studentService.findByDepartmentId(departmentId));
-    model.addAttribute("teachers", teacherService.findByDepartmentId(departmentId));
-    return "department_info";
   }
 
 }
