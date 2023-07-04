@@ -1,20 +1,21 @@
 package com.chekh.artsiom.service;
 
 import com.chekh.artsiom.model.Department;
+
 import java.util.List;
 
 
 public interface DepartmentService {
 
-  List<Department> getAllDepartments();
+    List<Department> getAllDepartments();
 
-  Department getDepartmentById(long id);
+    Department getDepartmentById(long id);
 
-  void saveDepartment(Department department);
+    void saveDepartment(Department department);
 
-  void deleteDepartmentById(long id);
+    void deleteDepartmentById(long id);
 
+    List<Department> getAllDepartmentsSortedByNumStudents();
 
-
-
+    List<Department> getAllDepartmentsSortedByNumTeachers();
 }

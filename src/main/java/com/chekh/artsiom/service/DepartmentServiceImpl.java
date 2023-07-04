@@ -32,7 +32,15 @@ public class DepartmentServiceImpl implements DepartmentService {
     departmentRepository.deleteById(id);
   }
 
+  @Override
+  public List<Department> getAllDepartmentsSortedByNumStudents() {
+    return null;
+  }
 
+  @Override
+  public List<Department> getAllDepartmentsSortedByNumTeachers() {
+    return null;
+  }
 
 
 }

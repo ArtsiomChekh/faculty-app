@@ -41,6 +41,20 @@ public class DeanController {
     return "departments";
   }
 
+  @GetMapping("/departments/sorted-by-num-students")
+  public String getAllDepartmentsSortedByNumStudents(Model model) {
+    List<Department> departments = departmentService.getAllDepartmentsSortedByNumStudents();
+    model.addAttribute("departments", departments);
+    return "departments";
+  }
+
+  @GetMapping("/departments/sorted-by-num-teachers")
+  public String getAllDepartmentsSortedByNumTeachers(Model model) {
+    List<Department> departments = departmentService.getAllDepartmentsSortedByNumTeachers();
+    model.addAttribute("departments", departments);
+    return "departments";
+  }
+
   @GetMapping("/newDepartmentForm")
   public String showNewDepartmentForm(Model model) {
     model.addAttribute("department", new Department());
