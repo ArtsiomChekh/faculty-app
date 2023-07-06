@@ -3,6 +3,7 @@ package com.chekh.artsiom.service;
 import com.chekh.artsiom.model.Department;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface DepartmentService {
@@ -15,7 +16,7 @@ public interface DepartmentService {
 
     void deleteDepartmentById(long id);
 
-    List<Department> getAllDepartmentsSortedByNumStudents();
+    Map <Department, Long> getAllDepartmentsSortedByStudents();
 
-    List<Department> getAllDepartmentsSortedByNumTeachers();
+    List<Department> getAllDepartmentsSortedByTeachers();
 }

@@ -1,5 +1,6 @@
 package com.chekh.artsiom.repository;
 
+import com.chekh.artsiom.model.Department;
 import com.chekh.artsiom.model.DepartmentStudent;
 import com.chekh.artsiom.model.DepartmentStudentId;
 import java.util.List;
@@ -16,6 +17,9 @@ public interface DepartmentStudentRepository extends
   void deleteByStudentId(Long studentId);
 
   List<DepartmentStudent> findByStudentId(Long studentId);
+
+
+
 
 
 

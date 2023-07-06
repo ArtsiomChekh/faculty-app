@@ -10,6 +10,8 @@ import com.chekh.artsiom.service.SubjectService;
 import com.chekh.artsiom.service.TeacherService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,14 +45,23 @@ public class DeanController {
 
   @GetMapping("/departments/sorted-by-num-students")
   public String getAllDepartmentsSortedByNumStudents(Model model) {
-    List<Department> departments = departmentService.getAllDepartmentsSortedByNumStudents();
+    Map<Department, Long> departmentStudentCountMap = departmentService.getAllDepartmentsSortedByStudents();
+    List<Long> studentCounts = new ArrayList<>(departmentStudentCountMap.values());
+    List<String> departments = new ArrayList<>();
+
+    for (Department department : departmentStudentCountMap.keySet()) {
+      departments.add(department.getName());
+    }
+
     model.addAttribute("departments", departments);
+    model.addAttribute("studentCounts", studentCounts);
+
     return "departments";
   }
 
   @GetMapping("/departments/sorted-by-num-teachers")
   public String getAllDepartmentsSortedByNumTeachers(Model model) {
-    List<Department> departments = departmentService.getAllDepartmentsSortedByNumTeachers();
+    List<Department> departments = departmentService.getAllDepartmentsSortedByTeachers();
     model.addAttribute("departments", departments);
     return "departments";
   }
