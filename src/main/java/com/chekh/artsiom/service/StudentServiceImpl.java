@@ -11,7 +11,9 @@ import com.chekh.artsiom.repository.StudentRepository;
 import com.chekh.artsiom.repository.StudentSubjectRepository;
 import com.chekh.artsiom.repository.SubjectRepository;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -128,6 +130,8 @@ public class StudentServiceImpl implements StudentService {
       }
     }
   }
+
+
 
 }
 

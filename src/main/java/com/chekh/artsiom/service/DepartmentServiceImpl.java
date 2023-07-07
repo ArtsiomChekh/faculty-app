@@ -60,6 +60,18 @@ public class DepartmentServiceImpl implements DepartmentService {
     return departmentStudentCountMap;
   }
 
+  public Map<Department, Long> getCountStudentsByDepartment() {
+    List<Object[]> departmentStudentCountList = departmentRepository.getDepartmentStudentCount();
+    Map<Department, Long> departmentStudentCountMap = new HashMap<>();
+
+    for (Object[] departmentStudentCount : departmentStudentCountList) {
+      Department department = (Department) departmentStudentCount[0];
+      Long count = (Long) departmentStudentCount[1];
+      departmentStudentCountMap.put(department, count);
+    }
+
+    return departmentStudentCountMap;
+  }
   @Override
   public List<Department> getAllDepartmentsSortedByTeachers() {
     return null;

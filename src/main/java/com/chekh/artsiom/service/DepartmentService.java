@@ -18,5 +18,7 @@ public interface DepartmentService {
 
     Map <Department, Long> getAllDepartmentsSortedByStudents();
 
+    Map<Department, Long> getCountStudentsByDepartment();
+
     List<Department> getAllDepartmentsSortedByTeachers();
 }
