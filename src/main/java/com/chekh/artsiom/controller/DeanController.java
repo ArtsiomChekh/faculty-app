@@ -39,7 +39,8 @@ public class DeanController {
 
   @GetMapping("/departments")
   public String getDepartmentsPage(Model model) {
-    model.addAttribute("departments", departmentService.getAllDepartments());
+    Map<Department, Long> departmentStudentCountMap = departmentService.getAllDepartmentsSortedByStudents();
+    model.addAttribute("departmentStudentCountMap", departmentStudentCountMap);
     return "departments";
   }
 
