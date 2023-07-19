@@ -14,5 +14,4 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     @Query("SELECT ds.department, COUNT(ds.student) FROM DepartmentStudent ds GROUP BY ds.department")
     List<Object[]> getDepartmentStudentCount();
 
-
 }

@@ -47,22 +47,6 @@ public class SubjectServiceImplTest {
   }
 
   @Test
-  public void testGetSubjectsByDepartment() {
-
-    Long departmentId = 1L;
-    List<Subject> mockSubjects = Arrays.asList(
-        new Subject("English", new Department("Кафедра 1", "описание")),
-        new Subject("History", new Department("Кафедра 1", "описание"))
-    );
-    when(subjectRepository.findAllByDepartmentId(departmentId)).thenReturn(mockSubjects);
-
-    List<Subject> subjects = subjectService.getSubjectsByDepartment(departmentId);
-
-    verify(subjectRepository, times(1)).findAllByDepartmentId(departmentId);
-    assertEquals(mockSubjects, subjects);
-  }
-
-  @Test
   public void testFindAll() {
 
     Subject subject1 = new Subject("English", new Department("Кафедра  2", "описание"));

@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class DeanController {
@@ -39,14 +38,14 @@ public class DeanController {
 
   @GetMapping("/departments")
   public String getDepartmentsPage(Model model) {
-    Map<Department, Long> departmentStudentCountMap = departmentService.getAllDepartmentsSortedByStudents();
+    Map<Department, Long> departmentStudentCountMap = departmentService.getDepartmentsStudentCount();
     model.addAttribute("departmentStudentCountMap", departmentStudentCountMap);
     return "departments";
   }
 
   @GetMapping("/departments/sorted-by-num-students")
   public String getAllDepartmentsSortedByNumStudents(Model model) {
-    Map<Department, Long> departmentStudentCountMap = departmentService.getAllDepartmentsSortedByStudents();
+    Map<Department, Long> departmentStudentCountMap = departmentService.getDepartmentsStudentCount();
     List<Long> studentCounts = new ArrayList<>(departmentStudentCountMap.values());
     List<String> departments = new ArrayList<>();
 
