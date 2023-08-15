@@ -15,7 +15,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 public class DepartmentServiceImplTest {
@@ -86,7 +85,7 @@ public class DepartmentServiceImplTest {
         departmentStudentCountList.add(new Object[]{department2, 75L});
         departmentStudentCountList.add(new Object[]{department3, 60L});
 
-        when(departmentRepository.getDepartmentStudentCount()).thenReturn(departmentStudentCountList);
+        when(departmentRepository.findDepartmentStudentCount()).thenReturn(departmentStudentCountList);
 
         Map<Department, Long> result = departmentService.getDepartmentsStudentCount();
         Map<Department, Long> expected = new HashMap<>();
