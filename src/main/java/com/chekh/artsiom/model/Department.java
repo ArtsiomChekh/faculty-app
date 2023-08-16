@@ -14,11 +14,14 @@ public class Department {
   @Column(name = "name")
   private String name;
 
-
   @Column(name = "description", length = 1000)
   private String description;
 
   public Department() {
+  }
+
+  public Department(String name) {
+    this.name = name;
   }
 
   public Department(String name, String description) {
