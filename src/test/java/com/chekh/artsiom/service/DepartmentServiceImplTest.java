@@ -76,9 +76,9 @@ public class DepartmentServiceImplTest {
 
     @Test
     public void testGetDepartmentsStudentCount() {
-        Department department1 = new Department("Отделение 1", "описание 1");
-        Department department2 = new Department("Отделение 2", "описание 2");
-        Department department3 = new Department("Отделение 3", "описание 3");
+        Department department1 = new Department("Кафедра 1", "описание 1");
+        Department department2 = new Department("Кафедра 2", "описание 2");
+        Department department3 = new Department("Кафедра 3", "описание 3");
 
         List<Object[]> departmentStudentCountList = new ArrayList<>();
         departmentStudentCountList.add(new Object[]{department1, 50L});
@@ -87,12 +87,12 @@ public class DepartmentServiceImplTest {
 
         when(departmentRepository.findDepartmentStudentCount()).thenReturn(departmentStudentCountList);
 
-        Map<Department, Long> result = departmentService.getDepartmentsStudentCount();
+        Map<Department, Long> actual = departmentService.getDepartmentsStudentCount();
         Map<Department, Long> expected = new HashMap<>();
         expected.put(department1, 50L);
         expected.put(department2, 75L);
         expected.put(department3, 60L);
-        Assert.assertEquals(expected, result);
+        Assert.assertEquals(expected, actual);
     }
 
 
