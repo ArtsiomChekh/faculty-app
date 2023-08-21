@@ -20,14 +20,14 @@
         </div>
         <a class="btn btn-default" href="/departments">Сбросить фильтры</a>
     </form>
-
     <div class="container">
         <table class="table">
             <thead>
             <tr>
                 <th>№</th>
                 <th>Кафедра</th>
-                <th>Кол</th>
+                <th>Кол-во студентов</th>
+                <th>Кол-во преподавателей</th>
             </tr>
             </thead>
             <tbody>
@@ -37,6 +37,7 @@
                     <a th:href="@{/departmentInfo/{departmentId}(departmentId=${entry.key.id})}" th:text="${entry.key.name}"></a>
                 </td>
                 <td th:text="${entry.value}"></td>
+                <td th:text="${departmentTeacherCountMap[entry.key]}"></td>
             </tr>
             </tbody>
         </table>

@@ -52,7 +52,19 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Map<Department, Long> getDepartmentsTeacherCount() {
+        List<Object[]> result = departmentRepository.findDepartmentTeacherCount();
+        Map<Department, Long> departmentTeacherCountMap = new HashMap<>();
+        for (Object[] row : result) {
+            Department department = (Department) row[0];
+            Long teacherCount = (Long) row[1];
+            departmentTeacherCountMap.put(department, teacherCount);
+        }
+        return departmentTeacherCountMap;
+    }
 
+    @Override
+    public List<Department> getAllDepartmentsSortedByTeachers() {
+        return null;
     }
 
 }

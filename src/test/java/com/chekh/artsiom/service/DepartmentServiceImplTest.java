@@ -95,6 +95,27 @@ public class DepartmentServiceImplTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void testGetDepartmentsTeacherCount() {
+        Department department1 = new Department("Кафедра 1", "описание 1");
+        Department department2 = new Department("Кафедра 2", "описание 2");
+        Department department3 = new Department("Кафедра 3", "описание 3");
+
+        List<Object[]> departmentTeacherCountList = new ArrayList<>();
+        departmentTeacherCountList.add(new Object[]{department1, 50L});
+        departmentTeacherCountList.add(new Object[]{department2, 75L});
+        departmentTeacherCountList.add(new Object[]{department3, 60L});
+
+        when(departmentRepository.findDepartmentTeacherCount()).thenReturn(departmentTeacherCountList);
+
+        Map<Department, Long> actual = departmentService.getDepartmentsTeacherCount();
+        Map<Department, Long> expected = new HashMap<>();
+        expected.put(department1, 50L);
+        expected.put(department2, 75L);
+        expected.put(department3, 60L);
+        Assert.assertEquals(expected, actual);
+    }
+
 
 
 
