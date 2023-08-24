@@ -8,17 +8,18 @@ import java.util.Map;
 
 public interface DepartmentService {
 
-    List<Department> getAllDepartments();
+  List<Department> getAllDepartments();
 
-    Department getDepartmentById(long id);
+  Department getDepartmentById(long id);
 
-    void saveDepartment(Department department);
+  void saveDepartment(Department department);
 
-    void deleteDepartmentById(long id);
+  void deleteDepartmentById(long id);
 
-    Map <Department, Long> getDepartmentsStudentCount();
+  Map<Department, Long> getDepartmentsStudentCount();
 
-    Map<Department, Long> getDepartmentsTeacherCount();
+  Map<Department, Long> getDepartmentsTeacherCount();
 
-    List<Department> getAllDepartmentsSortedByTeachers();
+  Map<Department, Long> sortDepartmentsByValue(Map<Department, Long> list);
+
 }

@@ -9,6 +9,7 @@ import com.chekh.artsiom.service.StudentService;
 import com.chekh.artsiom.service.SubjectService;
 import com.chekh.artsiom.service.TeacherService;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -48,23 +49,17 @@ public class DeanController {
   @GetMapping("/departments/sorted-by-num-students")
   public String getAllDepartmentsSortedByNumStudents(Model model) {
     Map<Department, Long> departmentStudentCountMap = departmentService.getDepartmentsStudentCount();
-    List<Long> studentCounts = new ArrayList<>(departmentStudentCountMap.values());
-    List<String> departments = new ArrayList<>();
-
-    for (Department department : departmentStudentCountMap.keySet()) {
-      departments.add(department.getName());
-    }
-
-    model.addAttribute("departments", departments);
-    model.addAttribute("studentCounts", studentCounts);
-
+    Map<Department, Long> departmentTeacherCountMap = departmentService.getDepartmentsTeacherCount();
+    model.addAttribute("departmentStudentCountMap", departmentService.sortDepartmentsByValue(departmentStudentCountMap));
+    model.addAttribute("departmentTeacherCountMap", departmentTeacherCountMap);
     return "departments";
   }
 
   @GetMapping("/departments/sorted-by-num-teachers")
   public String getAllDepartmentsSortedByNumTeachers(Model model) {
-    List<Department> departments = departmentService.getAllDepartmentsSortedByTeachers();
-    model.addAttribute("departments", departments);
+    Map<Department, Long> departmentTeacherCountMap = departmentService.getDepartmentsTeacherCount();
+    departmentService.sortDepartmentsByValue(departmentTeacherCountMap);
+    model.addAttribute("departmentTeacherCountMap", departmentTeacherCountMap);
     return "departments";
   }
 
