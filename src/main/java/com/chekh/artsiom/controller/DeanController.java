@@ -50,16 +50,20 @@ public class DeanController {
   public String getAllDepartmentsSortedByNumStudents(Model model) {
     Map<Department, Long> departmentStudentCountMap = departmentService.getDepartmentsStudentCount();
     Map<Department, Long> departmentTeacherCountMap = departmentService.getDepartmentsTeacherCount();
-    model.addAttribute("departmentStudentCountMap", departmentService.sortDepartmentsByValue(departmentStudentCountMap));
+    model.addAttribute("departmentStudentCountMap",
+        departmentService.sortDepartmentsByValue(departmentStudentCountMap));
     model.addAttribute("departmentTeacherCountMap", departmentTeacherCountMap);
     return "departments";
   }
 
   @GetMapping("/departments/sorted-by-num-teachers")
   public String getAllDepartmentsSortedByNumTeachers(Model model) {
+    Map<Department, Long> departmentStudentCountMap = departmentService.getDepartmentsStudentCount();
     Map<Department, Long> departmentTeacherCountMap = departmentService.getDepartmentsTeacherCount();
     departmentService.sortDepartmentsByValue(departmentTeacherCountMap);
-    model.addAttribute("departmentTeacherCountMap", departmentTeacherCountMap);
+    model.addAttribute("departmentStudentCountMap", departmentStudentCountMap);
+    model.addAttribute("departmentTeacherCountMap",
+        departmentService.sortDepartmentsByValue(departmentTeacherCountMap));
     return "departments";
   }
 
@@ -110,7 +114,8 @@ public class DeanController {
   }
 
   @GetMapping("/teachers")
-  public String getTeachersPage(@RequestParam(value = "department", required = false) Long departmentId,
+  public String getTeachersPage(
+      @RequestParam(value = "department", required = false) Long departmentId,
       @RequestParam(value = "subject", required = false) Long subjectId, Model model) {
 
     List<Teacher> teachers;
