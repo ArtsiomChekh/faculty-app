@@ -17,4 +17,6 @@ public interface DepartmentService {
   void deleteDepartmentById(long id);
 
   List<Object[]> getDepartmentsStudentTeacherCount();
+
+  List<Object[]> sortDepartments(String sortBy);
 }
