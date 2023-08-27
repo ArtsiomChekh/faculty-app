@@ -39,7 +39,6 @@ public class DeanController {
 
   @GetMapping("/departments")
   public String getDepartmentsPage(Model model) {
-    List<Object[]> departmentsStudentTeacherCount = departmentService.getDepartmentsStudentTeacherCount();
     model.addAttribute("departments", departmentService.getDepartmentsStudentTeacherCount());
     return "departments";
   }
