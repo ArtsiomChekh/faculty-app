@@ -19,8 +19,4 @@ public interface DepartmentStudentRepository extends
   List<DepartmentStudent> findByStudentId(Long studentId);
 
 
-
-
-
-
 }

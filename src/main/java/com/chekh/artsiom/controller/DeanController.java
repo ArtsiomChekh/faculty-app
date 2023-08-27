@@ -39,31 +39,8 @@ public class DeanController {
 
   @GetMapping("/departments")
   public String getDepartmentsPage(Model model) {
-    Map<Department, Long> departmentStudentCountMap = departmentService.getDepartmentsStudentCount();
-    Map<Department, Long> departmentTeacherCountMap = departmentService.getDepartmentsTeacherCount();
-    model.addAttribute("departmentStudentCountMap", departmentStudentCountMap);
-    model.addAttribute("departmentTeacherCountMap", departmentTeacherCountMap);
-    return "departments";
-  }
-
-  @GetMapping("/departments/sorted-by-num-students")
-  public String getAllDepartmentsSortedByNumStudents(Model model) {
-    Map<Department, Long> departmentStudentCountMap = departmentService.getDepartmentsStudentCount();
-    Map<Department, Long> departmentTeacherCountMap = departmentService.getDepartmentsTeacherCount();
-    model.addAttribute("departmentStudentCountMap",
-        departmentService.sortDepartmentsByValue(departmentStudentCountMap));
-    model.addAttribute("departmentTeacherCountMap", departmentTeacherCountMap);
-    return "departments";
-  }
-
-  @GetMapping("/departments/sorted-by-num-teachers")
-  public String getAllDepartmentsSortedByNumTeachers(Model model) {
-    Map<Department, Long> departmentStudentCountMap = departmentService.getDepartmentsStudentCount();
-    Map<Department, Long> departmentTeacherCountMap = departmentService.getDepartmentsTeacherCount();
-    departmentService.sortDepartmentsByValue(departmentTeacherCountMap);
-    model.addAttribute("departmentStudentCountMap", departmentStudentCountMap);
-    model.addAttribute("departmentTeacherCountMap",
-        departmentService.sortDepartmentsByValue(departmentTeacherCountMap));
+    List<Object[]> departmentsStudentTeacherCount = departmentService.getDepartmentsStudentTeacherCount();
+    model.addAttribute("departments", departmentService.getDepartmentsStudentTeacherCount());
     return "departments";
   }
 
@@ -92,7 +69,6 @@ public class DeanController {
       existingDepartment.setDescription(department.getDescription());
       departmentService.saveDepartment(existingDepartment);
     }
-
     return "redirect:/departments";
   }
 
@@ -102,7 +78,7 @@ public class DeanController {
     return "redirect:/departments";
   }
 
-  @GetMapping("/departmentInfo/{departmentId}")
+  @GetMapping("/departments/departmentInfo/{departmentId}")
   public String getDepartmentInfo(@PathVariable("departmentId") Long departmentId, Model model) {
     Department department = departmentService.getDepartmentById(departmentId);
     List<Subject> subjects = subjectService.findByDepartmentId(departmentId);

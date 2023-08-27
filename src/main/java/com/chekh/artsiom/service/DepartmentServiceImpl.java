@@ -40,37 +40,10 @@ public class DepartmentServiceImpl implements DepartmentService {
   }
 
   @Override
-  public Map<Department, Long> getDepartmentsStudentCount() {
-    List<Object[]> result = departmentRepository.findDepartmentStudentCount();
-    Map<Department, Long> departmentStudentCountMap = new HashMap<>();
-    for (Object[] row : result) {
-      Department department = (Department) row[0];
-      Long studentCount = (Long) row[1];
-      departmentStudentCountMap.put(department, studentCount);
-    }
-    return departmentStudentCountMap;
+  public List<Object[]> getDepartmentsStudentTeacherCount() {
+    return departmentRepository.findDepartmentStudentTeacherCount();
   }
 
-  @Override
-  public Map<Department, Long> getDepartmentsTeacherCount() {
-    List<Object[]> result = departmentRepository.findDepartmentTeacherCount();
-    Map<Department, Long> departmentTeacherCountMap = new HashMap<>();
-    for (Object[] row : result) {
-      Department department = (Department) row[0];
-      Long teacherCount = (Long) row[1];
-      departmentTeacherCountMap.put(department, teacherCount);
-    }
-    return departmentTeacherCountMap;
-  }
-
-  @Override
-  public Map<Department, Long> sortDepartmentsByValue(Map<Department, Long> map) {
-    return map.entrySet()
-        .stream()
-        .sorted(Map.Entry.comparingByValue())
-        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-            (oldValue, newValue) -> oldValue, LinkedHashMap::new));
-  }
 }
 
 

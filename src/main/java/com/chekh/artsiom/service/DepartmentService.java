@@ -16,10 +16,5 @@ public interface DepartmentService {
 
   void deleteDepartmentById(long id);
 
-  Map<Department, Long> getDepartmentsStudentCount();
-
-  Map<Department, Long> getDepartmentsTeacherCount();
-
-  Map<Department, Long> sortDepartmentsByValue(Map<Department, Long> list);
-
+  List<Object[]> getDepartmentsStudentTeacherCount();
 }

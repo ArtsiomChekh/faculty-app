@@ -31,13 +31,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="entry, i: ${departmentStudentCountMap}">
+            <tr th:each="department, i: ${departments}">
                 <td th:text="${i.index + 1}">1</td>
                 <td>
-                    <a th:href="@{/departmentInfo/{departmentId}(departmentId=${entry.key.id})}" th:text="${entry.key.name}"></a>
+                    <a th:href="@{/departments/departmentInfo/{id}(id=${department[0]})}"
+                       th:text="${department[1]}"></a>
                 </td>
-                <td th:text="${entry.value}"></td>
-                <td th:text="${departmentTeacherCountMap[entry.key]}"></td>
+                <td th:text="${department[2]}"></td>
+                <td th:text="${department[3]}"></td>
             </tr>
             </tbody>
         </table>
