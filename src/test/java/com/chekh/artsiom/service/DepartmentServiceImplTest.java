@@ -85,9 +85,9 @@ public class DepartmentServiceImplTest {
         departmentStudentCountList.add(new Object[]{department2, 75L});
         departmentStudentCountList.add(new Object[]{department3, 60L});
 
-        when(departmentRepository.findDepartmentStudentCount()).thenReturn(departmentStudentCountList);
+        when(departmentRepository.findDepartmentStudentTeacherCount()).thenReturn(departmentStudentCountList);
 
-        Map<Department, Long> actual = departmentService.getDepartmentsStudentCount();
+        List<Object[]> actual = departmentService.getDepartmentsStudentTeacherCount();
         Map<Department, Long> expected = new HashMap<>();
         expected.put(department1, 50L);
         expected.put(department2, 75L);
@@ -106,9 +106,9 @@ public class DepartmentServiceImplTest {
         departmentTeacherCountList.add(new Object[]{department2, 75L});
         departmentTeacherCountList.add(new Object[]{department3, 60L});
 
-        when(departmentRepository.findDepartmentTeacherCount()).thenReturn(departmentTeacherCountList);
+        when(departmentRepository.findDepartmentStudentTeacherCount()).thenReturn(departmentTeacherCountList);
 
-        Map<Department, Long> actual = departmentService.getDepartmentsTeacherCount();
+        List<Object[]> actual = departmentService.getDepartmentsStudentTeacherCount();
         Map<Department, Long> expected = new HashMap<>();
         expected.put(department1, 50L);
         expected.put(department2, 75L);
