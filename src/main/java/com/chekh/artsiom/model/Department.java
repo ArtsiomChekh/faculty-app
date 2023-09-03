@@ -1,7 +1,7 @@
 package com.chekh.artsiom.model;
 
 import java.util.Objects;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "department")

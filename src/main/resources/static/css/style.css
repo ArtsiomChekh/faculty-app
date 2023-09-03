@@ -1,6 +1,6 @@
 nav {
   background-color: #343a40;
-  color: #fff;
+  color: red;
 }
 
 .navbar-brand {
@@ -9,7 +9,7 @@ nav {
 }
 
 .navbar-nav .nav-link {
-  color: #fff;
+  color: red;
 }
 
 .jumbotron {

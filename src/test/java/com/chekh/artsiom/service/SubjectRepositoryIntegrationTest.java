@@ -9,7 +9,7 @@ import com.chekh.artsiom.repository.StudentRepository;
 import com.chekh.artsiom.repository.SubjectRepository;
 import com.chekh.artsiom.repository.TeacherRepository;
 import java.util.List;
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

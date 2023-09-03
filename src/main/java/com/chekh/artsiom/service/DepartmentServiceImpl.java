@@ -6,7 +6,6 @@ import com.chekh.artsiom.repository.DepartmentRepository;
 import java.util.*;
 
 import com.chekh.artsiom.repository.DepartmentStudentRepository;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
