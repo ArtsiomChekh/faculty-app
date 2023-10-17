@@ -3,13 +3,14 @@ body {
 	padding: 0;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 13px;
-	color: #666666;
+	color: #4b4343;
+	background: #ecf2f7
 }
 
 h1, h2, h3 {
 	margin: 0;
 	font-weight: normal;
-	color: #3F586B;
+	color: #a3464a;
 }
 
 h1 {
@@ -58,12 +59,12 @@ blockquote * {
 }
 
 a {
-	color: #FF5723;
+	color: #006494;
 }
 
 a:hover {
 	text-decoration: none;
-	color: #1777B1;
+	color: #00acff;
 }
 
 img {
@@ -109,7 +110,7 @@ hr {
 
 #logo a {
 	text-decoration: none;
-	color: #3F586B;
+	color: rgb(163 71 74);
 }
 
 #menu {
@@ -135,7 +136,7 @@ hr {
 	text-decoration: none;
 	font-size: 136%;
 	font-weight: bold;
-	color: #610720;
+	color: rgb(160 15 15);
 }
 
 #menu a:hover {
@@ -143,7 +144,7 @@ hr {
 }
 
 #menu .active a {
-	color: #FFFFFF;
+	color: #037171;
 }
 
 #page {
@@ -163,7 +164,7 @@ hr {
 
 .twocols .title {
 	padding-bottom: 10px;
-	border-bottom: 1px solid #97C984;
+	border-bottom: 1px solid #96c984;
 }
 
 .twocols .col1, .twocols .col2 {
@@ -200,7 +201,7 @@ hr {
 	margin: 0;
 	padding: 10px 0 0 10px;
 	font-size: 136%;
-	color: #144B6B;
+	color: #017171;
 }
 
 .boxed .content {
@@ -234,8 +235,8 @@ hr {
 #footer {
 	height: 100px;
 	padding: 20px;
-	background: #5F919E;
-	border-top: 5px solid #4C747E;
+	background: #683e35;
+	border-top: 5px solid #ae7435b8;
 }
 
 #footer p {
