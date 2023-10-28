@@ -8,19 +8,13 @@ import com.chekh.artsiom.service.DepartmentService;
 import com.chekh.artsiom.service.StudentService;
 import com.chekh.artsiom.service.SubjectService;
 import com.chekh.artsiom.service.TeacherService;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class DeanController {
@@ -42,6 +36,12 @@ public class DeanController {
     model.addAttribute("departments", departmentService.getDepartmentsStudentTeacherCount());
     return "departments";
   }
+
+//  @GetMapping("/")
+//  public String getAllDepartments(Model model) {
+//    model.addAttribute("departments", departmentService.getAllDepartments());
+//    return "departments";
+//  }
 
   @GetMapping("/departments/sorted-by-num-students")
   public String getDepartmentsSortedByStudents(Model model) {

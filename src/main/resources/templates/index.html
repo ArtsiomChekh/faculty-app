@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>Faculty</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
 </head>
-
 <body>
 <div id="header">
+    <div class="header-img"></div>
     <div id="logo">
         <h1><a href="http://localhost:8080">QB Tech Faculty</a></h1>
     </div>
@@ -23,6 +23,7 @@
         </ul>
     </div>
 </div>
+
 <div id="page">
     <div id="content">
         <div style="margin-bottom: 20px;">
@@ -46,7 +47,7 @@
                 <p>In this <strong>Information Technology Master's program</strong> you will learn how to lead complex
                     projects from a 21st century information technology perspective. You will also learn how to develop
                     information systems as strategic tools to provide competitive advantage. By studying how to quickly
-                    adapt new technologies, you will discover how to thrive in the global environment.</p></em>
+                    adapt new technologies, you will discover how to thrive in the global environment.</p>
                 <p><a href="http://localhost:8080">Read more&hellip;</a>
             </div>
             <div class="col2">
@@ -56,11 +57,10 @@
                     technical understanding of emerging technologies in the IT field. It can position graduates for
                     roles such as:</p>
                 <ul class="list">
-                    <li><a href="http://localhost:8080">Director of information technology</a></li>
-                    <li><a href="http://localhost:8080">IT architect and systems manager</a></li>
-                    <li><a href="http://localhost:8080">Data processing manager</a></li>
-                    <li><a href="http://localhost:8080">Systems software manager</a></li>
-                    <li><a href="http://localhost:8080">Chief information officer</a></li>
+                    <h3 class="title"> Departments</h3>
+                    <li th:each="department : ${departments}">
+                        <a th:href="@{'/department/' + ${department.id}}" th:text="${department.name}">Department</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -96,10 +96,11 @@
             </div>
         </div>
     </div>
+
     <div style="clear: both;">&nbsp;</div>
 </div>
 <div id="footer">
-    <p id="legal">@All Rights Reserved, 2023. Designed by QB</a></p>
+    <p id="legal">@All Rights Reserved, 2023. Designed by QB</p>
 </div>
 </body>
 </html>
