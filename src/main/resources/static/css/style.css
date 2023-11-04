@@ -2,7 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: Georgia, "Times New Roman", Times, serif;
-	font-size: 13px;
+	font-size: 16px;
 	color: #4b4343;
 	background: #ecf2f7
 }
@@ -67,73 +67,32 @@ a:hover {
 	color: #00acff;
 }
 
-img {
-	border: none;
-}
-
-img.left {
-	float: left;
-	margin: 3px 15px 0 0;
-}
-
-img.right {
-	float: right;
-	margin: 3px 0 0 15px;
-}
-
 hr {
 	display: none;
 }
 
+
 #header {
-	width: 700px;
-	height: 235px;
-	margin: 0 auto;
-	text-align: center;
-	position: relative;
+     width: 100%;
+     height: 150px;
+     background-image: url('../images/logo.png');
+     background-size: cover;
 }
 
-#header .header-img {
-    background-image: url("../images/logo.png");
+header-image {
     background-position: center;
-    width: 100%;
-    height: 100%;
-    opacity 0.5;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: cover;
 }
 
-#logo {
-    height: 230px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-#logo h1, #logo h2 {
-	text-align: center;
-}
-
-#logo h1 {
-	padding-top: 40px;
-	font-size: 350%;
-}
-
-#logo h2 {
-	font-size: 150%;
-}
-
-#logo a {
-	text-decoration: none;
-	color: rgb(163 71 74);
-}
 
 #menu {
 	padding-top: 0px;
 }
 
 #menu ul {
-	margin: -82px;
-	padding: 5px 0px 0 0;
+	padding: 5px 0 0 0;
 	list-style: none;
 	line-height: normal;
 	text-align: center;
