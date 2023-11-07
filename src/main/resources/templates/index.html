@@ -7,22 +7,9 @@
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
-<div class="header">
-    <div class="menu">
-        <ul>
-            <li class="active"><a href="http://localhost:8080">Home</a></li>
-            <li><a href="http://localhost:8080/structure">Structure</a></li>
-            <li><a href="http://localhost:8080">For Teachers</a></li>
-            <li><a href="http://localhost:8080">For Students</a></li>
-            <li><a href="http://localhost:8080">Events</a></li>
-            <li><a href="http://localhost:8080">Galleries</a></li>
-            <li><a href="http://localhost:8080">Contact</a></li>
-        </ul>
-    </div>
-</div>
-
-<div id="page">
-    <div id="content">
+<div th:insert="~{header :: header}"></div>
+<div class="page">
+    <div class="content">
         <div style="margin-bottom: 20px;">
             <h1 class="title">Welcome to our QB Tech Faculty!</h1>
             <p><strong>QB Tech Faculty</strong> is passionate about making an impact, both on campus and in the world
@@ -62,7 +49,7 @@
             </div>
         </div>
     </div>
-    <div id="sidebar">
+    <div class="sidebar">
         <div id="news" class="boxed">
             <h2 class="title">News &amp; Events</h2>
             <div class="content">
@@ -94,6 +81,6 @@
         </div>
     </div>
 </div>
-<div th:insert="~{footer :: copy}" id="footer"></div>
+<div th:insert="~{footer :: footer}"></div>
 </body>
 </html>

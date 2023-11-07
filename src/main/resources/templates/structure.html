@@ -3,9 +3,23 @@
 <head>
     <title>Title</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/structure.css}">
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
+<div th:insert="~{header :: header}"></div>
+<div class="page">
 
+    <div class="structure-container">
+        <div th:each="department: ${departments}">
+            <div class="square">
+                <h2 th:text="${department.name}"></h2>
+                <p>Info</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{footer :: footer}"></div>
 </body>
 </html>

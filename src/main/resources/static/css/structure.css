@@ -1,0 +1,14 @@
+.structure-container {
+    display: flex;
+    justify-content: center;
+}
+
+.square {
+    width: 300px;
+    height: 300px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    margin-right: 20px;
+}

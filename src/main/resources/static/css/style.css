@@ -7,7 +7,7 @@ body {
 	background: #ecf2f7
 }
 
-h1, h2, h3 {
+h1, h2, h3 {F
 	margin: 0;
 	font-weight: normal;
 	color: #a3464a;
@@ -107,14 +107,14 @@ hr {
 	color: #037171;
 }
 
-#page {
+.page {
 	width: 730px;
 	margin: 0 auto;
 	padding: 30px 0;
 	position: relative;
 }
 
-#content {
+.content {
 	float: left;
 	width: 420px;
 	padding-top: 8px;
@@ -147,7 +147,7 @@ hr {
 	padding-left: 0;
 }
 
-#sidebar {
+.sidebar {
 	float: right;
 	width: 260px;
 }
@@ -193,7 +193,7 @@ hr {
 	border: none;
 }
 
-#footer {
+.footer {
   background-color: black;
   color: #fefefe;
   position: fixed;
