@@ -6,24 +6,23 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataInitializer {
+    @Autowired
+    private DepartmentInitializer departmentInitializer;
 
-  @Autowired
-  private DepartmentInitializer departmentInitializer;
+    @Autowired
+    private StudentInitializer studentInitializer;
 
-  @Autowired
-  private StudentInitializer studentInitializer;
+    @Autowired
+    private TeacherInitializer teacherInitializer;
 
-  @Autowired
-  private TeacherInitializer teacherInitializer;
+    @Autowired
+    private SubjectInitializer subjectInitializer;
 
-  @Autowired
-  private SubjectInitializer subjectInitializer;
-
-  @PostConstruct
-  public void initialize() {
-    departmentInitializer.initialize();
-    studentInitializer.initialize();
-    teacherInitializer.initialize();
-    subjectInitializer.initialize();
-  }
+    @PostConstruct
+    public void initialize() {
+        departmentInitializer.initialize();
+        studentInitializer.initialize();
+        teacherInitializer.initialize();
+        subjectInitializer.initialize();
+    }
 }

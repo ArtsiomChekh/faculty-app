@@ -16,8 +16,10 @@ import java.util.List;
 public class DepartmentStudentInitializer {
     @Autowired
     private DepartmentStudentRepository departmentStudentRepository;
+
     @Autowired
     private DepartmentRepository departmentRepository;
+
     @Autowired
     private StudentRepository studentRepository;
 
