@@ -12,11 +12,16 @@
     <div class="structure-container">
         <div th:each="department: ${departments}">
             <div class="square">
-                <h2 class="department-name" th:text="${department.name}"></h2>
+                <a href="http://localhost:8080">
+                    <h2 class="department-name" th:text="${department.name}"></h2>
+                </a>
                 <ul class="subjects">
                     <li th:each="subject: ${subjects}" th:if="${subject.department.id == department.id}"
                         th:text="' ' + ${subject.name}"></li>
                 </ul>
+                <a href="http://localhost:8080">
+                    <p class="more">Узнать больше...</p>
+                </a>
             </div>
         </div>
     </div>
