@@ -17,7 +17,7 @@ public class DepartmentStudentInitializer {
     @Autowired
     private DepartmentStudentRepository departmentStudentRepository;
     @Autowired
-    private  DepartmentRepository departmentRepository;
+    private DepartmentRepository departmentRepository;
     @Autowired
     private StudentRepository studentRepository;
 
@@ -27,13 +27,14 @@ public class DepartmentStudentInitializer {
         if (departmentStudentRepository.count() < 3) {
             List<Department> departmentList = departmentRepository.findAll();
             List<Student> studentList = studentRepository.findAll();
-            DepartmentStudent departmentStudent1 = new DepartmentStudent(departmentList.get(0),studentList.get(0));
+
+            DepartmentStudent departmentStudent1 = new DepartmentStudent(departmentList.get(0), studentList.get(0));
             departmentStudentRepository.save(departmentStudent1);
 
-            DepartmentStudent departmentStudent2 = new DepartmentStudent(departmentList.get(1),studentList.get(1));
+            DepartmentStudent departmentStudent2 = new DepartmentStudent(departmentList.get(1), studentList.get(1));
             departmentStudentRepository.save(departmentStudent2);
 
-            DepartmentStudent departmentStudent3 = new DepartmentStudent(departmentList.get(2),studentList.get(2));
+            DepartmentStudent departmentStudent3 = new DepartmentStudent(departmentList.get(2), studentList.get(2));
             departmentStudentRepository.save(departmentStudent3);
         }
     }
