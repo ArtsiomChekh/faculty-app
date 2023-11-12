@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/structure.css}">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:insert="~{header :: header}"></div>
+
+<div class="page">
+    <div th:text="${department.name}">Название</div>
+</div>
+
+<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>
