@@ -1,6 +1,8 @@
 package com.chekh.artsiom.controller;
 
 import com.chekh.artsiom.model.Department;
+import com.chekh.artsiom.model.Subject;
+import com.chekh.artsiom.model.Teacher;
 import com.chekh.artsiom.service.DepartmentService;
 import com.chekh.artsiom.service.SubjectService;
 import com.chekh.artsiom.service.TeacherService;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @Controller
 public class StructureController {
@@ -33,7 +37,12 @@ public class StructureController {
     public String showDepartmentPage(
             @PathVariable("departmentId") Long departmentId, Model model) {
         Department department = departmentService.getDepartmentById(departmentId);
+        List<Teacher> teachers = teacherService.findByDepartmentId(departmentId);
+        List<Subject> subjects = subjectService.findByDepartmentId(departmentId);
+
         model.addAttribute("department", department);
+        model.addAttribute("teachers", teachers);
+        model.addAttribute("subjects", subjects);
         return "department";
     }
 }
