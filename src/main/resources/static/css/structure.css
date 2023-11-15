@@ -19,6 +19,13 @@
     margin: 20px;
 }
 
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
  .square a {
    	color: #a3464a;
  	text-decoration: none;
@@ -29,10 +36,6 @@
     text-decoration: underline;
 }
 
-.square p:hover  {
-  	color: #a3464a;
-    text-decoration: underline;
-}
 
 .subjects {
     text-align: left;

@@ -15,12 +15,9 @@
                 <a th:href="@{/structure/department/{departmentId}(departmentId=${department.id})}">
                     <h2 class="department-name" th:text="${department.name}"></h2>
                 </a>
-                <ul class="subjects">
-                    <li th:each="subject: ${subjects}" th:if="${subject.department.id == department.id}"
-                        th:text="' ' + ${subject.name}"></li>
-                </ul>
-                <a th:href="@{/structure/department/{departmentId}(departmentId=${department.id})}">
-                    <p class="more">Узнать больше...</p>
+                <p class="description" th:text="${department.description}"></p>
+                <a class="more" th:href="@{/structure/department/{departmentId}(departmentId=${department.id})}">
+                    <p>Узнать больше...</p>
                 </a>
             </div>
         </div>
