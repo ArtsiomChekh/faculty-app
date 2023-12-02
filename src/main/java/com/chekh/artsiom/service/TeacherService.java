@@ -5,7 +5,6 @@ import com.chekh.artsiom.model.Teacher;
 import java.util.List;
 
 public interface TeacherService {
-
   List<Teacher> getAllTeachers();
 
   List<Teacher> findByDepartmentId(Long departmentId);
@@ -23,7 +22,5 @@ public interface TeacherService {
   void saveTeacherWithSubjects(Teacher teacher, List<Long> subjectIds);
 
   List<Subject> getSubjectsByTeacherId(Long teacherId);
-
-
 }
 

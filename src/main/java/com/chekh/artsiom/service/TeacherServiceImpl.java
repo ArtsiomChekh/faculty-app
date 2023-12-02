@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
-
   @Autowired
   private TeacherRepository teacherRepository;
 
@@ -59,7 +58,6 @@ public class TeacherServiceImpl implements TeacherService {
     teacherRepository.deleteById(id);
   }
 
-
   @Override
   public Teacher getTeacherById(long id) {
     return teacherRepository.findById(id).orElse(null);
@@ -94,5 +92,4 @@ public class TeacherServiceImpl implements TeacherService {
 
     return subjects;
   }
-
 }

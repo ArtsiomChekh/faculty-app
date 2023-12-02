@@ -4,7 +4,6 @@ import com.chekh.artsiom.model.Subject;
 import java.util.List;
 
 public interface SubjectService {
-
   List<Subject> getAllSubjects();
 
   List<Subject> findByDepartmentId(Long departmentId);
@@ -18,5 +17,4 @@ public interface SubjectService {
   void deleteSubjectById(long id);
 
   Subject getSubjectById(long id);
-
 }
