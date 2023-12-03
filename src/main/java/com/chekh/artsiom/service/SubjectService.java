@@ -1,20 +1,20 @@
 package com.chekh.artsiom.service;
 
 import com.chekh.artsiom.model.Subject;
+
 import java.util.List;
 
 public interface SubjectService {
-  List<Subject> getAllSubjects();
 
-  List<Subject> findByDepartmentId(Long departmentId);
+    List<Subject> getAllSubjects();
 
-  List<Subject> findAll();
+    List<Subject> findByDepartmentId(Long departmentId);
 
-  List<Subject> getSubjectsByIds(List<Long> asList);
+    List<Subject> getSubjectsByIds(List<Long> asList);
 
-  void saveSubject(Subject subject);
+    void saveSubject(Subject subject);
 
-  void deleteSubjectById(long id);
+    void deleteSubjectById(long id);
 
-  Subject getSubjectById(long id);
+    Subject getSubjectById(long id);
 }

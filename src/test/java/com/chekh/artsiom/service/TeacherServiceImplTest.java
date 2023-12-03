@@ -1,20 +1,19 @@
 package com.chekh.artsiom.service;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import com.chekh.artsiom.model.Department;
 import com.chekh.artsiom.model.Teacher;
 import com.chekh.artsiom.repository.TeacherRepository;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class TeacherServiceImplTest {
 

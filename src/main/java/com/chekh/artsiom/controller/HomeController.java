@@ -17,5 +17,4 @@ public class HomeController {
         model.addAttribute("departments", departmentService.getAllDepartments());
         return "index";
     }
-
 }

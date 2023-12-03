@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class StudentInitializer {
+
     @Autowired
     private StudentRepository studentRepository;
 

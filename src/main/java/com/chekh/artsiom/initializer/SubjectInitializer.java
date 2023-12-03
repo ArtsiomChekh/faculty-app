@@ -12,6 +12,7 @@ import java.util.List;
 
 @Component
 public class SubjectInitializer {
+
     @Autowired
     private SubjectRepository subjectRepository;
 

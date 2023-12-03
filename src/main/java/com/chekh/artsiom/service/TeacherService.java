@@ -2,25 +2,26 @@ package com.chekh.artsiom.service;
 
 import com.chekh.artsiom.model.Subject;
 import com.chekh.artsiom.model.Teacher;
+
 import java.util.List;
 
 public interface TeacherService {
-  List<Teacher> getAllTeachers();
 
-  List<Teacher> findByDepartmentId(Long departmentId);
+    List<Teacher> getAllTeachers();
 
-  List<Teacher> findBySubjectId(Long subjectId);
+    List<Teacher> findByDepartmentId(Long departmentId);
 
-  List<Teacher> findByDepartmentIdAndSubjectId(Long departmentId, Long subjectId);
+    List<Teacher> findBySubjectId(Long subjectId);
 
-  void saveTeacher(Teacher teacher);
+    List<Teacher> findByDepartmentIdAndSubjectId(Long departmentId, Long subjectId);
 
-  void deleteTeacherById(long id);
+    void saveTeacher(Teacher teacher);
 
-  Teacher getTeacherById(long id);
+    void deleteTeacherById(long id);
 
-  void saveTeacherWithSubjects(Teacher teacher, List<Long> subjectIds);
+    Teacher getTeacherById(long id);
 
-  List<Subject> getSubjectsByTeacherId(Long teacherId);
+    void saveTeacherWithSubjects(Teacher teacher, List<Long> subjectIds);
+
+    List<Subject> getSubjectsByTeacherId(Long teacherId);
 }
-

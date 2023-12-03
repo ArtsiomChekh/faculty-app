@@ -14,6 +14,7 @@ import java.util.List;
 
 @Component
 public class StudentSubjectInitializer {
+
     @Autowired
     private StudentSubjectRepository studentSubjectRepository;
 

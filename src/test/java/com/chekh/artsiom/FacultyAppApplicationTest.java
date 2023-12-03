@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class FacultyAppApplicationTest {
 
-  @Test
-  public void main() {
-  }
+    @Test
+    public void testMain() {
+    }
 }
