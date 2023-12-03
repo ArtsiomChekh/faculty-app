@@ -4,7 +4,6 @@
     <title>Title</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
-
 </head>
 <body>
 <div th:insert="~{header :: header}"></div>
@@ -13,14 +12,14 @@
         <table>
             <tr>
                 <th>№</th>
-                <th>NAME</th>
+                <th>SUBJECT</th>
                 <th>DEPARTMENT</th>
                 <th>TEACH</th>
             </tr>
             <tr th:each="subject, i: ${subjects}">
                 <td th:text="${i.index + 1}">1</td>
                 <td th:text="${subject.name}">Name</td>
-                <td th:text="${subject.department.name}">Department</td>
+                <td th:text="${subject.department?.name} ?: 'Нет кафедры'">Department name</td>
                 <td>teach</td>
             </tr>
         </table>
