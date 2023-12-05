@@ -3,6 +3,7 @@
 <head>
     <title>Title</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/for-teacher.css" th:href="@{/css/for-teacher.css}">
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
@@ -20,7 +21,11 @@
                 <td th:text="${i.index + 1}">1</td>
                 <td th:text="${subject.name}">Name</td>
                 <td th:text="${subject.department?.name} ?: 'Нет кафедры'">Department name</td>
-                <td>teach</td>
+                <td>
+                    <form method="post" th:action="@{/teach/{subjectId}(subjectId=${subject.id})}">
+                        <button type="submit" class="button">Teach</button>
+                    </form>
+                </td>
             </tr>
         </table>
     </div>
