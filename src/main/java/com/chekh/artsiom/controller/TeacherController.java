@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -31,5 +33,10 @@ public class TeacherController {
         model.addAttribute("subjects", subjects);
         model.addAttribute("departments", departments);
         return "for-teacher";
+    }
+
+    @PostMapping("/teach/{subjectId}")
+    public String teachSubject(@PathVariable("subjectId") Long subjectId) {
+        return "redirect:/for-teacher";
     }
 }

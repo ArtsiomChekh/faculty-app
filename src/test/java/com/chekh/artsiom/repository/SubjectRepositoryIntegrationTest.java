@@ -31,9 +31,9 @@ public class SubjectRepositoryIntegrationTest {
 
     @Autowired
     private StudentRepository studentRepository;
+
     @Autowired
     private DepartmentRepository departmentRepository;
-
 
     @Test
     public void testGetSubjectsByDepartmentWhenTableIsNotEmpty() {

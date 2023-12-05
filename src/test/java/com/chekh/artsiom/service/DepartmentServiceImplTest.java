@@ -115,8 +115,4 @@ public class DepartmentServiceImplTest {
         expected.put(department3, 60L);
         Assert.assertEquals(expected, actual);
     }
-
-
-
-
 }
