@@ -39,7 +39,7 @@
 CREATE TABLE department (
 id INT AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(255),
-description VARCHAR(1000)
+description VARCHAR(2000)
 );
 
 CREATE TABLE student (
@@ -63,6 +63,15 @@ department_id INT,
 FOREIGN KEY (department_id) REFERENCES department (id)
 );
 
+CREATE TABLE schedule (
+id INT AUTO_INCREMENT PRIMARY KEY,
+subject_id INT,
+department_id INT,
+start_time DATETIME,
+end_time DATETIME,
+FOREIGN KEY (subject_id) REFERENCES department (id),
+FOREIGN KEY (department_id) REFERENCES department (id)
+);
 
 CREATE TABLE department_student (
 department_id INT,
