@@ -15,7 +15,7 @@ public class Department {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description", length = 1000)
+    @Column(name = "description", length = 2000)
     private String description;
 
     public Department() {
