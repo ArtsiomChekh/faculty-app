@@ -1,6 +1,7 @@
 package com.chekh.artsiom.controller;
 
 import com.chekh.artsiom.model.Subject;
+import com.chekh.artsiom.service.ScheduleService;
 import com.chekh.artsiom.service.StudentService;
 import com.chekh.artsiom.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,13 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    StudentService studentService;
+    private StudentService studentService;
 
     @Autowired
-    SubjectService subjectService;
+    private SubjectService subjectService;
+
+    @Autowired
+    private ScheduleService scheduleService;
 
     @GetMapping("/for-student")
     public String showForStudentPage(Model model) {

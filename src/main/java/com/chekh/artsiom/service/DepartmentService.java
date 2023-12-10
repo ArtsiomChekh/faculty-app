@@ -1,11 +1,9 @@
 package com.chekh.artsiom.service;
 
 import com.chekh.artsiom.model.Department;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface DepartmentService {
 
     List<Department> getAllDepartments();

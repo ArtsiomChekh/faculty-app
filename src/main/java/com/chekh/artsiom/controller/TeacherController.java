@@ -18,13 +18,13 @@ import java.util.List;
 public class TeacherController {
 
     @Autowired
-    TeacherService teacherService;
+    private TeacherService teacherService;
 
     @Autowired
-    DepartmentService departmentService;
+    private DepartmentService departmentService;
 
     @Autowired
-    SubjectService subjectService;
+    private SubjectService subjectService;
 
     @GetMapping("/for-teacher")
     public String showForTeacherPage(Model model) {
