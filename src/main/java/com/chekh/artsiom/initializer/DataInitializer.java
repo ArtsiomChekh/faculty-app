@@ -19,11 +19,27 @@ public class DataInitializer {
     @Autowired
     private SubjectInitializer subjectInitializer;
 
+    @Autowired
+    private ScheduleInitializer scheduleInitializer;
+
+    @Autowired
+    private DepartmentStudentInitializer departmentStudentInitializer;
+
+    @Autowired
+    private StudentSubjectInitializer studentSubjectInitializer;
+
+    @Autowired
+    private TeacherSubjectInitializer teacherSubjectInitializer;
+
     @PostConstruct
     public void initialize() {
         departmentInitializer.initialize();
         studentInitializer.initialize();
         teacherInitializer.initialize();
         subjectInitializer.initialize();
+        studentInitializer.initialize();
+        departmentStudentInitializer.initialize();
+        studentSubjectInitializer.initialize();
+        teacherSubjectInitializer.initialize();
     }
 }

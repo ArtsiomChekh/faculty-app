@@ -27,16 +27,16 @@ public class StudentSubjectInitializer {
     @PostConstruct
     public void initialize() {
         if (studentSubjectRepository.count() < 3) {
-            List<Student> studentList = studentRepository.findAll();
-            List<Subject> subjectList = subjectRepository.findAll();
+            List<Student> students = studentRepository.findAll();
+            List<Subject> subjects = subjectRepository.findAll();
 
-            StudentSubject studentSubject1 = new StudentSubject(studentList.get(0), subjectList.get(0));
+            StudentSubject studentSubject1 = new StudentSubject(students.get(0), subjects.get(0));
             studentSubjectRepository.save(studentSubject1);
 
-            StudentSubject studentSubject2 = new StudentSubject(studentList.get(1), subjectList.get(1));
+            StudentSubject studentSubject2 = new StudentSubject(students.get(1), subjects.get(1));
             studentSubjectRepository.save(studentSubject2);
 
-            StudentSubject studentSubject3 = new StudentSubject(studentList.get(2), subjectList.get(2));
+            StudentSubject studentSubject3 = new StudentSubject(students.get(2), subjects.get(2));
             studentSubjectRepository.save(studentSubject3);
         }
     }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "schedule")
@@ -25,15 +26,15 @@ public class Schedule {
     private Integer weekDay;
 
     @Column(name = "start_time", nullable = false)
-    private LocalDateTime startTime;
+    private LocalTime startTime;
 
     @Column(name = "end_time", nullable = false)
-    private LocalDateTime endTime;
+    private LocalTime endTime;
 
     public Schedule() {
     }
 
-    public Schedule(Subject subject, Teacher teacher, Integer weekDay, LocalDateTime startTime, LocalDateTime endTime) {
+    public Schedule(Subject subject, Teacher teacher, Integer weekDay, LocalTime startTime, LocalTime endTime) {
         this.subject = subject;
         this.teacher = teacher;
         this.weekDay = weekDay;
@@ -65,19 +66,19 @@ public class Schedule {
         this.teacher = teacher;
     }
 
-    public LocalDateTime getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 
-    public LocalDateTime getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 

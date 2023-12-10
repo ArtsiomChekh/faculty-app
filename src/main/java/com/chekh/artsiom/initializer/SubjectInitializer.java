@@ -22,21 +22,21 @@ public class SubjectInitializer {
     @PostConstruct
     public void initialize() {
         if (subjectRepository.count() < 3) {
-            List<Department> departmentList = departmentRepository.findAll();
+            List<Department> departments = departmentRepository.findAll();
 
             Subject subject1 = new Subject();
             subject1.setName("Вычислительные машины, системы и сети");
-            subject1.setDepartment(departmentList.get(0));
+            subject1.setDepartment(departments.get(0));
             subjectRepository.save(subject1);
 
             Subject subject2 = new Subject();
             subject2.setName("Информационные системы и технологии (в экономике)");
-            subject2.setDepartment(departmentList.get(1));
+            subject2.setDepartment(departments.get(1));
             subjectRepository.save(subject2);
 
             Subject subject3 = new Subject();
             subject3.setName("Информационная безопасность");
-            subject3.setDepartment(departmentList.get(2));
+            subject3.setDepartment(departments.get(2));
             subjectRepository.save(subject3);
         }
     }
