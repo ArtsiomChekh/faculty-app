@@ -3,6 +3,7 @@ package com.chekh.artsiom.model;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 import static org.junit.Assert.assertEquals;
@@ -16,7 +17,7 @@ public class ScheduleTest {
         schedule = new Schedule(
                 new Subject("Предмет 1", new Department("Кафедра 1")),
                 new Teacher("Николя", "Григорик"),
-                LocalDateTime.of(2023, 12, 12, 8, 0),
+                1, LocalDateTime.of(2023, 12, 12, 8, 0),
                 LocalDateTime.of(2023, 12, 12, 10, 0));
     }
 
@@ -34,6 +35,11 @@ public class ScheduleTest {
     public void testGetTeacherName() {
         assertEquals("Николя", schedule.getTeacher().getFirstName());
         assertEquals("Григорик", schedule.getTeacher().getLastName());
+    }
+
+    @Test
+    public void testGetDayOfWeekName() {
+        assertEquals(DayOfWeek.MONDAY, schedule.getWeekDay());
     }
 
     @Test

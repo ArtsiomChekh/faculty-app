@@ -1,5 +1,6 @@
 package com.chekh.artsiom.controller;
 
+import com.chekh.artsiom.model.Schedule;
 import com.chekh.artsiom.model.Subject;
 import com.chekh.artsiom.service.ScheduleService;
 import com.chekh.artsiom.service.StudentService;
@@ -26,7 +27,10 @@ public class StudentController {
     @GetMapping("/for-student")
     public String showForStudentPage(Model model) {
         List<Subject> subjects = subjectService.getAllSubjects();
+        List<Schedule> schedules = scheduleService.getAllSchedules();
+
         model.addAttribute("subjects", subjects);
+        model.addAttribute("schedules", schedules);
         return "for-student";
     }
 }

@@ -2,6 +2,7 @@ package com.chekh.artsiom.model;
 
 import jakarta.persistence.*;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,6 +21,9 @@ public class Schedule {
     @JoinColumn(name = "teacher_id", nullable = false)
     private Teacher teacher;
 
+    @Column(name = "week_day", nullable = false)
+    private Integer weekDay;
+
     @Column(name = "start_time", nullable = false)
     private LocalDateTime startTime;
 
@@ -29,13 +33,13 @@ public class Schedule {
     public Schedule() {
     }
 
-    public Schedule(Subject subject, Teacher teacher, LocalDateTime startTime, LocalDateTime endTime) {
+    public Schedule(Subject subject, Teacher teacher, Integer weekDay, LocalDateTime startTime, LocalDateTime endTime) {
         this.subject = subject;
         this.teacher = teacher;
+        this.weekDay = weekDay;
         this.startTime = startTime;
         this.endTime = endTime;
     }
-
 
     public Long getId() {
         return id;
@@ -61,7 +65,6 @@ public class Schedule {
         this.teacher = teacher;
     }
 
-
     public LocalDateTime getStartTime() {
         return startTime;
     }
@@ -76,5 +79,13 @@ public class Schedule {
 
     public LocalDateTime getEndTime() {
         return endTime;
+    }
+
+    public DayOfWeek getWeekDay() {
+        return DayOfWeek.of(weekDay);
+    }
+
+    public void setWeekDay(Integer weekDay) {
+        this.weekDay = weekDay;
     }
 }

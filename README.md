@@ -66,11 +66,12 @@ FOREIGN KEY (department_id) REFERENCES department (id)
 CREATE TABLE schedule (
 id INT AUTO_INCREMENT PRIMARY KEY,
 subject_id INT,
-department_id INT,
-start_time DATETIME,
-end_time DATETIME,
-FOREIGN KEY (subject_id) REFERENCES department (id),
-FOREIGN KEY (department_id) REFERENCES department (id)
+teacher_id INT,
+week_day INT,
+start_time TIME,
+end_time TIME,
+FOREIGN KEY (subject_id) REFERENCES subject (id),
+FOREIGN KEY (teacher_id) REFERENCES teacher (id)
 );
 
 CREATE TABLE department_student (

@@ -17,6 +17,17 @@
             <td th:text="${subject.name}">Name</td>
         </tr>
     </table>
+    <h2>Расписание занятий</h2>
+    <table>
+        <tr>
+            <th>DAY</th>
+            <th>SUBJECT</th>
+        </tr>
+        <tr th:each="schedule, i: ${schedules}">
+            <td th:text="${schedule.weekDay}">${schedule.weekDay}</td>
+            <td th:text="${schedule.subject.name}">${schedule.subject.name}</td>
+        </tr>
+    </table>
 </div>
 <div th:insert="~{footer :: footer}"></div>
 </body>
