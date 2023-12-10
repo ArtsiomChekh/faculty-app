@@ -43,7 +43,7 @@
                 <ul class="list">
                     <h3 class="title"> Departments</h3>
                     <li th:each="department : ${departments}">
-                        <a th:href="@{'/department/' + ${department.id}}" th:text="${department.name}">Department</a>
+                        <a th:href="@{/structure/department/{departmentId}(departmentId=${department.id})}" th:text="${department.name}">Department</a>
                     </li>
                 </ul>
             </div>
