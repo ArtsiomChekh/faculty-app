@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.DayOfWeek;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -17,8 +17,8 @@ public class ScheduleTest {
         schedule = new Schedule(
                 new Subject("Предмет 1", new Department("Кафедра 1")),
                 new Teacher("Николя", "Григорик"),
-                1, LocalDateTime.of(2023, 12, 12, 8, 0),
-                LocalDateTime.of(2023, 12, 12, 10, 0));
+                1, LocalTime.of(8, 0),
+                LocalTime.of(10, 0));
     }
 
     @Test
@@ -44,13 +44,13 @@ public class ScheduleTest {
 
     @Test
     public void testGetStartTime() {
-        LocalDateTime expected = LocalDateTime.of(2023, 12, 12, 8, 0);
+        LocalTime expected = LocalTime.of(8, 0);
         assertEquals(expected, schedule.getStartTime());
     }
 
     @Test
     public void testGetEndTime() {
-        LocalDateTime expected = LocalDateTime.of(2023, 12, 12, 10, 0);
+        LocalTime expected = LocalTime.of(10, 0);
         assertEquals(expected, schedule.getEndTime());
     }
 
