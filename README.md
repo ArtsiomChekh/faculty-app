@@ -1,9 +1,8 @@
-# Факультет
-Приложение для организации учебного процесса на факультете информационных технологий
+# Faculty
 
-# Текущие задачи и баги
+An application for the organisation of the learning process in the Faculty of Information Technology.
 
-# Используемые технологии
+# Used Technologies
 
 * Java
 * Spring MVC
@@ -12,8 +11,7 @@
 * Spring Data JPA (Hibernate)
 * Spring Security
 * MySQL database
-* Idea
-* Bootstrap
+* IntelliJ IDEA
 * Thymeleaf
 * HTML
 * CSS
@@ -21,20 +19,41 @@
 * JUnit
 * Mockito
 
-# Функционал
+# Functionality
 
-* Регистрация и авторизация пользователей -
-* Создание и удаление записей +
-* Поиск и фильтрация данных +
-* Отображение данных в таблицах и списках +
-* Структура базы данных +
-* Роли -
-* Юнит-тесты +
-* Архитектура MVC + 
+* User registration and authentication -
+* Creation and deletion of records +
+* Data search and filtering +
+* Displaying data in tables and lists +
+* Database structure +
+* Roles -
+* Unit tests +
+* MVC architecture +
 
-# Структура БД
+# Database Structure
 
 ![Image alt](https://github.com/ArtsiomChekh/faculty-app/blob/b9102fc02c85e27e123ceb751eef375075b9b655/src/main/resources/static/img/MyDB.png)
+
+# Set up DB
+
+Simple option:
+
+* add the information to the application.properties file:
+  spring.datasource.url=jdbc:mysql://localhost:3306/YOURSCHEMANAME?useSSL=false&allowPublicKeyRetrieval=true
+  spring.datasource.username=YOURUSERNAME
+  spring.datasource.password=YOURPASSWORD
+
+Secure option:
+
+* create a schema
+* add the database.properties file
+* add the database.properties file to the .gitignore
+* add the information to the database.properties file:
+  spring.datasource.url=jdbc:mysql://localhost:3306/YOURSCHEMANAME?useSSL=false&allowPublicKeyRetrieval=true
+  spring.datasource.username=YOURUSERNAME
+  spring.datasource.password=YOURPASSWORD
+
+Creating tables:
 
 CREATE TABLE department (
 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -98,7 +117,11 @@ FOREIGN KEY (teacher_id) REFERENCES teacher (id),
 FOREIGN KEY (subject_id) REFERENCES subject (id)
 );
 
+# Start application
 
-# Установка и запуск
 * mvn spring-boot:run
 * http://localhost:8080
+
+OR
+
+* run FacultyAppApplication.java
