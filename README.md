@@ -38,6 +38,7 @@ An application for the organisation of the learning process in the Faculty of In
 
 Simple option:
 
+* create a schema
 * add the information to the application.properties file:
   spring.datasource.url=jdbc:mysql://localhost:3306/YOURSCHEMANAME?useSSL=false&allowPublicKeyRetrieval=true
   spring.datasource.username=YOURUSERNAME
