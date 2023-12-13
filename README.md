@@ -8,7 +8,8 @@ An application for the organisation of the learning process in the Faculty of In
 * Spring MVC
 * Spring Boot
 * Maven
-* Spring Data JPA (Hibernate)
+* Hibernate
+* Spring Data JPA
 * Spring Security
 * MySQL database
 * IntelliJ IDEA

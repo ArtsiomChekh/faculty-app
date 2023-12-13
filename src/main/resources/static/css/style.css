@@ -190,16 +190,16 @@ hr {
 }
 
 .boxed ul li.first {
-	border: none;
+    border: none;
 }
 
 .footer {
-  background-color: black;
-  color: #fefefe;
-  position: fixed;
-  width: 100%;
-  left: 0;
-  bottom: 0;
-  text-align: center;
+    background-color: black;
+    color: #fefefe;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    text-align: center;
 }
 
