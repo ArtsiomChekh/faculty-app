@@ -17,4 +17,9 @@ public class HomeController {
         model.addAttribute("departments", departmentService.getAllDepartments());
         return "index";
     }
+
+    @GetMapping("/accessDenied")
+    public String getAccessDeniedPage() {
+        return "accessDeniedPage";
+    }
 }

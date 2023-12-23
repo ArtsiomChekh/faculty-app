@@ -11,13 +11,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name", nullable = false, unique = true)
+    @Column(name = "user_name", unique = true)
     private String name;
 
-    @Column(name = "user_passwd")
+    @Column(name = "user_password")
     private String password;
 
-    @Column(name = "user_email")
+    @Column(name = "user_email", unique = true)
     private String email;
 
     @ElementCollection(fetch = FetchType.EAGER)
