@@ -37,7 +37,6 @@ public class SubjectRepositoryIntegrationTest {
 
     @Test
     public void testGetSubjectsByDepartmentWhenTableIsNotEmpty() {
-
         Department department = new Department("Кафедра 1", "описание");
         departmentRepository.save(department);
 
