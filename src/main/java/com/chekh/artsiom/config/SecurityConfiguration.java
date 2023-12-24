@@ -18,20 +18,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Lazy
     @Autowired
     private UserDetailsService userDetailsService;
 
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return (web) -> web.ignoring().requestMatchers("/register", "/index", "/", "/css/**", "/images/**");
-//    }
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/register", "/home", "/", "/css/**", "/images/**").permitAll()
+                        .requestMatchers("/register", "/saveUser", "/home", "/", "/css/**", "/images/**").permitAll()
                         .requestMatchers("/admin").hasAuthority("Admin")
                         .requestMatchers("/student").hasAuthority("Student")
                         .requestMatchers("/teacher").hasAuthority("Teacher")
@@ -52,19 +49,15 @@ public class SecurityConfiguration {
                         .accessDeniedPage("/accessDenied")))
 
                 .authenticationProvider(authenticationProvider());
-        return http.build();
-    }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
+        return http.build();
     }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
+        authenticationProvider.setPasswordEncoder(encoder);
         return authenticationProvider;
     }
 }
