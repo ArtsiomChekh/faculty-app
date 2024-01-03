@@ -28,6 +28,6 @@ public class UserController {
         Long id = userService.saveUser(user);
         String message = "User '" + id + "' saved successfully !";
         model.addAttribute("msg", message);
-        return "registerUser";
+        return "redirect:/home";
     }
 }

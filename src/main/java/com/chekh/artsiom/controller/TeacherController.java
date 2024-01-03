@@ -6,6 +6,7 @@ import com.chekh.artsiom.service.DepartmentService;
 import com.chekh.artsiom.service.SubjectService;
 import com.chekh.artsiom.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+@PreAuthorize("hasAuthority('Teacher') or hasAuthority('Admin')")
 @Controller
 public class TeacherController {
 
@@ -26,7 +28,7 @@ public class TeacherController {
     @Autowired
     private SubjectService subjectService;
 
-    @GetMapping("/for-teacher")
+    @GetMapping("/teacher/for-teacher")
     public String showForTeacherPage(Model model) {
         List<Subject> subjects = subjectService.getAllSubjects();
         List<Department> departments = departmentService.getAllDepartments();
