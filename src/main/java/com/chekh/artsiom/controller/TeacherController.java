@@ -39,6 +39,6 @@ public class TeacherController {
 
     @PostMapping("/teach/{subjectId}")
     public String teachSubject(@PathVariable("subjectId") Long subjectId) {
-        return "redirect:/for-teacher";
+        return "redirect: /teacher/for-teacher";
     }
 }

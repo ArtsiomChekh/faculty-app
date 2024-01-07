@@ -46,8 +46,8 @@ public class TeacherControllerTest {
         Mockito.when(subjectService.getAllSubjects()).thenReturn(subjects);
         Mockito.when(departmentService.getAllDepartments()).thenReturn(departments);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/for-teacher")
-                        .with(SecurityMockMvcRequestPostProcessors.user("testUser").roles("USER")))
+        mockMvc.perform(MockMvcRequestBuilders.get("/teacher/for-teacher")
+                        .with(SecurityMockMvcRequestPostProcessors.user("testTeacher").roles("Teacher")))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("for-teacher"))
                 .andExpect(MockMvcResultMatchers.model().attribute("subjects", subjects))
