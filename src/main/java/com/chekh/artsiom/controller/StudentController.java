@@ -24,7 +24,7 @@ public class StudentController {
     @Autowired
     private ScheduleService scheduleService;
 
-    @GetMapping("/for-student")
+   @GetMapping("student/for-student")
     public String showForStudentPage(Model model) {
         List<Subject> subjects = subjectService.getAllSubjects();
         List<Schedule> schedules = scheduleService.getAllSchedules();

@@ -3,12 +3,10 @@ package com.chekh.artsiom.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -29,10 +27,10 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/register", "/saveUser", "/home", "/", "/css/**", "/images/**").permitAll()
-                        .requestMatchers("/admin").hasAuthority("Admin")
-                        .requestMatchers("/student").hasAuthority("Student")
-                        .requestMatchers("/teacher").hasAuthority("Teacher")
-                        .requestMatchers("/common").hasAnyAuthority("Admin", "Student", "Teacher")
+                        .requestMatchers("/admin/**").hasAuthority("Admin")
+                        .requestMatchers("/student/**").hasAnyAuthority("Admin", "Student")
+                        .requestMatchers("/teacher/**").hasAnyAuthority("Admin", "Teacher")
+                        .requestMatchers("/common").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((login) -> login
