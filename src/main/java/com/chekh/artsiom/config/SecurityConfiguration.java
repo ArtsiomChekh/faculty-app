@@ -27,9 +27,9 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/register", "/saveUser", "/home", "/", "/css/**", "/images/**").permitAll()
-                        .requestMatchers("/admin/**").hasAuthority("Admin")
-                        .requestMatchers("/student/**").hasAnyAuthority("Admin", "Student")
-                        .requestMatchers("/teacher/**").hasAnyAuthority("Admin", "Teacher")
+                        .requestMatchers("/admin/**").hasRole("Admin")
+                        .requestMatchers("/student/**").hasAnyRole("Admin", "Student")
+                        .requestMatchers("/teacher/**").hasAnyRole("Admin", "Teacher")
                         .requestMatchers("/common").permitAll()
                         .anyRequest().authenticated()
                 )
