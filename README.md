@@ -30,7 +30,7 @@ An application for the organisation of the learning process in the Faculty of In
 
 # Database Structure
 
-![Image alt](https://github.com/ArtsiomChekh/faculty-app/src/main/resources/static/images/facultydb.jpg)
+![Image alt](src/main/resources/static/images/facultydb.jpg)
 
 # Set up DB
 
