@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Faculty</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Artsiom Chekh">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:insert="~{header :: header}"></div>
+<div class="page">
+    <div class="content">
+        <div style="margin-bottom: 20px;">
+            <h1 class="title">Welcome to our QB Tech Faculty!</h1>
+            <p><strong>QB Tech Faculty</strong> is passionate about making an impact, both on campus and in the world
+                beyond. Accomplished in their fields, they have a vision for the power of technology and are motivated
+                by the opportunity to conduct innovative research and co-create with leading academics, industry
+                experts, entrepreneurs and students.</p>
+            <h2>Degrees & Programs</h2>
+            <p><strong>The Master of Science in Information Technology:</strong></p>
+            <em>
+                <p>&ldquo;Our Master of Science in Information Technology provides the essential business and strategic
+                    technology management courses to develop you as a well-rounded professional. You'll gain the
+                    combination of technical and management knowledge needed to implement security strategies that
+                    protect an organization's information and technology assets.&rdquo;</p>
+            </em>
+        </div>
+        <div class="twocols">
+            <div class="col1">
+                <h3 class="title">What You'll Learn</h3>
+                <p>In this <strong>Information Technology Master's program</strong> you will learn how to lead complex
+                    projects from a 21st century information technology perspective. You will also learn how to develop
+                    information systems as strategic tools to provide competitive advantage. By studying how to quickly
+                    adapt new technologies, you will discover how to thrive in the global environment.</p>
+                <p><a href="http://localhost:8080">Read more&hellip;</a>
+            </div>
+            <div class="col2">
+                <h3 class="title">Information Technology Careers</h3>
+                <p><strong>A Master of Science in Information Technology</strong> is valued by employers seeking
+                    professionals with advanced educational qualifications, practical leadership abilities and a broad
+                    technical understanding of emerging technologies in the IT field. It can position graduates for
+                    roles such as:</p>
+                <ul class="list">
+                    <h3 class="title"> Departments</h3>
+                    <li th:each="department : ${departments}">
+                        <a th:href="@{/structure/department/{departmentId}(departmentId=${department.id})}" th:text="${department.name}">Department</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div id="news" class="boxed">
+            <h2 class="title">News &amp; Events</h2>
+            <div class="content">
+                <ul>
+                    <li class="first">
+                        <h3>08 July 2023</h3>
+                        <p><a href="http://localhost:8080">Summer Camp Websites And Marketing...</a></p>
+                    </li>
+                    <li>
+                        <h3>11 June 2023</h3>
+                        <p><a href="http://localhost:8080">Youth Summer Camps And Summer Programs...</a></p>
+                    </li>
+                    <li>
+                        <h3>23 June 2023</h3>
+                        <p><a href="http://localhost:8080">Catering General Information & Guidelines...</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="extra" class="boxed">
+            <h2 class="title">Upcoming Events</h2>
+            <div class="content">
+                <ul class="list">
+                    <li class="first"><a href="http://localhost:8080">Writing Intensive Lab...</a></li>
+                    <li><a href="http://localhost:8080">Greek Week...</a></li>
+                    <li><a href="http://localhost:8080">Fraternity Man of the Year...</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>

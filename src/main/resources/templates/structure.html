@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/structure.css}">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:insert="~{header :: header}"></div>
+<div class="page">
+    <div class="structure-container">
+        <div th:each="department: ${departments}">
+            <div class="square">
+                <a th:href="@{/structure/department/{departmentId}(departmentId=${department.id})}">
+                    <h2 class="department-name" th:text="${department.name}"></h2>
+                </a>
+                <p class="description" th:text="${department.description}"></p>
+                <a class="more" th:href="@{/structure/department/{departmentId}(departmentId=${department.id})}">
+                    <p>Узнать больше...</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>

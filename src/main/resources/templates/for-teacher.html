@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>For Teacher</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/for-teacher.css" th:href="@{/css/for-teacher.css}">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:insert="~{header :: header}"></div>
+<div class="page">
+    <div class="forTeacher-container">
+        <table>
+            <tr>
+                <th>№</th>
+                <th>SUBJECT</th>
+                <th>DEPARTMENT</th>
+                <th>TEACH</th>
+            </tr>
+            <tr th:each="subject, i: ${subjects}">
+                <td th:text="${i.index + 1}">1</td>
+                <td th:text="${subject.name}">Name</td>
+                <td th:text="${subject.department?.name} ?: 'Нет кафедры'">Department name</td>
+                <td>
+                    <form method="post" th:action="@{/teach/{subjectId}(subjectId=${subject.id})}">
+                        <button type="submit" class="button">Teach</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>

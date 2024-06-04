@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>For Student</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+<body>
+<div th:insert="~{header :: header}"></div>
+<div class="page">
+    <table>
+        <tr>
+            <th>№</th>
+            <th>SUBJECT</th>
+        </tr>
+        <tr th:each="subject, i: ${subjects}">
+            <td th:text="${i.index + 1}">1</td>
+            <td th:text="${subject.name}">Name</td>
+        </tr>
+    </table>
+    <h2>Расписание занятий</h2>
+    <table>
+        <tr>
+            <th>DAY</th>
+            <th>SUBJECT</th>
+        </tr>
+        <tr th:each="schedule, i: ${schedules}">
+            <td th:text="${schedule.weekDay}">${schedule.weekDay}</td>
+            <td th:text="${schedule.subject.name}">${schedule.subject.name}</td>
+        </tr>
+    </table>
+</div>
+<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>

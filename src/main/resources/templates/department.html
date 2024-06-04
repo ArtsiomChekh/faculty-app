@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/structure.css" th:href="@{/css/structure.css}">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:insert="~{header :: header}"></div>
+
+<div class="page">
+    <div class="department-container">
+        <div class="rectangle">
+            <div class="emblem"></div>
+            <h2 class="department-name" th:text="${department.name}"></h2>
+            <h4>Направления научных исследований:</h4>
+            <p th:text="${department.description}"></p>
+            <h4>Преподавательский состав:</h4>
+            <ul class="teachers">
+                <li th:each="teacher: ${teachers}"
+                    th:text="${teacher.firstName} + ' ' + ${teacher.lastName}"></li>
+                <li th:if="${teachers.isEmpty()}">Нет доступных преподавателей</li>
+            </ul>
+            <h4>Изучаемые предметы:</h4>
+            <ul class="subjects">
+                <li th:each="subject: ${subjects}" th:text="${subject.name}"></li>
+                <li th:if="${subjects.isEmpty()}">Нет доступных предметов</li>
+            </ul>
+            <a th:href="@{/structure}">
+                <p class="back">Вернуться к списку кафедр</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>
