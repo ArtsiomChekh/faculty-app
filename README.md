@@ -37,18 +37,18 @@ An application for the organisation of the learning process in the Faculty of In
 Simple option:
 
 * add the information to the application.properties file:
-  - spring.datasource.url=jdbc:mysql://localhost:3306/YOURSCHEMANAME?useSSL=false&allowPublicKeyRetrieval=true
-  - spring.datasource.username=YOURUSERNAME
-  - spring.datasource.password=YOURPASSWORD
+  spring.datasource.url=jdbc:mysql://localhost:3306/YOURSCHEMANAME?useSSL=false&allowPublicKeyRetrieval=true
+  spring.datasource.username=YOURUSERNAME
+  spring.datasource.password=YOURPASSWORD
 
 Secure option:
 
 * add the database.properties file
 * add the database.properties file to the .gitignore
 * add the information to the database.properties file:
-  - spring.datasource.url=jdbc:mysql://localhost:3306/YOURSCHEMANAME?useSSL=false&allowPublicKeyRetrieval=true
-  - spring.datasource.username=YOURUSERNAME
-  - spring.datasource.password=YOURPASSWORD
+  spring.datasource.url=jdbc:mysql://localhost:3306/YOURSCHEMANAME?useSSL=false&allowPublicKeyRetrieval=true
+  spring.datasource.username=YOURUSERNAME
+  spring.datasource.password=YOURPASSWORD
 
 # Start application
 
